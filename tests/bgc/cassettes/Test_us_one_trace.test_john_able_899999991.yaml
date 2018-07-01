@@ -1,0 +1,30 @@
+interactions:
+- request:
+    body: '<?xml version="1.0" encoding="utf-8"?>
+
+      <BGC version="4.14" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><login><user>bgc_user</user><password>bgc_password</password><account>99999999</account></login><product><USOneTrace
+      version="1"><order><SSN>899999991</SSN><firstName>John</firstName><lastName>Able</lastName></order></USOneTrace></product></BGC>'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['410']
+      User-Agent: [python-requests/2.19.1]
+    method: POST
+    uri: https://direct2m.backgroundchecks.com/integration/bgcdirectpost.aspx
+  response:
+    body: {string: '<BGC orderId="adb577e2-e2e2-49e4-83f7-6ae98d2e0440"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://schema.backgroundchecks.com/BgcDirect.Model/4.14/OnlineResponse.xsd"><product><USOneTrace
+        version="1"><order><SSN>XXXXX9991</SSN><lastName>Able</lastName><firstName>John</firstName></order><response><errors><error
+        code="20">Security Violation: Unable to match name provided to results from
+        SSN Trace.</error></errors><records /></response></USOneTrace></product></BGC>'}
+    headers:
+      Cache-Control: [private]
+      Content-Length: ['513']
+      Content-Type: [text/xml; charset=utf-8]
+      Date: ['Thu, 28 Jun 2018 18:27:12 GMT']
+      Server: [Microsoft-IIS/8.5]
+      X-AspNet-Version: [4.0.30319]
+      X-Powered-By: [ASP.NET]
+    status: {code: 200, message: OK}
+version: 1

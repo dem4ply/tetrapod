@@ -1,0 +1,32 @@
+interactions:
+- request:
+    body: '<?xml version="1.0" encoding="utf-8"?>
+
+      <BGC version="4.14" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><login><user>bgc_user</user><password>bgc_password</password><account>99999999</account></login><product><USOneTrace
+      version="1"><order><SSN>999999999</SSN><firstName>jonh</firstName><lastName>doe</lastName></order></USOneTrace></product></BGC>'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['415']
+      User-Agent: [python-requests/2.19.1]
+    method: POST
+    uri: https://direct2m.backgroundchecks.com/integration/bgcdirectpost.aspx
+  response:
+    body: {string: '<BGC orderId="559be3d7-4019-4af7-9714-723077890856"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://schema.backgroundchecks.com/BgcDirect.Model/4.14/OnlineResponse.xsd"><product><USOneTrace
+        version="1"><order><SSN>XXXXX9999</SSN><lastName>doe</lastName><firstName>jonh</firstName></order><response><records><record><firstName>jonh</firstName><middleName
+        /><lastName>doe</lastName><streetNumber>123</streetNumber><streetPreDirection
+        /><streetName>Qa St</streetName><streetPostDirection /><streetSuffix>QA</streetSuffix><city
+        /><state /><county /><postalCode /><postalCode4 /><dateFirstSeen><year>2009</year><month>1</month></dateFirstSeen><dateLastSeen><year>2012</year><month>12</month></dateLastSeen><verified>NO</verified><phoneInfo
+        /></record></records></response></USOneTrace></product></BGC>'}
+    headers:
+      Cache-Control: [private]
+      Content-Length: ['854']
+      Content-Type: [text/xml; charset=utf-8]
+      Date: ['Sat, 30 Jun 2018 23:17:47 GMT']
+      Server: [Microsoft-IIS/8.5]
+      X-AspNet-Version: [4.0.30319]
+      X-Powered-By: [ASP.NET]
+    status: {code: 200, message: OK}
+version: 1

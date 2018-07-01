@@ -1,0 +1,32 @@
+interactions:
+- request:
+    body: '<?xml version="1.0" encoding="utf-8"?>
+
+      <BGC version="4.14" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><login><user>bgc_user</user><password>bgc_password</password><account>99999999</account></login><product><USOneValidate
+      version="1"><order><SSN>899999914</SSN></order></USOneValidate></product></BGC>'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['364']
+      User-Agent: [python-requests/2.19.1]
+    method: POST
+    uri: https://direct2m.backgroundchecks.com/integration/bgcdirectpost.aspx
+  response:
+    body: {string: '<BGC orderId="6421064b-0c45-4fb4-ad52-1bd9edfbf034"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://schema.backgroundchecks.com/BgcDirect.Model/4.14/OnlineResponse.xsd"><product><USOneValidate
+        version="1"><order><SSN>XXXXX9914</SSN></order><response><validation><isValid>YES</isValid><isDeceased>YES</isDeceased><textResponse>This
+        SSN may have been issued as part of the Social Security Administration (SSA)
+        Randomization Program that limits our ability to provide the issuance state
+        and dates.  Please direct the subject to the SSA to validate authenticity.</textResponse><stateIssued
+        /><yearIssued /></validation></response></USOneValidate></product></BGC>'}
+    headers:
+      Cache-Control: [private]
+      Content-Length: ['703']
+      Content-Type: [text/xml; charset=utf-8]
+      Date: ['Tue, 26 Jun 2018 15:04:52 GMT']
+      Server: [Microsoft-IIS/8.5]
+      X-AspNet-Version: [4.0.30319]
+      X-Powered-By: [ASP.NET]
+    status: {code: 200, message: OK}
+version: 1

@@ -1,0 +1,27 @@
+interactions:
+- request:
+    body: '<?xml version="1.0" encoding="utf-8"?>
+
+      <BGC version="4.14" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><login><user>bgc_user</user><password>!nt3grat!On1</password><account>1234567890</account></login><product><USOneValidate
+      version="1"><order><SSN>899999914</SSN></order></USOneValidate></product></BGC>'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['366']
+      User-Agent: [python-requests/2.19.1]
+    method: POST
+    uri: https://direct2m.backgroundchecks.com/integration/bgcdirectpost.aspx
+  response:
+    body: {string: <BGC><response><errors><error code="3">Authorization failure. Please
+        contact your sales representative for assistance.</error></errors></response></BGC>}
+    headers:
+      Cache-Control: [private]
+      Content-Length: ['152']
+      Content-Type: [text/xml; charset=utf-8]
+      Date: ['Mon, 25 Jun 2018 21:28:03 GMT']
+      Server: [Microsoft-IIS/8.5]
+      X-AspNet-Version: [4.0.30319]
+      X-Powered-By: [ASP.NET]
+    status: {code: 200, message: OK}
+version: 1

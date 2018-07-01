@@ -1,0 +1,29 @@
+interactions:
+- request:
+    body: '<?xml version="1.0" encoding="utf-8"?>
+
+      <BGC version="4.14" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><login><user>bgc_user</user><password>bgc_password</password><account>99999999</account></login><product><USOneTrace
+      version="1"><order><SSN>899999777</SSN><firstName>AKATestDude</firstName><lastName>AKABGCDTest</lastName></order></USOneTrace></product></BGC>'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['424']
+      User-Agent: [python-requests/2.19.1]
+    method: POST
+    uri: https://direct2m.backgroundchecks.com/integration/bgcdirectpost.aspx
+  response:
+    body: {string: '<BGC orderId="93b051dc-274f-40f7-ad3d-cc86f8387bd8"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://schema.backgroundchecks.com/BgcDirect.Model/4.14/OnlineResponse.xsd"><product><USOneTrace
+        version="1"><order><SSN>XXXXX9777</SSN><lastName>AKABGCDTest</lastName><firstName>AKATestDude</firstName></order><response><errors><error
+        code="28">No addresses on file for the SSN.</error></errors><records /></response></USOneTrace></product></BGC>'}
+    headers:
+      Cache-Control: [private]
+      Content-Length: ['484']
+      Content-Type: [text/xml; charset=utf-8]
+      Date: ['Thu, 28 Jun 2018 18:27:06 GMT']
+      Server: [Microsoft-IIS/8.5]
+      X-AspNet-Version: [4.0.30319]
+      X-Powered-By: [ASP.NET]
+    status: {code: 200, message: OK}
+version: 1
