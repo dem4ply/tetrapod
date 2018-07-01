@@ -132,8 +132,9 @@ class Client( Client_base ):
         =======
         py:class:`tetrapod.bgc.endpoint.Endpoint`
         """
-        connection = self.get_connection()
-        return Endpoint( connection[ 'host' ] )
+        alias = self._default_connection_name
+        return self._connections.build_endpoint(
+            alias, endpoint_class=Endpoint )
 
     def validate_response( self, data ):
         """

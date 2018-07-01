@@ -1,5 +1,4 @@
 import factory
-import random
 from faker import Factory as Faker_factory
 from .bgc import BGC
 
