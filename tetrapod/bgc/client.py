@@ -1,4 +1,5 @@
 import xmltodict
+from collections import OrderedDict
 from mudskipper import Client as Client_base
 from mudskipper.connection import Connections as Connections_base
 from tetrapod.bgc.endpoint import Endpoint
@@ -189,11 +190,11 @@ class Client( Client_base ):
         dict
         """
         loging = self.extract_loging_from_connection()
-        return { 'BGC': {
+        return OrderedDict( { 'BGC': OrderedDict( {
             '@version': '4.14',
             '@xmlns:xsd': 'http://www.w3.org/2001/XMLSchema',
             '@xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-            'login': loging, } }
+            'login': loging, } ) } )
 
     def build_us_one_validate( self, ssn ):
         """
