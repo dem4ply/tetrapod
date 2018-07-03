@@ -166,6 +166,19 @@ class BGC_factory_exception( unittest.TestCase ):
         super().setUp()
 
 
+class BGC_build_xml_text( Test_bgc ):
+    def test_build_us_one_trace_should_login_be_before_that_product( self ):
+        xml_text = self.client.build_us_one_trace(
+            ssn='899999914', first_name='jonh', last_name='dow' )
+        self.assertLess(
+            xml_text.index( 'login' ), xml_text.index( 'product' ) )
+
+    def test_build_us_one_validate_should_login_be_before_that_product( self ):
+        xml_text = self.client.build_us_one_validate( ssn='899999914' )
+        self.assertLess(
+            xml_text.index( 'login' ), xml_text.index( 'product' ) )
+
+
 class Test_client_raise_base_exception( Test_bgc, BGC_factory_exception ):
     def test_us_one_validate_raise_exception( self ):
         with self.assertRaises( exceptions.BGC_exception_base ):
