@@ -42,13 +42,25 @@ BGC
 			'password': os.environ[ 'BGC__DEFAULT__PASSWORD' ],
 			'account': os.environ[ 'BGC__DEFAULT__ACCOUNT' ],
 		 },
-		 another={
+		another={
 			'host': (
 					'https://direct2m.backgroundchecks.com/'
 					'integration/bgcdirectpost.aspx' ),
 			'user': os.environ[ 'BGC__ANOTHER__USER' ],
 			'password': os.environ[ 'BGC__ANOTHER__PASSWORD' ],
 			'account': os.environ[ 'BGC__ANOTHER__ACCOUNT' ],
+		},
+		with_proxy={
+			'host': (
+					'https://direct2m.backgroundchecks.com/'
+					'integration/bgcdirectpost.aspx' ),
+			'user': os.environ[ 'BGC__WITH_PROXY__USER' ],
+			'password': os.environ[ 'BGC__WITH_PROXY__PASSWORD' ],
+			'account': os.environ[ 'BGC__WITH_PROXY__ACCOUNT' ],
+			'proxy': {
+				'http': os.environ[ 'BGC__WITH_PROXY__PROXY__HTTP' ],
+				'https': os.environ[ 'BGC__WITH_PROXY__PROXY__HTTPS' ],
+			},
 		},
 	)
 
