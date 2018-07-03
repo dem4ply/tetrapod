@@ -165,6 +165,7 @@ class BGC_factory_exception( unittest.TestCase ):
         self.factory = BGC_error_factory
         super().setUp()
 
+
 class BGC_build_xml_text( Test_bgc ):
     def test_build_us_one_trace_should_login_be_before_that_product( self ):
         xml_text = self.client.build_us_one_trace(
