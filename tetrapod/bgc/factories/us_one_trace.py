@@ -57,7 +57,8 @@ class _Us_one_trace_record( factory.Factory ):
     date_first_seen = factory.SubFactory( _Us_one_trace_date )
     date_last_seen = factory.SubFactory( _Us_one_trace_date )
     postal_code = factory.lazy_attribute( lambda x: fake.postalcode() )
-    postal_code4 = factory.lazy_attribute( lambda x: fake.postalcode() )
+    postal_code4 = factory.lazy_attribute( 
+        lambda x: fake.numerify( text="####" ) )
     phone_info = factory.SubFactory( _Us_one_trace_phone )
 
     class Meta:
