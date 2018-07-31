@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch, Mock
 
 from tetrapod.bgc import bgc, exceptions
 from tetrapod.bgc.factories.us_one_validate import (
@@ -190,3 +191,18 @@ class Test_client_raise_base_exception( Test_bgc, BGC_factory_exception ):
             self.client.us_one_trace(
                 ssn='899991111', first_name='Ken', last_name='Rico',
                 _use_factory=self.factory )
+
+    @patch( 'requests.post' )
+    def test_us_one_trace_raise_base_exception_with_malformed_xml(
+            self,request_post ):
+        request_post.return_value = Mock( text='<xml>asdf<ml>>>' )
+        with self.assertRaises( exceptions.BGC_exception_base ):
+            self.client.us_one_trace(
+                ssn='899991111', first_name='Ken', last_name='Rico', )
+
+    @patch( 'requests.post' )
+    def test_us_one_validate_raise_exception_with_malformed_xml(
+            self, request_post ):
+        request_post.return_value = Mock( text='<xml>asdf<ml>>>' )
+        with self.assertRaises( exceptions.BGC_exception_base ):
+            self.client.us_one_validate( ssn='899999914', )
