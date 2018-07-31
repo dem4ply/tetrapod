@@ -194,7 +194,7 @@ class Test_client_raise_base_exception( Test_bgc, BGC_factory_exception ):
 
     @patch( 'requests.post' )
     def test_us_one_trace_raise_base_exception_with_malformed_xml(
-            self,request_post ):
+            self, request_post ):
         request_post.return_value = Mock( text='<xml>asdf<ml>>>' )
         with self.assertRaises( exceptions.BGC_exception_base ):
             self.client.us_one_trace(
