@@ -7,12 +7,23 @@ from tetrapod.bgc.factories.us_one_validate import (
 )
 from tetrapod.bgc.factories.bgc import BGC_error as BGC_error_factory
 from vcr_unittest import VCRTestCase
+import datetime
 
 
 class Test_bgc( unittest.TestCase ):
     def setUp( self ):
         self.client = bgc
         super().setUp()
+
+
+class Test_us_one_search( VCRTestCase, Test_bgc ):
+    def test_just_work( self ):
+        result = self.client.us_one_search(
+            ssn='048920148', first_name='Luis', last_name='Morales',
+            middle_name='Alberto',
+            dob=datetime.date( 1994, 10, 20 ),
+            jurisdiction='CT', purpose='EMPLOYMENT', )
+        self.assertIsInstance( result, dict )
 
 
 class Test_us_one_validate( VCRTestCase, Test_bgc ):
