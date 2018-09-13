@@ -1,0 +1,99 @@
+interactions:
+- request:
+    body: '<?xml version="1.0" encoding="utf-8"?>
+
+      <BGC version="4.14" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><login><user>TurnTechINTtest</user><password>!nt3grat!0n1</password><account>10028269</account></login><product><MultiStateOneSearch
+      version="1"><order><SSN>048920148</SSN><firstName>Luis</firstName><lastName>Morales</lastName><middleName>Alberto</middleName><states><state>CT</state><state>TX</state><state>IL</state></states><DOB><month>10</month><day>20</day><year>1994</year></DOB></order><custom><options><includeSources>YES</includeSources><includeDetails>YES</includeDetails></options><filters><SOF><firstName><filterType>FM</filterType></firstName><lastName><filterType>XM</filterType></lastName><DOB><matchFuzzyDates>YES</matchFuzzyDates><matchMissingDates>YES</matchMissingDates></DOB></SOF><GCF><firstName><filterType>FM</filterType></firstName><lastName><filterType>XM</filterType></lastName><DOB><matchFuzzyDates>YES</matchFuzzyDates><matchMissingDates>NO</matchMissingDates></DOB></GCF></filters></custom><certifications><purpose>EMPLOYMENT</purpose><jurisdiction>CT</jurisdiction></certifications></MultiStateOneSearch></product></BGC>'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['1208']
+      Content-type: [text/xml; charset=utf-8]
+      User-Agent: [python-requests/2.19.1]
+    method: POST
+    uri: https://direct2m.backgroundchecks.com/integration/bgcdirectpost.aspx
+  response:
+    body: {string: '<BGC orderId="dcd7a6e9-cdbd-4aee-9872-ea98dc76f94f"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://schema.backgroundchecks.com/BgcDirect.Model/4.14/OnlineResponse.xsd"><product><MultiStateOneSearch
+        version="1"><order><lastName>Morales</lastName><firstName>Luis</firstName><middleName>Alberto</middleName><SSN>XXXXX0148</SSN><DOB><month>10</month><day>20</day><year>1994</year><states><state>CT</state><state>TX</state><state>IL</state></states></DOB></order><custom><filters><SOF><firstName><filterType>FM</filterType></firstName><middleName><filterType>FM</filterType></middleName><lastName><filterType>XM</filterType></lastName><DOB><yearRange>0</yearRange><matchFuzzyDates>YES</matchFuzzyDates><matchMissingDates>YES</matchMissingDates></DOB></SOF><GCF><firstName><filterType>FM</filterType></firstName><middleName><filterType>FM</filterType></middleName><lastName><filterType>XM</filterType></lastName><DOB><yearRange>0</yearRange><matchFuzzyDates>YES</matchFuzzyDates><matchMissingDates>NO</matchMissingDates></DOB></GCF></filters><options><includeSources>YES</includeSources><includeDetails>YES</includeDetails><addAlert>NO</addAlert></options></custom><certifications><purpose>EMPLOYMENT</purpose><jurisdiction>CT</jurisdiction></certifications><response><detail
+        sourceVersion="2971"><offenders qtyFound="0" qtyReturned="0" /></detail><databases
+        version="2971"><database><name>CT</name><datasources><source sourceId="0">Connecticut
+        Sex Offender</source><source sourceId="2">Connecticut Dept of Corrections
+        </source><source sourceId="4">Connecticut Admin Office of Courts</source><source
+        sourceId="5">Connecticut Department of Public Safety</source></datasources></database><database><name>IL</name><datasources><source
+        sourceId="0">Illinois Sex Offender</source><source sourceId="2">Illinois Dept
+        of Corrections</source><source sourceId="3">Illinois Department of Corrections
+        - Supplemental</source><source sourceId="5">Cook County</source><source sourceId="8">Lee
+        County</source><source sourceId="9">Logan County</source><source sourceId="10">Carroll
+        County</source><source sourceId="11">Coles County</source><source sourceId="12">Henry
+        County</source><source sourceId="13">Jackson County</source><source sourceId="14">Jo
+        Davies County</source><source sourceId="15">Mercer County</source><source
+        sourceId="16">Ogle County</source><source sourceId="17">Pike County</source><source
+        sourceId="18">Rock Island County</source><source sourceId="19">Stephenson
+        County</source><source sourceId="20">Union County</source><source sourceId="21">Vermilion
+        County</source><source sourceId="22">Whiteside County</source><source sourceId="23">Adams
+        County</source><source sourceId="24">Bond County</source><source sourceId="25">Boone
+        County</source><source sourceId="26">Sangamon</source><source sourceId="27">Iroquois</source><source
+        sourceId="28">Marion County</source><source sourceId="29">Effingham</source><source
+        sourceId="30">Franklin</source><source sourceId="31">Shelby</source><source
+        sourceId="32">Richland County</source><source sourceId="33">Lawrence County</source><source
+        sourceId="34">Wabash County</source><source sourceId="35">Wayne County</source><source
+        sourceId="36">White County</source><source sourceId="37">Clay County</source><source
+        sourceId="38">Clinton County</source><source sourceId="39">Crawford County</source><source
+        sourceId="40">Edward County</source><source sourceId="41">Ford County</source><source
+        sourceId="42">Jefferson County</source><source sourceId="43">Hamilton County</source><source
+        sourceId="51">Bureau County Courts</source><source sourceId="52">Dupage County</source><source
+        sourceId="53">Peoria County</source><source sourceId="54">Champaign County</source><source
+        sourceId="57">Montgomery County</source><source sourceId="58">Washington County</source><source
+        sourceId="59">Williamson County</source><source sourceId="60">McLean County</source><source
+        sourceId="61">Macon County</source><source sourceId="62">Clark County</source><source
+        sourceId="63">Macoupin County</source><source sourceId="64">Moultrie County</source><source
+        sourceId="65">Woodford County</source><source sourceId="66">Edgar County</source><source
+        sourceId="67">Fayette County</source><source sourceId="68">DeWitt County</source><source
+        sourceId="69">Johnson County</source><source sourceId="70">Morgan County</source><source
+        sourceId="71">Pope County</source><source sourceId="72">Cumberland County</source><source
+        sourceId="73">Piatt County</source></datasources></database><database><name>TX</name><datasources><source
+        sourceId="0">Texas Sex Offender (10/09/2009)</source><source sourceId="1">Texas
+        DPS (08/30/2009)</source><source sourceId="2">Texas Dept of Criminal Justice
+        (09/23/2009)</source><source sourceId="3">Dallas County (10/05/2009)</source><source
+        sourceId="4">Denton County (09/18/2009)</source><source sourceId="5">Travis
+        County (01/01/2007)</source><source sourceId="6">Bexar County (09/08/2009)</source><source
+        sourceId="7">Ft. Bend County (09/03/2009)</source><source sourceId="8">Guadalupe
+        County (09/23/2009)</source><source sourceId="10">Collin County (10/02/2009)</source><source
+        sourceId="11">Nueces County (01/01/2007)</source><source sourceId="12">Grayson
+        County (09/22/2009)</source><source sourceId="13">Gregg County (10/06/2009)</source><source
+        sourceId="14">Tom Green County (09/22/2009)</source><source sourceId="15">Montgomery
+        County (Fel) (09/01/2009)</source><source sourceId="16">El Paso County (09/22/2009)</source><source
+        sourceId="17">Harris County (09/22/2009)</source><source sourceId="18">Smith
+        County (10/06/2009)</source><source sourceId="19">Potter County (10/14/2009)</source><source
+        sourceId="20">Comal County (09/24/2009)</source><source sourceId="21">Victoria
+        County (10/19/2009)</source><source sourceId="22">Montgomery County (Misd)
+        (10/07/2009)</source><source sourceId="23">Chambers County (01/01/2007)**</source><source
+        sourceId="24">Cameron County - District Court - Historical Data {Inactive:
+        8/26/2006}</source><source sourceId="25">Jefferson County (07/09/2009)**</source><source
+        sourceId="26">Midland County (04/24/2009)**</source><source sourceId="27">Rockwall
+        County (04/25/2008)**</source><source sourceId="28">Parker County (09/21/2009)**</source><source
+        sourceId="29">Brazos County (09/22/2009)**</source><source sourceId="30">Waller
+        (10/20/2009)**</source><source sourceId="31">Johnson County (10/01/2009)**</source><source
+        sourceId="32">Williamson County (10/15/2009)**</source><source sourceId="33">Brazoria
+        County (10/12/2009)**</source><source sourceId="34">Galveston County (09/29/2009)**</source><source
+        sourceId="35">Kaufman (10/12/2009)**</source><source sourceId="36">Hunt County
+        (10/19/2009)**</source><source sourceId="37">Burnet County (10/19/2009)**</source><source
+        sourceId="38">Hood County (10/19/2009)**</source><source sourceId="39">Cameron
+        County Court</source><source sourceId="40">Bell County (10/12/2009)**</source><source
+        sourceId="41">Henderson County (10/15/2009)**</source><source sourceId="42">Liberty
+        County (09/10/2009)**</source><source sourceId="51">Lamar (09/24/2009)**</source></datasources></database></databases><secureKey>33958677</secureKey><filters><filter><type>Undetermined</type><range
+        /></filter><filter><type>Conviction</type><range /></filter><filter><type>Deferred</type><range
+        /></filter><filter><type>Non-Conviction</type><range /></filter><filter><type>Pending</type><range
+        /></filter><filter><type>Sealed</type><range /></filter></filters></response></MultiStateOneSearch></product></BGC>'}
+    headers:
+      Cache-Control: [private]
+      Content-Length: ['7563']
+      Content-Type: [text/xml; charset=utf-8]
+      Date: ['Thu, 13 Sep 2018 18:53:35 GMT']
+      Server: [Microsoft-IIS/8.5]
+      X-AspNet-Version: [4.0.30319]
+      X-Powered-By: [ASP.NET]
+    status: {code: 200, message: OK}
+version: 1

@@ -5,7 +5,7 @@ from mudskipper.connection import Connections as Connections_base
 from tetrapod.bgc.endpoint import Endpoint
 from tetrapod.bgc.exceptions import (
     BGC_exception_base, BGC_us_one_trace_exception,
-    BGC_us_one_search_exception
+    BGC_us_one_search_exception, BGC_us_one_search_multi_state_exception
 )
 from tetrapod.pipelines import (
     Transform_keys_camel_case_to_snake, Guaranteed_list,
@@ -183,6 +183,21 @@ class Client( Client_base ):
         if errors:
             raise BGC_us_one_search_exception( errors )
 
+    def validate_response_us_one_search_multi_state( self, data ):
+        """
+        validate the response of the product UsOneSearch for errors
+
+        Raises
+        ======
+        py:class:`tetrapod.bgc.exceptions.BGC_us_one_search_multi_state_exception`
+        """
+        errors_raw = (
+            data[ 'bgc' ].get( 'product', {} ).get( 'multi_state_one_search', {} )
+            .get( 'response', {} ).get( 'errors', [] ) )
+        errors = { error[ 'code' ]: error[ 'text' ] for error in errors_raw }
+        if errors:
+            raise BGC_us_one_search_multi_state_exception( errors )
+
     def extract_loging_from_connection( self ):
         """
         retrieve the information of loging from the current connection
@@ -294,6 +309,29 @@ class Client( Client_base ):
         self.validate_response_us_one_search( clean_data )
         return clean_data
 
+    def us_one_search_multi_state(
+            self, *args, ssn, first_name, middle_name, last_name,
+            states, dob, purpose, jurisdiction,
+            _use_factory=None, **kw ):
+        """
+        """
+        if _use_factory is not None:
+            raise NotImplementedError
+        else:
+            body_xml = self.build_multi_state_one_search(
+                ssn=ssn, first_name=first_name, last_name=last_name,
+                middle_name=middle_name, dob=dob,
+                states=states, purpose=purpose,
+                jurisdiction=jurisdiction, **kw )
+
+            response = self.endpoint.post( body=body_xml )
+            native_response = response.native
+
+        clean_data = self.COMMON_PIPELINE.run( native_response )
+        self.validate_response( clean_data )
+        self.validate_response_us_one_search_multi_state( clean_data )
+        return clean_data
+
         """
         root = clean_data[ 'bgc' ]
         order = root[ 'product' ][ 'us_one_trace' ]
@@ -366,6 +404,78 @@ class Client( Client_base ):
                                 'DOB': {
                                     'matchFuzzyDates': nsf__dob__fuzzy,
                                     'matchMissingDates': nsf__dob__missing,
+                                },
+                            },
+                            'GCF': {
+                                'firstName': {
+                                    'filterType': gcf__first_name, },
+                                'lastName': {
+                                    'filterType': gcf__last_name },
+                                'DOB': {
+                                    'matchFuzzyDates': gcf__dob__fuzzy,
+                                    'matchMissingDates': gcf__dob__missing,
+                                },
+                            },
+                        },
+                    },
+                    'certifications': {
+                        'purpose': purpose,
+                        'jurisdiction': jurisdiction,
+                    }
+                },
+            },
+        }
+        body = self.build_body()
+        body[ 'BGC' ].update( product_body )
+        body_xml = xmltodict.unparse( body )
+        return body_xml
+
+    def build_multi_state_one_search(
+            self, ssn, first_name, middle_name, last_name,
+            states, dob, purpose=None, jurisdiction=None, **kw ):
+
+        sof__first_name = kw.get( 'sof__first_name', 'FM' )
+        sof__last_name = kw.get( 'sof__last_name', 'XM' )
+        sof__dob__fuzzy = kw.get( 'sof__dob__fuzzy', 'YES' )
+        sof__dob__missing = kw.get( 'sof__dob__missing', 'YES' )
+
+        gcf__first_name = kw.get( 'gcf__first_name', 'FM' )
+        gcf__last_name = kw.get( 'gcf__last_name', 'XM' )
+        gcf__dob__fuzzy = kw.get( 'gcf__dob__fuzzy', 'YES' )
+        gcf__dob__missing = kw.get( 'gcf__dob__missing', 'NO' )
+
+        include_sources = kw.get( 'include_sources', 'YES' )
+        include_details = kw.get( 'include_details', 'YES' )
+
+        product_body = {
+            'product': {
+                'MultiStateOneSearch': {
+                    '@version': '1',
+                    'order': {
+                        'SSN': ssn,
+                        'firstName': first_name,
+                        'lastName': last_name,
+                        'middleName': middle_name,
+                        'states': { 'state': states },
+                        'DOB': {
+                            'month': dob.strftime( '%m' ),
+                            'day': dob.strftime( '%d' ),
+                            'year': dob.strftime( '%Y' ) },
+                    },
+                    'custom': {
+                        'options': {
+                            'includeSources': include_sources,
+                            'includeDetails': include_details,
+                        },
+                        'filters': {
+                            'SOF': {
+                                'firstName': {
+                                    'filterType': sof__first_name, },
+                                'lastName': {
+                                    'filterType': sof__last_name },
+                                'DOB': {
+                                    'matchFuzzyDates': sof__dob__fuzzy,
+                                    'matchMissingDates': sof__dob__missing,
                                 },
                             },
                             'GCF': {

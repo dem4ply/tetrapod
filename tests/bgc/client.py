@@ -26,6 +26,17 @@ class Test_us_one_search( VCRTestCase, Test_bgc ):
         self.assertIsInstance( result, dict )
 
 
+class Test_us_one_search_multi_state( VCRTestCase, Test_bgc ):
+    def test_just_work( self ):
+        result = self.client.us_one_search_multi_state(
+            ssn='048920148', first_name='Luis', last_name='Morales',
+            middle_name='Alberto',
+            dob=datetime.date( 1994, 10, 20 ),
+            jurisdiction='CT', purpose='EMPLOYMENT',
+            states=[ 'CT', 'TX', 'IL' ] )
+        self.assertIsInstance( result, dict )
+
+
 class Test_us_one_validate( VCRTestCase, Test_bgc ):
     def test_ssn_from_the_page( self ):
         result = self.client.us_one_validate( ssn='899999914' )

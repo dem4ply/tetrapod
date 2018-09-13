@@ -15,3 +15,7 @@ class BGC_us_one_trace_exception( BGC_exception_base ):
 
 class BGC_us_one_search_exception( BGC_exception_base ):
     pass
+
+
+class BGC_us_one_search_multi_state_exception( BGC_exception_base ):
+    pass
