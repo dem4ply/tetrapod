@@ -273,7 +273,6 @@ class Client( Client_base ):
         body_xml = xmltodict.unparse( body )
         return body_xml
 
-
     def us_one_search(
             self, *args, ssn, first_name, middle_name, last_name,
             dob, purpose, jurisdiction, _use_factory=None, **kw ):
