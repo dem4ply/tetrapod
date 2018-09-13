@@ -274,23 +274,6 @@ class Client( Client_base ):
         return body_xml
 
 
-    """
-    firstName
-    middleName
-    lastName
-
-    SSN
-    DOB
-    DOB/year
-
-    state
-    states
-    purpose
-    jurisdiction
-    """
-
-
-
     def us_one_search(
             self, *args, ssn, first_name, middle_name, last_name,
             dob, purpose, jurisdiction, _use_factory=None, **kw ):
