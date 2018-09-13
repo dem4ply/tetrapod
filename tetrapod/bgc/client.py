@@ -192,7 +192,8 @@ class Client( Client_base ):
         py:class:`tetrapod.bgc.exceptions.BGC_us_one_search_multi_state_exception`
         """
         errors_raw = (
-            data[ 'bgc' ].get( 'product', {} ).get( 'multi_state_one_search', {} )
+            data[ 'bgc' ].get( 'product', {} )
+            .get( 'multi_state_one_search', {} )
             .get( 'response', {} ).get( 'errors', [] ) )
         errors = { error[ 'code' ]: error[ 'text' ] for error in errors_raw }
         if errors:
