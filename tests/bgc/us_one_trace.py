@@ -36,7 +36,7 @@ class Test_raise_the_correct_error(
         try:
             self.client.us_one_trace(
                 ssn='899991111', first_name='Ken', last_name='Rico',
-                reference_id='a_reference' , _use_factory=self.factory )
+                reference_id='a_reference', _use_factory=self.factory )
             self.fail(
                 "should raise the exception 'BGC_us_one_trace_exception' " )
         except exceptions.BGC_us_one_trace_exception as e:
