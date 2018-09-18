@@ -36,7 +36,8 @@ class Client( Client_base ):
         | Parse_full_dict_date | Parse_partial_dict_date
         | Expand_dict_with_start_with( 'street', 'street_' ) )
 
-    def us_one_validate( self, *args, ssn, _use_factory=None, **kw ):
+    def us_one_validate(
+            self, *args, ssn, reference_id, _use_factory=None, **kw ):
         """
         return the result of the product USOneValidate from bgc
 
@@ -59,7 +60,8 @@ class Client( Client_base ):
         if _use_factory is not None:
             native_response = { 'bgc': _use_factory.build() }
         else:
-            body_xml = self.build_us_one_validate( ssn )
+            body_xml = self.build_us_one_validate(
+                ssn, reference_id=reference_id )
             response = self.endpoint.post( body=body_xml )
             native_response = response.native
 
@@ -80,7 +82,7 @@ class Client( Client_base ):
         }
 
     def us_one_trace(
-            self, *args, ssn, first_name, last_name,
+            self, *args, ssn, first_name, last_name, reference_id,
             _use_factory=None, **kw ):
         """
         return the result of the product USOneTrace from bgc
@@ -108,7 +110,8 @@ class Client( Client_base ):
             native_response = { 'bgc': _use_factory.build() }
         else:
             body_xml = self.build_us_one_trace(
-                ssn=ssn, first_name=first_name, last_name=last_name )
+                ssn=ssn, first_name=first_name, last_name=last_name,
+                reference_id=reference_id )
             response = self.endpoint.post( body=body_xml )
             native_response = response.native
 
@@ -198,7 +201,7 @@ class Client( Client_base ):
             'account': connection[ 'account' ]
         }
 
-    def build_body( self ):
+    def build_body( self, *, reference_id ):
         """
         build the dict with the genral body and login for bgc
 
@@ -209,11 +212,12 @@ class Client( Client_base ):
         loging = self.extract_loging_from_connection()
         return OrderedDict( { 'BGC': OrderedDict( {
             '@version': '4.14',
+            '@reference': reference_id,
             '@xmlns:xsd': 'http://www.w3.org/2001/XMLSchema',
             '@xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
             'login': loging, } ) } )
 
-    def build_us_one_validate( self, ssn ):
+    def build_us_one_validate( self, ssn, reference_id ):
         """
         build the xml for the us_one_validate when is not using the factory
 
@@ -236,12 +240,12 @@ class Client( Client_base ):
                 },
             },
         }
-        body = self.build_body()
+        body = self.build_body( reference_id=reference_id )
         body[ 'BGC' ].update( product_body )
         body_xml = xmltodict.unparse( body )
         return body_xml
 
-    def build_us_one_trace( self, ssn, first_name, last_name ):
+    def build_us_one_trace( self, ssn, first_name, last_name, reference_id ):
         """
         build the xml for the us_one_trace when is not using the factory
 
@@ -268,14 +272,15 @@ class Client( Client_base ):
                 },
             },
         }
-        body = self.build_body()
+        body = self.build_body( reference_id=reference_id )
         body[ 'BGC' ].update( product_body )
         body_xml = xmltodict.unparse( body )
         return body_xml
 
     def us_one_search(
             self, *args, ssn, first_name, middle_name, last_name,
-            dob, purpose, jurisdiction, _use_factory=None, **kw ):
+            dob, purpose, jurisdiction, reference_id,
+            _use_factory=None, **kw ):
         """
         """
         if _use_factory is not None:
@@ -284,7 +289,8 @@ class Client( Client_base ):
             body_xml = self.build_us_one_search(
                 ssn=ssn, first_name=first_name, last_name=last_name,
                 middle_name=middle_name, dob=dob,
-                purpose=purpose, jurisdiction=jurisdiction, **kw )
+                purpose=purpose, jurisdiction=jurisdiction,
+                reference_id=reference_id, **kw )
 
             response = self.endpoint.post( body=body_xml )
             native_response = response.native
@@ -307,7 +313,7 @@ class Client( Client_base ):
         """
 
     def build_us_one_search(
-            self, ssn, first_name, middle_name, last_name,
+            self, ssn, first_name, middle_name, last_name, reference_id,
             dob, purpose=None, jurisdiction=None, **kw ):
 
         sof__first_name = kw.get( 'sof__first_name', 'FM' )
@@ -387,7 +393,7 @@ class Client( Client_base ):
                 },
             },
         }
-        body = self.build_body()
+        body = self.build_body( reference_id=reference_id )
         body[ 'BGC' ].update( product_body )
         body_xml = xmltodict.unparse( body )
         return body_xml
