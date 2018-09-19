@@ -30,7 +30,7 @@ class Test_us_one_search( VCRTestCase, Test_bgc ):
 class Test_build_body( Test_bgc ):
     def test_should_add_the_reference_id( self ):
         result = self.client.build_body( reference_id="a_reference" )
-        self.assertEqual( result[ 'BGC' ][ '@reference' ], "a_reference" )
+        self.assertEqual( result[ 'BGC' ][ '@referenceKey' ], "a_reference" )
 
 
 class Test_us_one_validate( VCRTestCase, Test_bgc ):

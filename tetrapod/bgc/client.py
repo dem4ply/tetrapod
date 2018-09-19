@@ -212,7 +212,7 @@ class Client( Client_base ):
         loging = self.extract_loging_from_connection()
         return OrderedDict( { 'BGC': OrderedDict( {
             '@version': '4.14',
-            '@reference': reference_id,
+            '@referenceKey': reference_id,
             '@xmlns:xsd': 'http://www.w3.org/2001/XMLSchema',
             '@xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
             'login': loging, } ) } )
