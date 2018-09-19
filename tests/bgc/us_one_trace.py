@@ -30,13 +30,13 @@ class Test_raise_the_correct_error(
         with self.assertRaises( exceptions.BGC_us_one_trace_exception ):
             self.client.us_one_trace(
                 ssn='899991111', first_name='Ken', last_name='Rico',
-                _use_factory=self.factory )
+                reference_id="a_reference", _use_factory=self.factory )
 
     def test_exception_should_have_code_and_text( self ):
         try:
             self.client.us_one_trace(
                 ssn='899991111', first_name='Ken', last_name='Rico',
-                _use_factory=self.factory )
+                reference_id='a_reference', _use_factory=self.factory )
             self.fail(
                 "should raise the exception 'BGC_us_one_trace_exception' " )
         except exceptions.BGC_us_one_trace_exception as e:
@@ -50,7 +50,7 @@ class Test_have_basic_fields_with_factory(
     def test_should_containt_the_min_fields( self ):
         result = self.client.us_one_trace(
             ssn='899991111', first_name='Ken', last_name='Rico',
-            _use_factory=self.factory )
+            reference_id="a_reference", _use_factory=self.factory )
         self.assertIn( 'order_id', result )
         self.assertTrue( result[ 'order_id' ] )
         self.assertIn( 'order', result )
@@ -97,28 +97,28 @@ class Test_us_one_trace_use_basic_facory_no_used_requests(
     def test_should_no_call_request_post( self, requests ):
         self.client.us_one_trace(
             ssn='899991111', first_name='Ken', last_name='Rico',
-            _use_factory=self.factory )
+            reference_id='a_reference', _use_factory=self.factory )
         requests.post.assert_not_called()
 
     @patch( 'requests.put' )
     def test_should_no_call_request_put( self, requests ):
         self.client.us_one_trace(
             ssn='899991111', first_name='Ken', last_name='Rico',
-            _use_factory=self.factory )
+            reference_id='a_reference', _use_factory=self.factory )
         requests.put.assert_not_called()
 
     @patch( 'requests.get' )
     def test_should_no_call_request_get( self, requests ):
         self.client.us_one_trace(
             ssn='899991111', first_name='Ken', last_name='Rico',
-            _use_factory=self.factory )
+            reference_id='a_reference', _use_factory=self.factory )
         requests.get.assert_not_called()
 
     @patch( 'requests.delete' )
     def test_should_no_call_request_delete( self, requests ):
         self.client.us_one_trace(
             ssn='899991111', first_name='Ken', last_name='Rico',
-            _use_factory=self.factory )
+            reference_id='a_reference', _use_factory=self.factory )
         requests.delete.assert_not_called()
 
 
@@ -126,7 +126,9 @@ class Test_with_jonh_doe( Test_bgc, VCRTestCase ):
 
     def test_should_containt_the_min_fields( self ):
         result = self.client.us_one_trace(
-            ssn='999999999', first_name='jonh', last_name='doe' )
+            ssn='999999999', first_name='jonh', last_name='doe',
+            reference_id='a_reference' )
+
         self.assertIn( 'order_id', result )
         self.assertTrue( result[ 'order_id' ] )
         self.assertIn( 'order', result )

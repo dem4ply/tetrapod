@@ -8,18 +8,18 @@ here = os.path.abspath( os.path.dirname( __file__ ) )
 README = open(os.path.join( here, 'README.rst' ) ).read()
 
 setup(
-	name='tetrapod',
-   version='1.0',
+   name='tetrapod',
+   version='1.2',
    description='',
    long_description=README,
    license='',
    author='',
    author_email='',
    packages=find_packages(),
-   install_requires=[ 'xmltodict<=0.11.0' ],
+   install_requires=[ 'xmltodict>=0.11.0' ],
    dependency_links=[],
    classifiers=[
-		'Environment :: Console',
-      'Intended Audience :: Developers',
-      'Programming Language :: Python',
+       'Environment :: Console',
+       'Intended Audience :: Developers',
+       'Programming Language :: Python',
    ] )
