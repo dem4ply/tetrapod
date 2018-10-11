@@ -185,6 +185,31 @@ class Compress_dummy_list( Pipeline ):
             return x
 
 
+class Compress_double_list( Pipeline ):
+
+    def __init__( self, *keys, **kw ):
+        self._keys = keys
+        super().__init__( **kw )
+
+    def process( self, obj, *args, **kw ):
+        if isinstance( obj, dict ):
+            for k, v in obj.items():
+                if k in self._keys:
+                    obj[ k ] = self.transform( v )
+                else:
+                    self.process( v )
+        elif isinstance( obj, list ):
+            for i in obj:
+                self.process( i )
+        return obj
+
+    def transform( self, x ):
+        if ( isinstance( x, list ) and len( x ) == 1
+                and isinstance( x[0], list ) ):
+            return x[0]
+        return x
+
+
 class Parse_dict( Pipeline ):
     def __init__( self, *keys, **kw ):
         self._keys = keys
