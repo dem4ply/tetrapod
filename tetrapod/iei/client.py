@@ -44,7 +44,7 @@ class Client( Client_soap ):
             }
         }
 
-    def ncis(self, *args, first_name, last_name, middle_name,ssn, dob,
+    def ncis(self, *args, first_name, last_name, middle_name, ssn, dob,
              reference_id, profilename=None, _use_factory=None, **kw):
         if _use_factory is not None:
             raise NotImplemented
