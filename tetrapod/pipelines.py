@@ -282,3 +282,30 @@ class Expand_dict_with_start_with( Pipeline ):
         elif isinstance( obj, list ):
             return [ self.process( i ) for i in obj ]
         return obj
+
+
+class Guaranteed_list_iei( Pipeline ):
+
+    def __init__( self, **kw ):
+        super().__init__( **kw )
+
+    def process( self, obj, *args, **kw ):
+        if isinstance( obj, dict ):
+            for k, value in obj.items():
+                result = value
+                if isinstance( result, dict ):
+                    if len( result ) == 2 and 'count' in result:
+                        result = self.transform( result )
+                obj[ k ] = result
+                self.process( result )
+        elif isinstance( obj, list ):
+            for i in obj:
+                self.process( i )
+        return obj
+
+    def transform( self, x ):
+        for k, v in x.items():
+            if k != 'count':
+                if not isinstance( v, list ):
+                    return [ v ]
+                return v
