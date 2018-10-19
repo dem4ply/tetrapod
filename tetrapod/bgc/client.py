@@ -10,8 +10,8 @@ from tetrapod.bgc.exceptions import (
 from tetrapod.pipelines import (
     Transform_keys_camel_case_to_snake, Guaranteed_list,
     Remove_xml_garage, Replace_string, Compress_dummy_list,
-    Parse_full_dict_date, Parse_partial_dict_date,
-    Expand_dict_with_start_with,
+    Compress_double_list, Parse_full_dict_date,
+    Parse_partial_dict_date, Expand_dict_with_start_with,
 )
 
 
@@ -33,6 +33,7 @@ class Client( Client_base ):
         | Replace_string( 'NO', False ) | Transform_keys_camel_case_to_snake
         | Guaranteed_list( 'errors', 'names', 'addresses', 'records' )
         | Compress_dummy_list( 'errors', 'names', 'addresses', 'records' )
+        | Compress_double_list( 'errors', 'names', 'addresses', 'records' )
         | Parse_full_dict_date | Parse_partial_dict_date
         | Expand_dict_with_start_with( 'street', 'street_' ) )
 

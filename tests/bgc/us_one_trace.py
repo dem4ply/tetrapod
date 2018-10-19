@@ -124,6 +124,16 @@ class Test_us_one_trace_use_basic_facory_no_used_requests(
 
 class Test_with_jonh_doe( Test_bgc, VCRTestCase ):
 
+    def test_with_more_of_one_record_should_return_a_simple_list( self ):
+        result = self.client.us_one_trace(
+            ssn='999999999', first_name='jonh', last_name='doe',
+            reference_id='a_reference' )
+        records = result[ 'records' ]
+        self.assertIsInstance( records, list )
+        self.assertTrue( records )
+        for record in records:
+            self.assertIsInstance( record, dict )
+
     def test_should_containt_the_min_fields( self ):
         result = self.client.us_one_trace(
             ssn='999999999', first_name='jonh', last_name='doe',
