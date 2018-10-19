@@ -3,8 +3,8 @@ from mudskipper import Client_soap
 
 from tetrapod.iei.exceptions import IEI_ncis_exception
 from tetrapod.pipelines import (
-    Transform_keys_camel_case_to_snake, Guaranteed_list,
-    Remove_xml_garage, Replace_string, Compress_dummy_list,
+    Transform_keys_camel_case_to_snake, Guaranteed_list_iei,
+    Remove_xml_garage, Replace_string,
     Parse_full_dict_date, Parse_partial_dict_date,
     Expand_dict_with_start_with,
 )
@@ -16,8 +16,7 @@ class Client( Client_soap ):
         Remove_xml_garage
         | Replace_string('YES', True)
         | Replace_string('NO', False) | Transform_keys_camel_case_to_snake
-        | Guaranteed_list('offenses', 'aliases', 'addresses', 'records')
-        | Compress_dummy_list('offenses', 'aliases', 'addresses', 'records')
+        | Guaranteed_list_iei
         | Parse_full_dict_date | Parse_partial_dict_date
         | Expand_dict_with_start_with('street', 'street_')
     )
