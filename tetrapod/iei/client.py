@@ -13,12 +13,14 @@ from tetrapod.pipelines import (
 class Client( Client_soap ):
 
     COMMON_PIPELINE = (
-        Remove_xml_garage | Replace_string('YES', True)
+        Remove_xml_garage
+        | Replace_string('YES', True)
         | Replace_string('NO', False) | Transform_keys_camel_case_to_snake
-        | Guaranteed_list('errors', 'names', 'addresses', 'records')
-        | Compress_dummy_list('errors', 'names', 'addresses', 'records')
+        | Guaranteed_list('offenses', 'aliases', 'addresses', 'records')
+        | Compress_dummy_list('offenses', 'aliases', 'addresses', 'records')
         | Parse_full_dict_date | Parse_partial_dict_date
-        | Expand_dict_with_start_with('street', 'street_'))
+        | Expand_dict_with_start_with('street', 'street_')
+    )
 
     IEI_DATE_FORMAT = '%m-%d-%Y'
 
