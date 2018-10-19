@@ -1,6 +1,5 @@
 import xmltodict
-from mudskipper import Client as Client_base
-from zeep import Transport
+from mudskipper import Client_soap
 
 from tetrapod.iei.exceptions import IEI_ncis_exception
 from tetrapod.pipelines import (
@@ -11,7 +10,7 @@ from tetrapod.pipelines import (
 )
 
 
-class Client( Client_base ):
+class Client( Client_soap ):
 
     COMMON_PIPELINE = (
             Remove_xml_garage | Replace_string('YES', True)
@@ -22,23 +21,6 @@ class Client( Client_base ):
             | Expand_dict_with_start_with('street', 'street_'))
 
     IEI_DATE_FORMAT = '%m-%d-%Y'
-
-    # ncis_ieirequest = """
-    # <ieirequest>
-    #     <order>
-    #     <quoteback>PLACE ORDER test NCIS</quoteback>
-    #     <subject>
-    #     <firstname>Jerry</firstname>
-    #     <middlename>Lee</middlename>
-    #     <lastname>Williams</lastname>
-    #     <ssn></ssn>
-    #     <dob>12/08/1969</dob>
-    #     <state></state>
-    #     </subject>
-    #     <product><ncis/></product>
-    #     </order>
-    # </ieirequest>
-    # """
 
     @staticmethod
     def ieirequest_base():
