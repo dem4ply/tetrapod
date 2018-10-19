@@ -67,13 +67,9 @@ class Client( Client_soap ):
 
         self.validate_response(clean_data)
 
-        records = root['criminalinformation']['records'][0]
-        if not isinstance(records, dict):
+        records = root['criminalinformation']['records']
+        if not isinstance(records, list):
             records = []
-        else:
-            records = records['record']
-            if isinstance(records, dict):
-                records = [records]
 
         return {
             'code': root['requestinformation']['code'],
