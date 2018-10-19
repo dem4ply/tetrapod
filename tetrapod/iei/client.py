@@ -67,12 +67,15 @@ class Client( Client_base ):
         if _use_factory is not None:
             raise NotImplemented
         else:
-            input_xml = self.build_ncis(first_name=first_name, last_name=last_name, 
-                                        middle_name=middle_name, ssn=ssn, dob=dob,
-                                        reference_id=reference_id, profilename=profilename)
+            input_xml = self.build_ncis(
+                first_name=first_name, last_name=last_name,
+                middle_name=middle_name, ssn=ssn, dob=dob,
+                reference_id=reference_id, profilename=profilename
+            )
 
             cred = self.extract_logging_from_connection()
-            result = self.client.service.PlaceOrder(cred['login'], cred['password'], input_xml)
+            result = self.client.service.PlaceOrder(
+                cred['login'], cred['password'], input_xml)
 
             native_response = xmltodict.parse(result)
 
@@ -111,7 +114,9 @@ class Client( Client_base ):
             'wsdl': connection['wsdl']
         }
 
-    def build_ncis(self, first_name, last_name, middle_name, ssn, dob, reference_id, profilename):
+    def build_ncis(self, first_name, last_name, middle_name,
+                   ssn, dob, reference_id, profilename):
+
         product = {"ncis": ""}
         ncis_input = self.ieirequest_base()
 

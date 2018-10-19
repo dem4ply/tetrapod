@@ -16,7 +16,7 @@ setup(
    author='',
    author_email='',
    packages=find_packages(),
-   install_requires=[ 'xmltodict>=0.11.0' ],
+   install_requires=[ 'xmltodict>=0.11.0', 'zeep==2.4.0' ],
    dependency_links=[],
    classifiers=[
        'Environment :: Console',

@@ -8,21 +8,25 @@ from tetrapod.iei.exceptions import IEI_ncis_exception
 
 connections.configure(
     default={
-        'wsdl': 'https://xml.innovativedatasolutions.com/NatCrimWs/Search.asmx?WSDL',
+        'wsdl': 'https://xml.innovativedatasolutions.com/'
+                'NatCrimWs/Search.asmx?WSDL',
         'login': os.environ['IEI__DEFAULT__LOGIN'],
         'password': os.environ['IEI__DEFAULT__PASSWORD']
     },
     wrong_login={
-        'wsdl': 'https://xml.innovativedatasolutions.com/NatCrimWs/Search.asmx?WSDL',
+        'wsdl': 'https://xml.innovativedatasolutions.com/'
+                'NatCrimWs/Search.asmx?WSDL',
         'login': os.environ['IEI__WRONG__LOGIN'],
         'password': os.environ['IEI__DEFAULT__PASSWORD']
     },
     default_proxies={
-        'wsdl': 'https://xml.innovativedatasolutions.com/NatCrimWs/Search.asmx?WSDL',
+        'wsdl': 'https://xml.innovativedatasolutions.com/'
+                'NatCrimWs/Search.asmx?WSDL',
         'login': os.environ['IEI__DEFAULT__LOGIN'],
         'password': os.environ['IEI__DEFAULT__PASSWORD'],
-        'proxies': {'http': 'http://fixie:YoAzlpvu3OG7Uiz@velodrome.usefixie.com:80',
-                    'https': 'https://fixie:YoAzlpvu3OG7Uiz@velodrome.usefixie.com:80'}
+        'proxies': {
+            'http': 'http://fixie:YoAzlpvu3OG7Uiz@velodrome.usefixie.com:80',
+            'https': 'https://fixie:YoAzlpvu3OG7Uiz@velodrome.usefixie.com:80'}
     }
 )
 
