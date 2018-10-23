@@ -9,11 +9,13 @@ from tetrapod.pipelines import (
     ConvertDatesFromFormats)
 
 
-IEI_DATES = ('chargefilingdate',
-            'offensedate',
-            'arrestdate',
-            'convictiondate',
-            'dispositiondate')
+IEI_DATES = (
+    'chargefilingdate',
+    'offensedate',
+    'arrestdate',
+    'convictiondate',
+    'dispositiondate'
+)
 
 
 IEI_DATE_FORMAT = "%m/%d/%Y"
@@ -31,7 +33,6 @@ class Client( Client_soap ):
         | ConvertDatesFromFormats(
             IEI_DATE_FORMAT, TURN_DATE_FORMAT, '', *IEI_DATES)
     )
-
 
     @staticmethod
     def ieirequest_base():
