@@ -1,6 +1,6 @@
 import re
 import copy
-from datetime import datetime
+import datetime
 import itertools
 
 from .s_dict import keys_to_snake_case, remove_nones
@@ -307,7 +307,7 @@ class ConvertDatesFromFormats(Pipeline):
 
     def transform(self, x):
         try:
-            d = datetime.strptime(x, self._from_format)
+            d = datetime.datetime.strptime(x, self._from_format)
             return d.strftime(self._to_format)
         except:
             return ''
