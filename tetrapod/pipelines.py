@@ -310,4 +310,4 @@ class ConvertDatesFromFormats(Pipeline):
             d = datetime.datetime.strptime(x, self._from_format)
             return d.strftime(self._to_format)
         except:
-            return ''
+            return self._default_invalid
