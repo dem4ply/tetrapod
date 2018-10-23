@@ -1,6 +1,6 @@
 import re
 import copy
-import datetime
+from datetime import datetime
 import itertools
 
 from .s_dict import keys_to_snake_case, remove_nones
@@ -284,28 +284,30 @@ class Expand_dict_with_start_with( Pipeline ):
         return obj
 
 
-class Guaranteed_list_iei( Pipeline ):
+class ConvertDatesFromFormats(Pipeline):
 
-    def __init__( self, **kw ):
+    def __init__( self, from_format, to_format, default_invalid, *keys, **kw ):
+        self._keys = keys
+        self._from_format = from_format
+        self._to_format = to_format
+        self._default_invalid = default_invalid
         super().__init__( **kw )
 
-    def process( self, obj, *args, **kw ):
-        if isinstance( obj, dict ):
-            for k, value in obj.items():
-                result = value
-                if isinstance( result, dict ):
-                    if len( result ) == 2 and 'count' in result:
-                        result = self.transform( result )
-                obj[ k ] = result
-                self.process( result )
-        elif isinstance( obj, list ):
+    def process(self, obj, *args, **kw):
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                if k in self._keys:
+                    obj[k] = self.transform(v)
+                else:
+                    self.process(v)
+        elif isinstance(obj, list):
             for i in obj:
-                self.process( i )
+                self.process(i)
         return obj
 
-    def transform( self, x ):
-        for k, v in x.items():
-            if k != 'count':
-                if not isinstance( v, list ):
-                    return [ v ]
-                return v
+    def transform(self, x):
+        try:
+            d = datetime.strptime(x, self._from_format)
+            return d.strftime(self._to_format)
+        except:
+            return ''

@@ -2,12 +2,23 @@ import xmltodict
 from mudskipper import Client_soap
 
 from tetrapod.iei.exceptions import IEI_ncis_exception
+from tetrapod.iei.pipelines import GuaranteedList, TimeLapse
 from tetrapod.pipelines import (
-    Transform_keys_camel_case_to_snake, Guaranteed_list_iei,
+    Transform_keys_camel_case_to_snake,
     Remove_xml_garage, Replace_string,
-    Parse_full_dict_date, Parse_partial_dict_date,
-    Expand_dict_with_start_with,
-)
+    ConvertDatesFromFormats)
+
+
+IEI_DATES = ('chargefilingdate',
+            'offensedate',
+            'arrestdate',
+            'convictiondate',
+            'dispositiondate')
+
+
+IEI_DATE_FORMAT = "%m/%d/%Y"
+TURN_DATE_FORMAT = '%m-%d-%Y'
+IEI_DOB_DATE_FORMAT = '%m-%d-%Y'
 
 
 class Client( Client_soap ):
@@ -16,12 +27,11 @@ class Client( Client_soap ):
         Remove_xml_garage
         | Replace_string('YES', True)
         | Replace_string('NO', False) | Transform_keys_camel_case_to_snake
-        | Guaranteed_list_iei
-        | Parse_full_dict_date | Parse_partial_dict_date
-        | Expand_dict_with_start_with('street', 'street_')
+        | GuaranteedList | TimeLapse('sentencelength')
+        | ConvertDatesFromFormats(
+            IEI_DATE_FORMAT, TURN_DATE_FORMAT, '', *IEI_DATES)
     )
 
-    IEI_DATE_FORMAT = '%m-%d-%Y'
 
     @staticmethod
     def ieirequest_base():
@@ -48,7 +58,7 @@ class Client( Client_soap ):
     def ncis(self, *args, first_name, last_name, middle_name, ssn, dob,
              reference_id, profilename=None, _use_factory=None, **kw):
         if _use_factory is not None:
-            raise NotImplemented
+            raise NotImplementedError
         else:
             input_xml = self.build_ncis(
                 first_name=first_name, last_name=last_name,
@@ -106,7 +116,7 @@ class Client( Client_soap ):
         subject['lastname'] = last_name
         subject['middlename'] = middle_name
         subject['ssn'] = ssn
-        subject['dob'] = dob.strftime(self.IEI_DATE_FORMAT)
+        subject['dob'] = dob.strftime(IEI_DOB_DATE_FORMAT)
 
         ncis_input['ieirequest']['order']['quoteback'] = reference_id
 
