@@ -5,8 +5,7 @@ from tetrapod.iei.exceptions import IEI_ncis_exception
 from tetrapod.iei.pipelines import GuaranteedList, TimeLapse
 from tetrapod.pipelines import (
     Transform_keys_camel_case_to_snake,
-    Remove_xml_garage, Replace_string,
-    ConvertDatesFromFormats)
+    Remove_xml_garage, Replace_string, Convert_dates)
 
 
 IEI_DATES = (
@@ -19,19 +18,17 @@ IEI_DATES = (
 
 
 IEI_DATE_FORMAT = "%m/%d/%Y"
-TURN_DATE_FORMAT = '%m-%d-%Y'
 IEI_DOB_DATE_FORMAT = '%m-%d-%Y'
 
 
 class Client( Client_soap ):
 
     COMMON_PIPELINE = (
-        Remove_xml_garage
-        | Replace_string('YES', True)
-        | Replace_string('NO', False) | Transform_keys_camel_case_to_snake
-        | GuaranteedList | TimeLapse('sentencelength')
-        | ConvertDatesFromFormats(
-            IEI_DATE_FORMAT, TURN_DATE_FORMAT, '', *IEI_DATES)
+            Remove_xml_garage
+            | Replace_string('YES', True)
+            | Replace_string('NO', False) | Transform_keys_camel_case_to_snake
+            | GuaranteedList | TimeLapse('sentencelength')
+            | Convert_dates(IEI_DATE_FORMAT, *IEI_DATES)
     )
 
     @staticmethod
@@ -58,6 +55,32 @@ class Client( Client_soap ):
 
     def ncis(self, *args, first_name, last_name, middle_name, ssn, dob,
              reference_id, profilename=None, _use_factory=None, **kw):
+        """
+        return the result of the NCIS product from bgc. This includes
+        hits from National Criminal, Sex Offender and Watchlist
+
+        arguments
+        =========
+        first_name: str
+        last_name: str
+        middle_name: str
+        ssn: str
+        dob: datetime
+        reference_id: str
+        profilename: str
+
+        _use_factory: py:class:`factory.Factory`
+            used for ignore the call to iei and try to parse
+            the factory result
+
+        Returns
+        =======
+        dict
+
+        Raises
+        ======
+        py:class:`tetrapod.iei.exceptions.IEI_exception_base`
+        """
         if _use_factory is not None:
             raise NotImplementedError
         else:

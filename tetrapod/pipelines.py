@@ -9,6 +9,9 @@ from .s_dict import keys_to_snake_case, remove_nones
 __all__ = [ 'Pipeline', 'Transform_keys_camel_case_to_snake' ]
 
 
+DATE_ISO = '%Y-%m-%d'
+
+
 class Pipeline_manager:
     def __init__( self, *args, **kw ):
         self.children = []
@@ -284,7 +287,7 @@ class Expand_dict_with_start_with( Pipeline ):
         return obj
 
 
-class ConvertDatesFromFormats(Pipeline):
+class Convert_dates_from_formats(Pipeline):
 
     def __init__( self, from_format, to_format, default_invalid, *keys, **kw ):
         self._keys = keys
@@ -311,3 +314,44 @@ class ConvertDatesFromFormats(Pipeline):
             return d.strftime(self._to_format)
         except:
             return self._default_invalid
+
+
+class Convert_dates(Pipeline):
+
+
+    def __init__( self, from_format, *keys, **kw ):
+        self._from_format = from_format
+        self._keys = keys
+        super().__init__( **kw )
+
+    def _corresponds_to_my_dict( self, d ):
+        return set( d.keys() ) == set( self._keys )
+
+    def transform(self, x):
+        try:
+            d = datetime.datetime.strptime(x, self._from_format)
+            return d
+        except:
+            return None
+
+    def transform_iso(self, d):
+        try:
+            return d.strftime(DATE_ISO)
+        except:
+            return None
+
+    def process( self, obj, *args, **kw ):
+        if isinstance( obj, dict ):
+            result = {}
+            for k, v in obj.items():
+                if isinstance( v, str ) and k in self._keys:
+                    result[k] = self.transform(v)
+                    result["{}__raw".format(k)] = v
+                    date_iso = self.transform_iso(result[k])
+                    result["{}__date_iso".format(k)] = date_iso
+                else:
+                    result[k] = self.process( v )
+            return result
+        elif isinstance( obj, list ):
+            return [ self.process( i ) for i in obj ]
+        return obj
