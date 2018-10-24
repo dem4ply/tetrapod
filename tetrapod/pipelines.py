@@ -9,6 +9,9 @@ from .s_dict import keys_to_snake_case, remove_nones
 __all__ = [ 'Pipeline', 'Transform_keys_camel_case_to_snake' ]
 
 
+DATE_ISO = '%Y-%m-%d'
+
+
 class Pipeline_manager:
     def __init__( self, *args, **kw ):
         self.children = []
@@ -278,6 +281,75 @@ class Expand_dict_with_start_with( Pipeline ):
                 result.update( {
                     k: self.process( obj[k] )
                     for k in normal_keys } )
+            return result
+        elif isinstance( obj, list ):
+            return [ self.process( i ) for i in obj ]
+        return obj
+
+
+class Convert_dates_from_formats(Pipeline):
+
+    def __init__( self, from_format, to_format, default_invalid, *keys, **kw ):
+        self._keys = keys
+        self._from_format = from_format
+        self._to_format = to_format
+        self._default_invalid = default_invalid
+        super().__init__( **kw )
+
+    def process(self, obj, *args, **kw):
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                if k in self._keys:
+                    obj[k] = self.transform(v)
+                else:
+                    self.process(v)
+        elif isinstance(obj, list):
+            for i in obj:
+                self.process(i)
+        return obj
+
+    def transform(self, x):
+        try:
+            d = datetime.datetime.strptime(x, self._from_format)
+            return d.strftime(self._to_format)
+        except:
+            return self._default_invalid
+
+
+class Convert_dates(Pipeline):
+
+    def __init__( self, from_format, *keys, **kw ):
+        self._from_format = from_format
+        self._keys = keys
+        super().__init__( **kw )
+
+    def _corresponds_to_my_dict( self, d ):
+        return set( d.keys() ) == set( self._keys )
+
+    def transform(self, x):
+        try:
+            d = datetime.datetime.strptime(x, self._from_format)
+            return d
+        except:
+            return None
+
+    def transform_iso(self, d):
+        try:
+            return d.isoformat()
+        except:
+            return None
+
+    def process( self, obj, *args, **kw ):
+        if isinstance( obj, dict ):
+            result = {}
+            for k, v in obj.items():
+                if isinstance( v, str ) and k in self._keys:
+                    result[k] = self.transform(v)
+                    result["{}__raw".format(k)] = v
+                    date_iso = self.transform_iso(result[k])
+                    result["{}__iso".format(k)] = date_iso
+                else:
+                    result[k] = self.process( v )
             return result
         elif isinstance( obj, list ):
             return [ self.process( i ) for i in obj ]
