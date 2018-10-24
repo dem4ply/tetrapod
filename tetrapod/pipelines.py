@@ -318,7 +318,6 @@ class Convert_dates_from_formats(Pipeline):
 
 class Convert_dates(Pipeline):
 
-
     def __init__( self, from_format, *keys, **kw ):
         self._from_format = from_format
         self._keys = keys
