@@ -335,7 +335,7 @@ class Convert_dates(Pipeline):
 
     def transform_iso(self, d):
         try:
-            return d.strftime(DATE_ISO)
+            return d.isoformat()
         except:
             return None
 
@@ -347,7 +347,7 @@ class Convert_dates(Pipeline):
                     result[k] = self.transform(v)
                     result["{}__raw".format(k)] = v
                     date_iso = self.transform_iso(result[k])
-                    result["{}__date_iso".format(k)] = date_iso
+                    result["{}__iso".format(k)] = date_iso
                 else:
                     result[k] = self.process( v )
             return result

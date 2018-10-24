@@ -2,7 +2,7 @@ import xmltodict
 from mudskipper import Client_soap
 
 from tetrapod.iei.exceptions import IEI_ncis_exception
-from tetrapod.iei.pipelines import GuaranteedList, TimeLapse
+from tetrapod.iei.pipelines import Guaranteed_list, Time_lapse
 from tetrapod.pipelines import (
     Transform_keys_camel_case_to_snake,
     Remove_xml_garage, Replace_string, Convert_dates)
@@ -24,11 +24,11 @@ IEI_DOB_DATE_FORMAT = '%m-%d-%Y'
 class Client( Client_soap ):
 
     COMMON_PIPELINE = (
-        Remove_xml_garage
-        | Replace_string('YES', True)
-        | Replace_string('NO', False) | Transform_keys_camel_case_to_snake
-        | GuaranteedList | TimeLapse('sentencelength')
-        | Convert_dates(IEI_DATE_FORMAT, *IEI_DATES)
+            Remove_xml_garage
+            | Replace_string('YES', True)
+            | Replace_string('NO', False) | Transform_keys_camel_case_to_snake
+            | Guaranteed_list | Time_lapse('sentencelength')
+            | Convert_dates(IEI_DATE_FORMAT, *IEI_DATES)
     )
 
     @staticmethod

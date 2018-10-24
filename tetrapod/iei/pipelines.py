@@ -1,7 +1,7 @@
 from tetrapod.pipelines import Pipeline
 
 
-class GuaranteedList(Pipeline):
+class Guaranteed_list(Pipeline):
 
     def __init__( self, **kw ):
         super().__init__( **kw )
@@ -28,7 +28,7 @@ class GuaranteedList(Pipeline):
                 return v
 
 
-class TimeLapse(Pipeline):
+class Time_lapse(Pipeline):
 
     def __init__( self, *keys, **kw ):
         self._keys = keys
