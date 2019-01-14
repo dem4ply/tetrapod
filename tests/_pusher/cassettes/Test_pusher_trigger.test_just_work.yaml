@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: '{"name": "test", "channels": ["tetrapod.test"], "data": "null"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['63']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.19.1]
+      X-Pusher-Library: [pusher-http-python 2.1.2]
+    method: POST
+    uri: https://api-us2.pusher.com/apps/687123/events?auth_key=5a04ebaffb5eaa18bee5&auth_signature=efc607f3f5792c3460104b36a1b0e8e5203d9956a22a64b2e5af9a458924ac29&auth_timestamp=1547247426&auth_version=1.0&body_md5=60f8293f78b00a8d4f37b7ce23d01359
+  response:
+    body: {string: '{}'}
+    headers:
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [text/html;charset=utf-8]
+      Server: [thin]
+    status: {code: 200, message: OK}
+version: 1
