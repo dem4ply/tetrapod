@@ -51,7 +51,7 @@ class Test_pusher_trigger( Test_pusher_with_channel ):
     @patch( 'pusher.Pusher.trigger' )
     def test_should_call_the_trigger_function( self, trigger ):
         self.client.trigger( 'test' )
-        trigger.assert_called()
+        self.assertTrue( trigger.call_args_list )
 
 
 class Test_pusher_trigger_in_test_mode( Test_pusher_with_channel_test_mode ):
@@ -62,4 +62,4 @@ class Test_pusher_trigger_in_test_mode( Test_pusher_with_channel_test_mode ):
     @patch( 'pusher.Pusher.trigger' )
     def test_should_no_call_the_trigger_function( self, trigger ):
         self.client.trigger( 'test' )
-        trigger.assert_not_called()
+        self.assertFalse( trigger.call_args_list )
