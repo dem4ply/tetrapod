@@ -1,11 +1,12 @@
+import re
 import xmltodict
 from mudskipper import Client_soap
 
 from tetrapod.iei.exceptions import IEI_ncis_exception
 from tetrapod.iei.pipelines import Guaranteed_list, Time_lapse
 from tetrapod.pipelines import (
-    Transform_keys_camel_case_to_snake,
-    Remove_xml_garage, Replace_string, Convert_dates)
+    Transform_keys_camel_case_to_snake, Remove_xml_garage, Replace_string,
+    Convert_dates, Parse_full_dict_date, Parse_partial_dict_date)
 
 
 IEI_DATES = (
@@ -20,6 +21,12 @@ IEI_DATES = (
 IEI_DATE_FORMAT = "%m/%d/%Y"
 IEI_DOB_DATE_FORMAT = '%m-%d-%Y'
 
+DECEASED_SSN_MESSAGE = "SSN FOUND IN DMF"
+VALID_SSN_MESSAGE = "SSN IS VALID"
+ISSUED_IN_MESSAGE = "ISSUED IN "
+
+issued_pattern = re.compile(r'ISSUED IN \w*')
+
 
 class Client( Client_soap ):
 
@@ -29,6 +36,14 @@ class Client( Client_soap ):
         | Replace_string('NO', False) | Transform_keys_camel_case_to_snake
         | Guaranteed_list | Time_lapse('sentencelength')
         | Convert_dates(IEI_DATE_FORMAT, *IEI_DATES)
+    )
+
+    FACT_PIPELINE = (
+            Remove_xml_garage
+            | Replace_string('YES', True)
+            | Replace_string('NO', False) | Transform_keys_camel_case_to_snake
+            | Guaranteed_list | Parse_full_dict_date | Parse_partial_dict_date
+            | Convert_dates(IEI_DATE_FORMAT, ('fulldob',))
     )
 
     @staticmethod
@@ -170,3 +185,75 @@ class Client( Client_soap ):
         """
         alias = self._default_connection_name
         return self._connections.build_zeep_client(alias)
+
+    def fact(self, ssn, first_name="", last_name="", reference_id="",
+             profilename=None, _use_factory=None, **kw):
+
+        if _use_factory is not None:
+            raise NotImplementedError
+        else:
+            input_xml = self.build_fact(
+                first_name=first_name, last_name=last_name,
+                ssn=ssn, reference_id=reference_id, profilename=profilename
+            )
+
+            cred = self.extract_logging_from_connection()
+            result = self.client.service.PlaceOrder(
+                cred['login'], cred['password'], input_xml)
+
+            native_response = xmltodict.parse(result)
+
+        clean_data = self.FACT_PIPELINE.run(native_response)
+        root = clean_data['ieiresponse']
+
+        self.validate_response(clean_data)
+
+        records = root['addressinformation'].pop('records', None)
+        ssn_message = root['addressinformation'].get('message', '').upper()
+        year_issued = root['addressinformation'].get('year', '')
+
+        if not isinstance(records, list):
+            records = []
+
+        return {
+            'code': root['requestinformation']['code'],
+            'message': root['requestinformation']['codemessage'],
+
+            'is_deceased': DECEASED_SSN_MESSAGE in ssn_message,
+            'is_valid': VALID_SSN_MESSAGE in ssn_message,
+            'state_issued': self.parse_state_issued(ssn_message),
+            'text_response': ssn_message,
+            'year_issued': year_issued,
+
+            'request_info': root['requestinformation'],
+            'address_info': root['addressinformation'],
+            'records': records
+        }
+
+    def build_fact(self, first_name, last_name, ssn, reference_id, profilename):
+        product = {"fact": ""}
+        fact_input = self.ieirequest_base()
+
+        fact_input['ieirequest']['order']['product'] = product
+
+        subject = fact_input['ieirequest']['order']['subject']
+        subject['firstname'] = first_name
+        subject['lastname'] = last_name
+        subject['ssn'] = ssn
+
+        fact_input['ieirequest']['order']['quoteback'] = reference_id
+
+        if profilename:
+            fact_input['ieirequest']['order']['profilename'] = profilename
+
+        body_xml = xmltodict.unparse(fact_input)
+        return body_xml
+
+    @staticmethod
+    def parse_state_issued(ssn_message):
+        instances = issued_pattern.findall(ssn_message)
+        if instances:
+            state = instances[0].replace(ISSUED_IN_MESSAGE, "")
+            return state
+
+        return ""

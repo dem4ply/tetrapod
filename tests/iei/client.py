@@ -91,3 +91,21 @@ class Test_client_with_proxy(VCRTestCase, Test_iei):
 
         self.assertIsInstance(result, dict)
         self.assertTrue(len(result['records']) > 0)
+
+
+class Test_iei_fact_client(VCRTestCase, Test_iei):
+
+    def test_iei_ok_response(self):
+        result = self.client.fact(
+            ssn='626047234', first_name='Mickey', last_name='Devin',
+            reference_id='foo@bar')
+        self.assertIsInstance(result, dict)
+        self.assertTrue(len(result['records']) > 0)
+
+    def test_iei_fact_deceased_ssn(self):
+        result = self.client.fact(ssn='416039521')
+        self.assertTrue(result['is_deceased'])
+
+    def test_iei_fact_invalid_ssn(self):
+        result = self.client.fact(ssn='899999666')
+        self.assertFalse(result['is_valid'])
