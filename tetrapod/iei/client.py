@@ -39,11 +39,11 @@ class Client( Client_soap ):
     )
 
     FACT_PIPELINE = (
-            Remove_xml_garage
-            | Replace_string('YES', True)
-            | Replace_string('NO', False) | Transform_keys_camel_case_to_snake
-            | Guaranteed_list | Parse_full_dict_date | Parse_partial_dict_date
-            | Convert_dates(IEI_DATE_FORMAT, ('fulldob',))
+        Remove_xml_garage
+        | Replace_string('YES', True)
+        | Replace_string('NO', False) | Transform_keys_camel_case_to_snake
+        | Guaranteed_list | Parse_full_dict_date | Parse_partial_dict_date
+        | Convert_dates(IEI_DATE_FORMAT, ('fulldob',))
     )
 
     @staticmethod
