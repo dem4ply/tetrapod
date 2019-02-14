@@ -188,6 +188,29 @@ class Client( Client_soap ):
 
     def fact(self, ssn, first_name="", last_name="", reference_id="",
              profilename=None, _use_factory=None, **kw):
+        """
+        return the result of the FACT product from IEI. This includes
+        SSN Validation, public records and addresses.
+
+        arguments
+        =========
+        ssn: str
+        first_name: str
+        last_name: str
+        reference_id: str
+        profilename: str
+        _use_factory: py:class:`factory.Factory`
+            used for ignore the call to iei and try to parse
+            the factory result
+
+        Returns
+        =======
+        dict
+
+        Raises
+        ======
+        py:class:`tetrapod.iei.exceptions.IEI_exception_base`
+        """
 
         if _use_factory is not None:
             raise NotImplementedError
