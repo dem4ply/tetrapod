@@ -7,7 +7,7 @@ fake = Faker_factory.create()
 class IEI_Request_Information(factory.Factory):
     code = 100
     codemessage = "RECORDS FOUND"
-    inputs = factory.Dict({})
+    inputs = {}
 
     class Meta:
         model = dict
@@ -16,18 +16,17 @@ class IEI_Request_Information(factory.Factory):
 class IEI_Request_Information_no_records(factory.Factory):
     code = 101
     codemessage = "NO RECORDS FOUND"
-    inputs = factory.Dict({})
+    inputs = {}
 
     class Meta:
         model = dict
 
 
 class IEI_response(factory.Factory):
-    disclaimer_link = \
-        "**IMPORTANT NOTICE** USE OR DISSEMINATION OF THIS DATA " \
-        "IS SUBJECT TO THE TERMS, CONDITIONS, RESTRICTIONS AND " \
-        "LIMITATIONS SPECIFIED AT: " \
-        "http://www.backgroundscreeningsystems.com/disclaimers.aspx"
+    disclaimer_link = """**IMPORTANT NOTICE** USE OR DISSEMINATION OF 
+        THIS DATA IS SUBJECT TO THE TERMS, CONDITIONS, RESTRICTIONS AND 
+        LIMITATIONS SPECIFIED AT: 
+        http://www.backgroundscreeningsystems.com/disclaimers.aspx"""
 
     class Meta:
         model = dict
