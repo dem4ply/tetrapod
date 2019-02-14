@@ -5,6 +5,7 @@ from vcr_unittest import VCRTestCase
 from tetrapod.iei import iei
 from tetrapod.iei import connections
 from tetrapod.iei.exceptions import IEI_ncis_exception
+from tetrapod.iei.factories.fact import IEI_fact
 
 connections.configure(
     default={
@@ -109,3 +110,23 @@ class Test_iei_fact_client(VCRTestCase, Test_iei):
     def test_iei_fact_invalid_ssn(self):
         result = self.client.fact(ssn='899999666')
         self.assertFalse(result['is_valid'])
+
+
+class Test_iei_fact_with_factory(Test_iei):
+
+    def setUp(self):
+        self.factory = IEI_fact
+        super().setUp()
+
+    def test_fact_from_factory(self):
+        result = self.client.fact(
+            ssn='899999914', _use_factory=self.factory,
+            reference_id="a_reference")
+
+        self.assertTrue(result)
+        self.assertEqual(result['code'], "100")
+        self.assertTrue(result['is_valid'])
+        self.assertFalse(result['is_deceased'])
+        self.assertIsInstance(result['records'], list)
+        self.assertIsInstance(result['address_info'], dict)
+        self.assertIsInstance(result['request_info'], dict)

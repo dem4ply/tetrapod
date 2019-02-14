@@ -4,7 +4,7 @@ from faker import Factory as Faker_factory
 fake = Faker_factory.create()
 
 
-class _Dict_Partial_Date(factory.Factory):
+class Dict_partial_date(factory.Factory):
     raw_date = factory.lazy_attribute(lambda x: fake.date_this_decade())
     month = factory.lazy_attribute(lambda x: x.raw_date.strftime("%m"))
     year = factory.lazy_attribute(lambda x: x.raw_date.strftime("%Y"))
@@ -17,5 +17,5 @@ class _Dict_Partial_Date(factory.Factory):
         model = dict
 
 
-class _Dict_Date(_Dict_Partial_Date):
+class Dict_date(Dict_partial_date):
     day = factory.lazy_attribute(lambda x: x.raw_date.strftime("%d"))

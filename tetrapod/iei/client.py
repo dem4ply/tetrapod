@@ -33,18 +33,19 @@ class Client( Client_soap ):
     COMMON_PIPELINE = (
         Remove_xml_garage
         | Replace_string('YES', True)
-        | Replace_string('NO', False) | Transform_keys_camel_case_to_snake
-        | Guaranteed_list | Time_lapse('sentencelength')
-        | Convert_dates(IEI_DATE_FORMAT, *IEI_DATES)
-    )
+        | Replace_string('NO', False)
+        | Transform_keys_camel_case_to_snake
+        | Guaranteed_list)
 
-    FACT_PIPELINE = (
-        Remove_xml_garage
-        | Replace_string('YES', True)
-        | Replace_string('NO', False) | Transform_keys_camel_case_to_snake
-        | Guaranteed_list | Parse_full_dict_date | Parse_partial_dict_date
-        | Convert_dates(IEI_DATE_FORMAT, ('fulldob',))
-    )
+    NCIS_PIPELINE = \
+        COMMON_PIPELINE |\
+        (Time_lapse('sentencelength') |
+         Convert_dates(IEI_DATE_FORMAT, *IEI_DATES))
+
+    FACT_PIPELINE = \
+        COMMON_PIPELINE | (Parse_full_dict_date |
+                           Parse_partial_dict_date
+                           | Convert_dates(IEI_DATE_FORMAT, ('fulldob',)))
 
     @staticmethod
     def ieirequest_base():
@@ -111,7 +112,7 @@ class Client( Client_soap ):
 
             native_response = xmltodict.parse(result)
 
-        clean_data = self.COMMON_PIPELINE.run(native_response)
+        clean_data = self.NCIS_PIPELINE.run(native_response)
         root = clean_data['ieiresponse']
 
         self.validate_response(clean_data)
@@ -213,7 +214,7 @@ class Client( Client_soap ):
         """
 
         if _use_factory is not None:
-            raise NotImplementedError
+            native_response = {'ieiresponse': _use_factory.build()}
         else:
             input_xml = self.build_fact(
                 first_name=first_name, last_name=last_name,

@@ -2,26 +2,26 @@ import factory
 import random
 from faker import Factory as Faker_factory
 
-from tetrapod.factories import _Dict_Date, _Dict_Partial_Date
+from tetrapod.factories import Dict_date, Dict_partial_date
 from tetrapod.iei.factories.iei import IEI_with_results, IEI_no_results
 
 fake = Faker_factory.create()
 
 
-class IEI_Address_information(factory.Factory):
+class IEI_address_information(factory.Factory):
     message = factory.lazy_attribute(
         lambda x: "SSN IS VALID.  ISSUED IN {}".format(fake.state_abbr()))
     year = factory.lazy_attribute(
         lambda x: "IN THE YEAR {}".format(random.randint(1980, 2018)))
     records = factory.lazy_attribute(
-        lambda x: {'record': IEI_Fact_Record.build_batch(
+        lambda x: {'record': IEI_fact_record.build_batch(
             random.randint(1, 5))})
 
     class Meta:
         model = dict
 
 
-class IEI_Fact_Record(factory.Factory):
+class IEI_fact_record(factory.Factory):
     sourceorjurisdiction = factory.lazy_attribute(
         lambda x: fake.sentence(nb_words=3))
     firstname = factory.lazy_attribute(
@@ -32,7 +32,7 @@ class IEI_Fact_Record(factory.Factory):
         lambda x: random.choice((fake.first_name(), '')))
     fullname = factory.lazy_attribute(
         lambda x: " ".join([x.firstname, x.middlename, x.lastname]))
-    dob = factory.SubFactory(_Dict_Date)
+    dob = factory.SubFactory(Dict_date)
     fulldob = factory.lazy_attribute(
         lambda x: "/".join([x.dob['month'], x.dob['day'], x.dob['year']]))
     ssn = factory.lazy_attribute(
@@ -40,14 +40,14 @@ class IEI_Fact_Record(factory.Factory):
     age = factory.lazy_attribute(lambda x: random.randint(21, 110))
 
     addresses = factory.lazy_attribute(
-        lambda x: {'address': IEI_Fact_Address.build_batch(
+        lambda x: {'address': IEI_fact_address.build_batch(
             random.randint(1, 10))})
 
     class Meta:
         model = dict
 
 
-class IEI_Fact_Address(factory.Factory):
+class IEI_fact_address(factory.Factory):
 
     street_name = factory.lazy_attribute(
         lambda x: fake.street_name())
@@ -62,8 +62,8 @@ class IEI_Fact_Address(factory.Factory):
     city = factory.lazy_attribute(lambda x: fake.city())
     state = factory.lazy_attribute(lambda x: fake.state_abbr())
     county = factory.lazy_attribute(lambda x: fake.city())
-    from_date = factory.SubFactory(_Dict_Partial_Date)
-    to_date = factory.SubFactory(_Dict_Partial_Date)
+    from_date = factory.SubFactory(Dict_partial_date)
+    to_date = factory.SubFactory(Dict_partial_date)
     zip = factory.lazy_attribute(lambda x: fake.postalcode())
     zip4 = factory.lazy_attribute(lambda x: fake.numerify(text="####"))
     street_pre_direction = factory.lazy_attribute(lambda x: fake.city_prefix())
@@ -72,9 +72,9 @@ class IEI_Fact_Address(factory.Factory):
         model = dict
 
 
-class IEI_Fact(IEI_with_results):
-    addressinformation = factory.SubFactory(IEI_Address_information)
+class IEI_fact(IEI_with_results):
+    addressinformation = factory.SubFactory(IEI_address_information)
 
 
-class IEI_Fact_no_results(IEI_no_results):
-    addressinformation = factory.SubFactory(IEI_Address_information)
+class IEI_fact_no_results(IEI_no_results):
+    addressinformation = factory.SubFactory(IEI_address_information)

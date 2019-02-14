@@ -2,7 +2,7 @@ import factory
 import random
 from faker import Factory as Faker_factory
 
-from tetrapod.factories import _Dict_Partial_Date
+from tetrapod.factories import Dict_partial_date
 from .bgc import BGC
 
 fake = Faker_factory.create()
@@ -47,8 +47,8 @@ class _Us_one_trace_record( factory.Factory ):
     city = factory.lazy_attribute( lambda x: fake.city() )
     state = factory.lazy_attribute( lambda x: fake.state_abbr() )
     county = None
-    date_first_seen = factory.SubFactory( _Dict_Partial_Date )
-    date_last_seen = factory.SubFactory( _Dict_Partial_Date )
+    date_first_seen = factory.SubFactory(Dict_partial_date)
+    date_last_seen = factory.SubFactory(Dict_partial_date)
     postal_code = factory.lazy_attribute( lambda x: fake.postalcode() )
     postal_code4 = factory.lazy_attribute(
         lambda x: fake.numerify( text="####" ) )
