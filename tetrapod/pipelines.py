@@ -151,7 +151,7 @@ class Guaranteed_list( Pipeline ):
     def transform( self, x ):
         if not x:
             return []
-        elif isinstance(x, list):
+        elif isinstance( x, list ):
             return x
         else:
             return [x]
@@ -248,6 +248,15 @@ class Parse_full_dict_date( Parse_dict ):
             year=int( d[ 'year' ] ), month=int( d[ 'month' ] ),
             day=int( d[ 'day' ] ) )
 
+class Remove_year_zero( Parse_dict ):
+    def __init__( self, **kw ):
+        super().__init__( 'year', 'month', 'day' )
+
+    def transform( self, d ):
+        if int( d[ 'year' ] ) == 0:
+            return { 'month': d[ 'month' ], 'day': d[ 'day' ] }
+        return d
+
 
 class Parse_partial_dict_date( Parse_dict ):
     def __init__( self, **kw ):
@@ -287,7 +296,7 @@ class Expand_dict_with_start_with( Pipeline ):
         return obj
 
 
-class Convert_dates_from_formats(Pipeline):
+class Convert_dates_from_formats( Pipeline ):
 
     def __init__( self, from_format, to_format, default_invalid, *keys, **kw ):
         self._keys = keys
@@ -296,27 +305,27 @@ class Convert_dates_from_formats(Pipeline):
         self._default_invalid = default_invalid
         super().__init__( **kw )
 
-    def process(self, obj, *args, **kw):
-        if isinstance(obj, dict):
+    def process( self, obj, *args, **kw ):
+        if isinstance( obj, dict ):
             for k, v in obj.items():
                 if k in self._keys:
-                    obj[k] = self.transform(v)
+                    obj[k] = self.transform( v )
                 else:
-                    self.process(v)
-        elif isinstance(obj, list):
+                    self.process( v )
+        elif isinstance( obj, list ):
             for i in obj:
-                self.process(i)
+                self.process( i )
         return obj
 
-    def transform(self, x):
+    def transform( self, x ):
         try:
-            d = datetime.datetime.strptime(x, self._from_format)
-            return d.strftime(self._to_format)
+            d = datetime.datetime.strptime( x, self._from_format )
+            return d.strftime( self._to_format )
         except:
             return self._default_invalid
 
 
-class Convert_dates(Pipeline):
+class Convert_dates( Pipeline ):
 
     def __init__( self, from_format, *keys, **kw ):
         self._from_format = from_format
@@ -326,14 +335,14 @@ class Convert_dates(Pipeline):
     def _corresponds_to_my_dict( self, d ):
         return set( d.keys() ) == set( self._keys )
 
-    def transform(self, x):
+    def transform( self, x ):
         try:
-            d = datetime.datetime.strptime(x, self._from_format)
+            d = datetime.datetime.strptime( x, self._from_format )
             return d
         except:
             return None
 
-    def transform_iso(self, d):
+    def transform_iso( self, d ):
         try:
             return d.isoformat()
         except:
@@ -344,10 +353,10 @@ class Convert_dates(Pipeline):
             result = {}
             for k, v in obj.items():
                 if isinstance( v, str ) and k in self._keys:
-                    result[k] = self.transform(v)
-                    result["{}__raw".format(k)] = v
-                    date_iso = self.transform_iso(result[k])
-                    result["{}__iso".format(k)] = date_iso
+                    result[k] = self.transform( v )
+                    result["{}__raw".format( k )] = v
+                    date_iso = self.transform_iso( result[k])
+                    result["{}__iso".format( k )] = date_iso
                 else:
                     result[k] = self.process( v )
             return result

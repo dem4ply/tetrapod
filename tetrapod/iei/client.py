@@ -6,7 +6,8 @@ from tetrapod.iei.exceptions import IEI_ncis_exception
 from tetrapod.iei.pipelines import Guaranteed_list, Time_lapse
 from tetrapod.pipelines import (
     Transform_keys_camel_case_to_snake, Remove_xml_garage, Replace_string,
-    Convert_dates, Parse_full_dict_date, Parse_partial_dict_date)
+    Convert_dates, Parse_full_dict_date, Parse_partial_dict_date )
+from tetrapod.pipelines import Remove_year_zero
 
 
 IEI_DATES = (
@@ -25,27 +26,28 @@ DECEASED_SSN_MESSAGE = "SSN FOUND IN DMF"
 VALID_SSN_MESSAGE = "SSN IS VALID"
 ISSUED_IN_MESSAGE = "ISSUED IN "
 
-issued_pattern = re.compile(r'ISSUED IN \w*')
+issued_pattern = re.compile( r'ISSUED IN \w*' )
 
 
 class Client( Client_soap ):
 
     COMMON_PIPELINE = (
         Remove_xml_garage
-        | Replace_string('YES', True)
-        | Replace_string('NO', False)
+        | Replace_string( 'YES', True )
+        | Replace_string( 'NO', False )
         | Transform_keys_camel_case_to_snake
-        | Guaranteed_list)
+        | Guaranteed_list | Remove_year_zero )
 
-    NCIS_PIPELINE = \
-        COMMON_PIPELINE |\
-        (Time_lapse('sentencelength') |
-         Convert_dates(IEI_DATE_FORMAT, *IEI_DATES))
+    NCIS_PIPELINE = (
+        COMMON_PIPELINE
+        | Time_lapse( 'sentencelength' )
+        | Convert_dates( IEI_DATE_FORMAT, *IEI_DATES ) )
 
-    FACT_PIPELINE = \
-        COMMON_PIPELINE | (Parse_full_dict_date |
-                           Parse_partial_dict_date
-                           | Convert_dates(IEI_DATE_FORMAT, ('fulldob',)))
+    FACT_PIPELINE =(
+        COMMON_PIPELINE
+        #| Parse_full_dict_date
+        #| Parse_partial_dict_date
+        | Convert_dates( IEI_DATE_FORMAT, ( 'fulldob' ) ) )
 
     @staticmethod
     def ieirequest_base():
@@ -69,8 +71,8 @@ class Client( Client_soap ):
             }
         }
 
-    def ncis(self, *args, first_name, last_name, middle_name, ssn, dob,
-             reference_id, profilename=None, _use_factory=None, **kw):
+    def ncis( self, *args, first_name, last_name, middle_name, ssn, dob,
+             reference_id, profilename=None, _use_factory=None, **kw ):
         """
         return the result of the NCIS product from bgc. This includes
         hits from National Criminal, Sex Offender and Watchlist
@@ -108,17 +110,17 @@ class Client( Client_soap ):
 
             cred = self.extract_logging_from_connection()
             result = self.client.service.PlaceOrder(
-                cred['login'], cred['password'], input_xml)
+                cred['login'], cred['password'], input_xml )
 
-            native_response = xmltodict.parse(result)
+            native_response = xmltodict.parse( result )
 
-        clean_data = self.NCIS_PIPELINE.run(native_response)
+        clean_data = self.NCIS_PIPELINE.run( native_response )
         root = clean_data['ieiresponse']
 
-        self.validate_response(clean_data)
+        self.validate_response( clean_data )
 
         records = root['criminalinformation']['records']
-        if not isinstance(records, list):
+        if not isinstance( records, list ):
             records = []
 
         return {
@@ -143,8 +145,8 @@ class Client( Client_soap ):
             'wsdl': connection['wsdl']
         }
 
-    def build_ncis(self, first_name, last_name, middle_name,
-                   ssn, dob, reference_id, profilename):
+    def build_ncis( self, first_name, last_name, middle_name,
+                   ssn, dob, reference_id, profilename ):
 
         product = {"ncis": ""}
         ncis_input = self.ieirequest_base()
@@ -156,27 +158,27 @@ class Client( Client_soap ):
         subject['lastname'] = last_name
         subject['middlename'] = middle_name
         subject['ssn'] = ssn
-        subject['dob'] = dob.strftime(IEI_DOB_DATE_FORMAT)
+        subject['dob'] = dob.strftime( IEI_DOB_DATE_FORMAT )
 
         ncis_input['ieirequest']['order']['quoteback'] = reference_id
 
         if profilename:
             ncis_input['ieirequest']['order']['profilename'] = profilename
 
-        body_xml = xmltodict.unparse(ncis_input)
+        body_xml = xmltodict.unparse( ncis_input )
         return body_xml
 
     @staticmethod
-    def validate_response(clean_data):
+    def validate_response( clean_data ):
         info = clean_data['ieiresponse']['requestinformation']
         code = info['code']
         message = info['codemessage']
 
-        if code not in ('100', '101', '102'):
+        if code not in ( '100', '101', '102' ):
             raise IEI_ncis_exception({code: message})
 
     @property
-    def client(self):
+    def client( self ):
         """
         build the endpoint using the current connection
 
@@ -185,10 +187,10 @@ class Client( Client_soap ):
         py:class:`tetrapod.bgc.endpoint.Endpoint`
         """
         alias = self._default_connection_name
-        return self._connections.build_zeep_client(alias)
+        return self._connections.build_zeep_client( alias )
 
-    def fact(self, ssn, first_name="", last_name="", reference_id="",
-             profilename=None, _use_factory=None, **kw):
+    def fact( self, ssn, first_name="", last_name="", reference_id="",
+             profilename=None, _use_factory=None, **kw ):
         """
         return the result of the FACT product from IEI. This includes
         SSN Validation, public records and addresses.
@@ -223,20 +225,20 @@ class Client( Client_soap ):
 
             cred = self.extract_logging_from_connection()
             result = self.client.service.PlaceOrder(
-                cred['login'], cred['password'], input_xml)
+                cred['login'], cred['password'], input_xml )
 
-            native_response = xmltodict.parse(result)
+            native_response = xmltodict.parse( result )
 
-        clean_data = self.FACT_PIPELINE.run(native_response)
+        clean_data = self.FACT_PIPELINE.run( native_response )
         root = clean_data['ieiresponse']
 
-        self.validate_response(clean_data)
+        self.validate_response( clean_data )
 
-        records = root['addressinformation'].pop('records', None)
-        ssn_message = root['addressinformation'].get('message', '').upper()
-        year_issued = root['addressinformation'].get('year', '')
+        records = root['addressinformation'].pop( 'records', None )
+        ssn_message = root['addressinformation'].get( 'message', '' ).upper()
+        year_issued = root['addressinformation'].get( 'year', '' )
 
-        if not isinstance(records, list):
+        if not isinstance( records, list ):
             records = []
 
         return {
@@ -245,7 +247,7 @@ class Client( Client_soap ):
 
             'is_deceased': DECEASED_SSN_MESSAGE in ssn_message,
             'is_valid': VALID_SSN_MESSAGE in ssn_message,
-            'state_issued': self.parse_state_issued(ssn_message),
+            'state_issued': self.parse_state_issued( ssn_message ),
             'text_response': ssn_message,
             'year_issued': year_issued,
 
@@ -254,7 +256,7 @@ class Client( Client_soap ):
             'records': records
         }
 
-    def build_fact(self, first_name, last_name, ssn, reference_id, profilename):
+    def build_fact( self, first_name, last_name, ssn, reference_id, profilename ):
         product = {"fact": ""}
         fact_input = self.ieirequest_base()
 
@@ -270,14 +272,14 @@ class Client( Client_soap ):
         if profilename:
             fact_input['ieirequest']['order']['profilename'] = profilename
 
-        body_xml = xmltodict.unparse(fact_input)
+        body_xml = xmltodict.unparse( fact_input )
         return body_xml
 
     @staticmethod
-    def parse_state_issued(ssn_message):
-        instances = issued_pattern.findall(ssn_message)
+    def parse_state_issued( ssn_message ):
+        instances = issued_pattern.findall( ssn_message )
         if instances:
-            state = instances[0].replace(ISSUED_IN_MESSAGE, "")
+            state = instances[0].replace( ISSUED_IN_MESSAGE, "")
             return state
 
         return ""
