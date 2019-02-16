@@ -36,7 +36,7 @@ class Client( Client_soap ):
         | Replace_string( 'YES', True )
         | Replace_string( 'NO', False )
         | Transform_keys_camel_case_to_snake
-        | Guaranteed_list | Remove_year_zero )
+        | Guaranteed_list )
 
     NCIS_PIPELINE = (
         COMMON_PIPELINE
@@ -45,8 +45,8 @@ class Client( Client_soap ):
 
     FACT_PIPELINE =(
         COMMON_PIPELINE
-        #| Parse_full_dict_date
-        #| Parse_partial_dict_date
+        | Parse_full_dict_date
+        | Parse_partial_dict_date
         | Convert_dates( IEI_DATE_FORMAT, ( 'fulldob' ) ) )
 
     @staticmethod

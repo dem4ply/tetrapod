@@ -244,6 +244,9 @@ class Parse_full_dict_date( Parse_dict ):
         super().__init__( 'year', 'month', 'day' )
 
     def transform( self, d ):
+        if int( d[ 'year' ] ) == 0:
+            return datetime.date(
+                year=1000, month=int( d[ 'month' ] ), day=int( d[ 'day' ] ) )
         return datetime.date(
             year=int( d[ 'year' ] ), month=int( d[ 'month' ] ),
             day=int( d[ 'day' ] ) )
@@ -263,6 +266,8 @@ class Parse_partial_dict_date( Parse_dict ):
         super().__init__( 'year', 'month', )
 
     def transform( self, d ):
+        if int( d[ 'year' ] ) == 0:
+            return datetime.date( year=1000, month=int( d[ 'month' ] ), day=1 )
         return datetime.date(
             year=int( d[ 'year' ] ), month=int( d[ 'month' ] ), day=1 )
 
