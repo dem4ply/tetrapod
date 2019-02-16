@@ -7,7 +7,6 @@ from tetrapod.iei.pipelines import Guaranteed_list, Time_lapse
 from tetrapod.pipelines import (
     Transform_keys_camel_case_to_snake, Remove_xml_garage, Replace_string,
     Convert_dates, Parse_full_dict_date, Parse_partial_dict_date )
-from tetrapod.pipelines import Remove_year_zero
 
 
 IEI_DATES = (
