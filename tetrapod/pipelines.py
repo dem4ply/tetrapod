@@ -39,11 +39,12 @@ class Pipeline_manager:
         return result
 
     def __or__( self, other ):
+        me = copy.deepcopy(self)
         if isinstance( other, Pipeline_manager ):
-            return self + other
+            return me + other
 
-        self.append( other )
-        return self
+        me.append(other)
+        return me
 
     def to_dict( self ):
         result = {

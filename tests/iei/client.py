@@ -130,3 +130,11 @@ class Test_iei_fact_with_factory(Test_iei):
         self.assertIsInstance(result['records'], list)
         self.assertIsInstance(result['address_info'], dict)
         self.assertIsInstance(result['request_info'], dict)
+
+
+class Test_iei_pipelines(Test_iei):
+
+    def test_iei_pipelines(self):
+        common_size = len(self.client.COMMON_PIPELINE.children)
+        fact_size = len(self.client.FACT_PIPELINE.children)
+        self.assertNotEqual(common_size, fact_size)
