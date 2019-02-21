@@ -252,6 +252,7 @@ class Parse_full_dict_date( Parse_dict ):
             year=int( d[ 'year' ] ), month=int( d[ 'month' ] ),
             day=int( d[ 'day' ] ) )
 
+
 class Remove_year_zero( Parse_dict ):
     def __init__( self, **kw ):
         super().__init__( 'year', 'month', 'day' )

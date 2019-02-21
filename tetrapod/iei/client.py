@@ -42,7 +42,7 @@ class Client( Client_soap ):
         | Time_lapse( 'sentencelength' )
         | Convert_dates( IEI_DATE_FORMAT, *IEI_DATES ) )
 
-    FACT_PIPELINE =(
+    FACT_PIPELINE = (
         COMMON_PIPELINE
         | Parse_full_dict_date
         | Parse_partial_dict_date
@@ -70,8 +70,8 @@ class Client( Client_soap ):
             }
         }
 
-    def ncis( self, *args, first_name, last_name, middle_name, ssn, dob,
-             reference_id, profilename=None, _use_factory=None, **kw ):
+    def ncis(self, *args, first_name, last_name, middle_name, ssn, dob,
+             reference_id, profilename=None, _use_factory=None, **kw):
         """
         return the result of the NCIS product from bgc. This includes
         hits from National Criminal, Sex Offender and Watchlist
@@ -144,7 +144,7 @@ class Client( Client_soap ):
             'wsdl': connection['wsdl']
         }
 
-    def build_ncis( self, first_name, last_name, middle_name,
+    def build_ncis(self, first_name, last_name, middle_name,
                    ssn, dob, reference_id, profilename ):
 
         product = {"ncis": ""}
@@ -188,7 +188,7 @@ class Client( Client_soap ):
         alias = self._default_connection_name
         return self._connections.build_zeep_client( alias )
 
-    def fact( self, ssn, first_name="", last_name="", reference_id="",
+    def fact(self, ssn, first_name="", last_name="", reference_id="",
              profilename=None, _use_factory=None, **kw ):
         """
         return the result of the FACT product from IEI. This includes
@@ -255,7 +255,7 @@ class Client( Client_soap ):
             'records': records
         }
 
-    def build_fact( self, first_name, last_name, ssn, reference_id, profilename ):
+    def build_fact(self, first_name, last_name, ssn, reference_id, profilename):
         product = {"fact": ""}
         fact_input = self.ieirequest_base()
 
