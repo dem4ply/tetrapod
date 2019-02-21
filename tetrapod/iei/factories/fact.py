@@ -8,14 +8,30 @@ from tetrapod.iei.factories.iei import IEI_with_results, IEI_no_results
 fake = Faker_factory.create()
 
 
+class IEI_fact_record_list(factory.Factory):
+    record = factory.lazy_attribute(
+        lambda x: IEI_fact_record.build_batch(random.randint(1, 5)))
+    count = 0
+
+    class Meta:
+        model = dict
+
+
 class IEI_address_information(factory.Factory):
     message = factory.lazy_attribute(
         lambda x: "SSN IS VALID.  ISSUED IN {}".format(fake.state_abbr()))
     year = factory.lazy_attribute(
         lambda x: "IN THE YEAR {}".format(random.randint(1980, 2018)))
-    records = factory.lazy_attribute(
-        lambda x: {'record': IEI_fact_record.build_batch(
-            random.randint(1, 5))})
+    records = factory.SubFactory(IEI_fact_record_list)
+
+    class Meta:
+        model = dict
+
+
+class IEI_fact_address_list(factory.Factory):
+    address = factory.lazy_attribute(
+        lambda x: IEI_fact_address.build_batch(random.randint(1, 10)))
+    count = 0
 
     class Meta:
         model = dict
@@ -39,9 +55,7 @@ class IEI_fact_record(factory.Factory):
         lambda x: fake.ssn().replace('-', ''))
     age = factory.lazy_attribute(lambda x: random.randint(21, 110))
 
-    addresses = factory.lazy_attribute(
-        lambda x: {'address': IEI_fact_address.build_batch(
-            random.randint(1, 10))})
+    addresses = factory.SubFactory(IEI_fact_address_list)
 
     class Meta:
         model = dict

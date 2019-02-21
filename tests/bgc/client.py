@@ -212,13 +212,6 @@ class BGC_factory_exception( unittest.TestCase ):
         super().setUp()
 
 
-class BGC_should_work_with_utf_8( Test_bgc ):
-    def test_should_work( self ):
-        self.client.us_one_trace(
-            ssn='899999914', first_name='Da’Jiah', last_name='dow',
-            reference_id="a_reference" )
-
-
 class BGC_build_xml_text( Test_bgc ):
     def test_build_us_one_trace_should_login_be_before_that_product( self ):
         xml_text = self.client.build_us_one_trace(

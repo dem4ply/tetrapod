@@ -127,9 +127,15 @@ class Test_iei_fact_with_factory(Test_iei):
         self.assertEqual(result['code'], "100")
         self.assertTrue(result['is_valid'])
         self.assertFalse(result['is_deceased'])
-        self.assertIsInstance(result['records'], list)
         self.assertIsInstance(result['address_info'], dict)
         self.assertIsInstance(result['request_info'], dict)
+
+        self.assertIsInstance(result['records'], list)
+        self.assertTrue(len(result['records']) > 0)
+
+        addresses = result['records'][0]['addresses']
+        self.assertIsInstance(addresses, list)
+        self.assertTrue(len(addresses) > 0)
 
 
 class Test_iei_pipelines(Test_iei):
