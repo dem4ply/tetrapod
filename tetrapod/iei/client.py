@@ -24,6 +24,7 @@ IEI_DOB_DATE_FORMAT = '%m-%d-%Y'
 DECEASED_SSN_MESSAGE = "SSN FOUND IN DMF"
 VALID_SSN_MESSAGE = "SSN IS VALID"
 ISSUED_IN_MESSAGE = "ISSUED IN "
+RANDOMIZED_IN_MESSAGE = "RANDOMIZED"
 
 issued_pattern = re.compile( r'ISSUED IN \w*' )
 
@@ -240,13 +241,16 @@ class Client( Client_soap ):
         if not isinstance( records, list ):
             records = []
 
+        is_random = RANDOMIZED_IN_MESSAGE in ssn_message
+        is_valid = VALID_SSN_MESSAGE in ssn_message
+
         return {
             'code': root['requestinformation']['code'],
             'message': root['requestinformation']['codemessage'],
-
             'is_deceased': DECEASED_SSN_MESSAGE in ssn_message,
-            'is_valid': VALID_SSN_MESSAGE in ssn_message,
-            'state_issued': self.parse_state_issued( ssn_message ),
+            'is_valid': is_valid or is_random,
+            'is_randomized': is_random,
+            'state_issued': self.parse_state_issued(ssn_message),
             'text_response': ssn_message,
             'year_issued': year_issued,
 
