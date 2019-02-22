@@ -82,6 +82,13 @@ class IEI_fact_address(factory.Factory):
     zip4 = factory.lazy_attribute(lambda x: fake.numerify(text="####"))
     street_pre_direction = factory.lazy_attribute(lambda x: fake.city_prefix())
 
+    @factory.post_generation
+    def groups(self, *arg, **kwargs):
+        from_date = self.pop('from_date', None)
+        self['from-date'] = from_date
+        to_date = self.pop('to_date', None)
+        self['to-date'] = to_date
+
     class Meta:
         model = dict
 

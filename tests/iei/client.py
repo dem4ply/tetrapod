@@ -137,6 +137,10 @@ class Test_iei_fact_with_factory(Test_iei):
         self.assertIsInstance(addresses, list)
         self.assertTrue(len(addresses) > 0)
 
+        address = addresses[0]
+        self.assertIsInstance(address['to-date'], datetime.date)
+        self.assertIsInstance(address['from-date'], datetime.date)
+
 
 class Test_iei_pipelines(Test_iei):
 
