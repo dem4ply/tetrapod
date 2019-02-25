@@ -9,7 +9,7 @@ README = open(os.path.join( here, 'README.rst' ) ).read()
 
 setup(
     name='tetrapod',
-    version='1.5',
+    version='1.5.1',
     description='',
     long_description=README,
     license='',

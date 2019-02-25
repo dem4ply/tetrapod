@@ -70,7 +70,7 @@ class Test_exceptions_login(VCRTestCase, Test_iei):
 
     def test_is_no_sended_the_correct_user_should_raise_a_exception(self):
         with self.assertRaises(IEI_ncis_exception) as ex:
-            iei.using('wrong_login' ).ncis(
+            iei.using('wrong_login').ncis(
                 ssn='', first_name='Kevin', last_name='Donner',
                 middle_name='Thomas',
                 dob=datetime.date(1960, 9, 1),
@@ -83,8 +83,7 @@ class Test_exceptions_login(VCRTestCase, Test_iei):
 class Test_client_with_proxy(VCRTestCase, Test_iei):
 
     def test_client_uses_configured_proxy(self):
-
-        result = iei.using('default_proxies' ).ncis(
+        result = iei.using('default_proxies').ncis(
             ssn='', first_name='Kevin', last_name='Donner',
             middle_name='Thomas',
             dob=datetime.date(1960, 9, 1),
@@ -110,6 +109,12 @@ class Test_iei_fact_client(VCRTestCase, Test_iei):
     def test_iei_fact_invalid_ssn(self):
         result = self.client.fact(ssn='899999666')
         self.assertFalse(result['is_valid'])
+
+    def test_iei_fact_invalid_month(self):
+        result = self.client.fact(ssn='162781716')
+        self.assertEqual(
+            result['records'][0]['dob'],
+            datetime.date(1997, 1, 1))
 
 
 class Test_iei_fact_with_factory(Test_iei):
