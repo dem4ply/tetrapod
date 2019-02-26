@@ -116,6 +116,12 @@ class Test_iei_fact_client(VCRTestCase, Test_iei):
             result['records'][0]['dob'],
             datetime.date(1997, 1, 1))
 
+    def test_iei_fact_invalid_year(self):
+        result = self.client.fact(ssn='162781716')
+        self.assertEqual(
+            result['records'][0]['dob'],
+            datetime.date(1997, 1, 1))
+
 
 class Test_iei_fact_with_factory(Test_iei):
 
