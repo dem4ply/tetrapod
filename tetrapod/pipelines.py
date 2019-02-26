@@ -246,7 +246,7 @@ class Parse_full_dict_date(Parse_dict):
 
     def transform(self, d):
         def x(a, b):
-            return int(a) if a not in ('', '0', '00') else b
+            return int(a) if a not in ('', '0', '00', '0000') else b
         year = x(d['year'], 1000)
         month = x(d['month'], 1)
         day = x(d['day'], 1)
