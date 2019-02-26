@@ -240,17 +240,17 @@ class Parse_dict( Pipeline ):
         return obj
 
 
-class Parse_full_dict_date( Parse_dict ):
-    def __init__( self, **kw ):
-        super().__init__( 'year', 'month', 'day' )
+class Parse_full_dict_date(Parse_dict):
+    def __init__(self, **kw):
+        super().__init__('year', 'month', 'day')
 
-    def transform( self, d ):
-        if int( d[ 'year' ] ) == 0:
-            return datetime.date(
-                year=1000, month=int( d[ 'month' ] ), day=int( d[ 'day' ] ) )
-        return datetime.date(
-            year=int( d[ 'year' ] ), month=int( d[ 'month' ] ),
-            day=int( d[ 'day' ] ) )
+    def transform(self, d):
+        def x(a, b):
+            return int(a) if a not in ('', '0', '00') else b
+        year = x(d['year'], 1000)
+        month = x(d['month'], 1)
+        day = x(d['day'], 1)
+        return datetime.date(year, month, day)
 
 
 class Remove_year_zero( Parse_dict ):
