@@ -36,11 +36,11 @@ class Connections_compass( Connections_soap ):
 
         auth = client.get_element(
             '{http://datalinkservices.org/}Authorization' )
-        client.set_default_soapheaders(
-            [ auth(
+        client.set_default_soapheaders( [
+            auth(
                 AcctID=config[ 'account' ], UserID=config[ 'user' ],
                 Password=config[ 'password' ], )
-            ] )
+        ] )
         return client
 
 
@@ -63,15 +63,14 @@ class Client( Client_soap ):
             'additional_messages', 'addresses', 'sub_violations',
             'licenses', 'classes', 'violations', 'statuses' )
         | Convert_dates(
-            ( '%m/%d/%Y', '%Y-%m-%d' ), 'order_date', 'date_of_bird', 'exp_date',
-            'original_issue', 'conviction_date', 'incident_date',
+            ( '%m/%d/%Y', '%Y-%m-%d' ), 'order_date', 'date_of_bird',
+            'exp_date', 'original_issue', 'conviction_date', 'incident_date',
             'report_date', 'date_of_birth', 'order_date', 'expedition_date' )
         | Convert_time( '%H:%M', 'report_time', 'order_time' )
         | Combine_date_and_time(
             ( 'report_date', 'report_time', 'report_date' ),
             ( 'order_date', 'order_time', 'order_date' ) )
     )
-
 
     def send_orders(
             self, first_name, last_name, state, driver_license_number,
@@ -167,5 +166,5 @@ class Client( Client_soap ):
             else:
                 exception_class = exceptions.Compass_exception_base
             raise exception_class(
-                    msg, error_code=error_code,
-                    additional_messages=additional_messages )
+                msg, error_code=error_code,
+                additional_messages=additional_messages )

@@ -19,6 +19,7 @@ class Compass_exception_base( Exception ):
 class Still_processing( Compass_exception_base ):
     pass
 
+
 class Duplicate_still_processing( Compass_exception_base ):
     pass
 

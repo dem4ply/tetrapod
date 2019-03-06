@@ -1,12 +1,10 @@
-from tetrapod.compass import compass, exceptions
 import datetime
-import os
 import unittest
-from vcr_unittest import VCRTestCase
-from tetrapod.iei import iei
-from tetrapod.iei import connections
-from tetrapod.iei.exceptions import IEI_ncis_exception
+
 import vcr
+from vcr_unittest import VCRTestCase
+
+from tetrapod.compass import compass, exceptions
 
 
 class Test_compass( unittest.TestCase ):
@@ -17,27 +15,27 @@ class Test_compass( unittest.TestCase ):
 
 class Test_send_orders( VCRTestCase, Test_compass ):
     def test_example_one( self ):
-        result = self.client.send_orders(
+        self.client.send_orders(
             first_name='PRETEND', last_name='AKKEREN', state='GA',
             driver_license_number='884148516',
             date_of_birth=datetime.date( 1992, 9, 12 ), gender='', )
 
     def test_example_two( self ):
         with self.assertRaises( exceptions.Still_processing ):
-            result = self.client.send_orders(
+            self.client.send_orders(
                 first_name='PRETEND', last_name='AKKEREN', state='GA',
                 driver_license_number='999999999',
                 date_of_birth=datetime.date( 1988, 9, 12 ), gender='', )
 
     def test_example_tree( self ):
         with self.assertRaises( exceptions.Still_processing ):
-            result = self.client.send_orders(
+            self.client.send_orders(
                 first_name='PRETEND', last_name='AKKEREN', state='GA',
                 driver_license_number='999999999',
                 date_of_birth=datetime.date( 1988, 9, 12 ), gender='', )
 
     def test_example_four( self ):
-        result = self.client.send_orders(
+        self.client.send_orders(
             first_name='PRETEND', last_name='AKKEREN', state='GA',
             driver_license_number='999999999',
             date_of_birth=datetime.date( 1988, 9, 12 ), gender='', )
@@ -53,7 +51,7 @@ class Test_send_orders_local( VCRTestCase, Test_compass ):
         for cassette in cassettes:
             try:
                 with vcr.use_cassette( cassette ):
-                    result = self.client.send_orders(
+                    self.client.send_orders(
                         first_name='PRETEND', last_name='AKKEREN', state='GA',
                         driver_license_number='884148516',
                         date_of_birth=datetime.date( 1992, 9, 12 ), gender='', )

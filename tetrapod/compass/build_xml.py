@@ -2,7 +2,9 @@ import xmltodict
 
 send_orders_xml_format = """
 <?xml version="1.0" encoding="utf-8"?>
-<DL_Orders xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://imvrs.com">
+<DL_Orders
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://imvrs.com">
     <DL_Order xmlns="">
         <DestAcctID>{account}</DestAcctID>
         <DestUserID>{user}</DestUserID>
@@ -34,6 +36,7 @@ send_orders_xml_format = """
     </DL_Order>
 </DL_Orders>
 """
+
 
 def build_send_orders_input( **kw ):
     kw[ 'date_of_birth' ] = kw[ 'date_of_birth' ].strftime( '%m/%d/%Y' )
@@ -86,7 +89,3 @@ def build_dict_send_orders( **kw ):
             ]
         }
     }
-
-
-
-
