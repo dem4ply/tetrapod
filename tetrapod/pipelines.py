@@ -130,6 +130,25 @@ class Replace_string( Pipeline ):
         return obj
 
 
+class Rename_key( Pipeline ):
+
+    def __init__( self, *key_to_key, **kw ):
+        self._key_to_key = key_to_key
+        super().__init__( *key_to_key, **kw )
+
+    def process( self, obj, *args, **kw ):
+        if isinstance( obj, dict ):
+            for k, new_k in self._key_to_key:
+                if k in obj:
+                    obj[ new_k ] = obj.pop( k )
+            for v in obj.values():
+                self.process( v )
+        elif isinstance( obj, list ):
+            for i in obj:
+                self.process( i )
+        return obj
+
+
 class Guaranteed_list( Pipeline ):
 
     def __init__( self, *keys, **kw ):
@@ -141,8 +160,7 @@ class Guaranteed_list( Pipeline ):
             for k, v in obj.items():
                 if k in self._keys:
                     obj[ k ] = self.transform( v )
-                else:
-                    self.process( v )
+                self.process( v )
         elif isinstance( obj, list ):
             for i in obj:
                 self.process( i )
@@ -151,7 +169,7 @@ class Guaranteed_list( Pipeline ):
     def transform( self, x ):
         if not x:
             return []
-        elif isinstance(x, list):
+        elif isinstance( x, list ):
             return x
         else:
             return [x]
@@ -168,8 +186,7 @@ class Compress_dummy_list( Pipeline ):
             for k, v in obj.items():
                 if k in self._keys:
                     obj[ k ] = self.transform( v )
-                else:
-                    self.process( v )
+                self.process( v )
         elif isinstance( obj, list ):
             for i in obj:
                 self.process( i )
@@ -199,8 +216,7 @@ class Compress_double_list( Pipeline ):
             for k, v in obj.items():
                 if k in self._keys:
                     obj[ k ] = self.transform( v )
-                else:
-                    self.process( v )
+                self.process( v )
         elif isinstance( obj, list ):
             for i in obj:
                 self.process( i )
@@ -287,7 +303,7 @@ class Expand_dict_with_start_with( Pipeline ):
         return obj
 
 
-class Convert_dates_from_formats(Pipeline):
+class Convert_dates_from_formats( Pipeline ):
 
     def __init__( self, from_format, to_format, default_invalid, *keys, **kw ):
         self._keys = keys
@@ -296,27 +312,27 @@ class Convert_dates_from_formats(Pipeline):
         self._default_invalid = default_invalid
         super().__init__( **kw )
 
-    def process(self, obj, *args, **kw):
-        if isinstance(obj, dict):
+    def process( self, obj, *args, **kw ):
+        if isinstance( obj, dict ):
             for k, v in obj.items():
                 if k in self._keys:
-                    obj[k] = self.transform(v)
+                    obj[k] = self.transform( v )
                 else:
-                    self.process(v)
-        elif isinstance(obj, list):
+                    self.process( v )
+        elif isinstance( obj, list ):
             for i in obj:
-                self.process(i)
+                self.process( i )
         return obj
 
-    def transform(self, x):
+    def transform( self, x ):
         try:
-            d = datetime.datetime.strptime(x, self._from_format)
-            return d.strftime(self._to_format)
+            d = datetime.datetime.strptime( x, self._from_format )
+            return d.strftime( self._to_format )
         except:
             return self._default_invalid
 
 
-class Convert_dates(Pipeline):
+class Convert_dates( Pipeline ):
 
     def __init__( self, from_format, *keys, **kw ):
         self._from_format = from_format
@@ -326,28 +342,94 @@ class Convert_dates(Pipeline):
     def _corresponds_to_my_dict( self, d ):
         return set( d.keys() ) == set( self._keys )
 
-    def transform(self, x):
-        try:
-            d = datetime.datetime.strptime(x, self._from_format)
-            return d
-        except:
-            return None
+    def transform( self, x ):
+        if isinstance( self._from_format, str ):
+            try:
+                return datetime.datetime.strptime( x, self._from_format )
+            except ValueError:
+                return None
+        if isinstance( self._from_format, ( tuple, list ) ):
+            result = None
+            for _format in self._from_format:
+                try:
+                    result = datetime.datetime.strptime( x, _format )
+                    break
+                except ValueError:
+                    continue
+            return result
 
-    def transform_iso(self, d):
-        try:
-            return d.isoformat()
-        except:
-            return None
+    def transform_iso( self, d ):
+        if d is None:
+            return d
+        return d.isoformat()
 
     def process( self, obj, *args, **kw ):
         if isinstance( obj, dict ):
             result = {}
             for k, v in obj.items():
                 if isinstance( v, str ) and k in self._keys:
-                    result[k] = self.transform(v)
-                    result["{}__raw".format(k)] = v
-                    date_iso = self.transform_iso(result[k])
-                    result["{}__iso".format(k)] = date_iso
+                    result[k] = self.transform( v )
+                    result["{}__raw".format( k )] = v
+                    date_iso = self.transform_iso( result[k])
+                    result["{}__iso".format( k )] = date_iso
+                else:
+                    result[k] = self.process( v )
+            return result
+        elif isinstance( obj, list ):
+            return [ self.process( i ) for i in obj ]
+        return obj
+
+
+class Combine_date_and_time( Pipeline ):
+
+    def __init__( self, *date_time_keys, remove_keys=True, **kw ):
+        self._date_time_keys = date_time_keys
+        self._remove_keys = remove_keys
+        super().__init__( **kw )
+
+    def transform( self, obj, date_key, time_key ):
+        try:
+            result = datetime.datetime.combine(
+                obj[ date_key ], obj[ time_key ] )
+        except TypeError:
+            return None
+        if self._remove_keys:
+            del obj[ date_key ]
+            del obj[ time_key ]
+        return result
+
+    def process( self, obj, *args, **kw ):
+        if isinstance( obj, dict ):
+            result = {}
+            for date_key, time_key, rename_key in self._date_time_keys:
+                if date_key in obj and time_key in obj:
+                    result[ rename_key ] = self.transform(
+                        obj, date_key, time_key )
+            for k, v in obj.items():
+                result[k] = self.process( v )
+            return result
+        elif isinstance( obj, list ):
+            return [ self.process( i ) for i in obj ]
+        return obj
+
+
+class Convert_time( Pipeline ):
+
+    def __init__( self, from_format, *keys, **kw ):
+        self._from_format = from_format
+        self._keys = keys
+        super().__init__( **kw )
+
+    def transform( self, x ):
+        date = datetime.datetime.strptime( x, self._from_format )
+        return date.time()
+
+    def process( self, obj, *args, **kw ):
+        if isinstance( obj, dict ):
+            result = {}
+            for k, v in obj.items():
+                if isinstance( v, str ) and k in self._keys:
+                    result[k] = self.transform( v )
                 else:
                     result[k] = self.process( v )
             return result

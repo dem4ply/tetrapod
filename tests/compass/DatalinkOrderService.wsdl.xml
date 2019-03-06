@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://datalinkservices.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://datalinkservices.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://datalinkservices.org/">
+      <s:element name="validateUser">
+        <s:complexType />
+      </s:element>
+      <s:element name="validateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="validateUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Authorization" type="tns:Authorization" />
+      <s:complexType name="Authorization">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AcctID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewPassword" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="changePassword">
+        <s:complexType />
+      </s:element>
+      <s:element name="changePasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="changePasswordResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUserInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="getUserInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getUserInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="calculateTotalLoss">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inOrder" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="calculateTotalLossResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="calculateTotalLossResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendDriverRelease">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inOrder" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendDriverReleaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sendDriverReleaseResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendOrders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inOrder" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendOrdersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sendOrdersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inOrder" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sendBatchResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchReports">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inSearch" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchReportsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchReportsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reportError">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inError" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="f" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reportErrorResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="getList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inRequest" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="validateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:validateUser" />
+  </wsdl:message>
+  <wsdl:message name="validateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:validateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="validateUserAuthorization">
+    <wsdl:part name="Authorization" element="tns:Authorization" />
+  </wsdl:message>
+  <wsdl:message name="changePasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:changePassword" />
+  </wsdl:message>
+  <wsdl:message name="changePasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:changePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="changePasswordAuthorization">
+    <wsdl:part name="Authorization" element="tns:Authorization" />
+  </wsdl:message>
+  <wsdl:message name="getUserInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:getUserInfo" />
+  </wsdl:message>
+  <wsdl:message name="getUserInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:getUserInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserInfoAuthorization">
+    <wsdl:part name="Authorization" element="tns:Authorization" />
+  </wsdl:message>
+  <wsdl:message name="calculateTotalLossSoapIn">
+    <wsdl:part name="parameters" element="tns:calculateTotalLoss" />
+  </wsdl:message>
+  <wsdl:message name="calculateTotalLossSoapOut">
+    <wsdl:part name="parameters" element="tns:calculateTotalLossResponse" />
+  </wsdl:message>
+  <wsdl:message name="calculateTotalLossAuthorization">
+    <wsdl:part name="Authorization" element="tns:Authorization" />
+  </wsdl:message>
+  <wsdl:message name="sendDriverReleaseSoapIn">
+    <wsdl:part name="parameters" element="tns:sendDriverRelease" />
+  </wsdl:message>
+  <wsdl:message name="sendDriverReleaseSoapOut">
+    <wsdl:part name="parameters" element="tns:sendDriverReleaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendDriverReleaseAuthorization">
+    <wsdl:part name="Authorization" element="tns:Authorization" />
+  </wsdl:message>
+  <wsdl:message name="sendOrdersSoapIn">
+    <wsdl:part name="parameters" element="tns:sendOrders" />
+  </wsdl:message>
+  <wsdl:message name="sendOrdersSoapOut">
+    <wsdl:part name="parameters" element="tns:sendOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendOrdersAuthorization">
+    <wsdl:part name="Authorization" element="tns:Authorization" />
+  </wsdl:message>
+  <wsdl:message name="sendBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:sendBatch" />
+  </wsdl:message>
+  <wsdl:message name="sendBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:sendBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendBatchAuthorization">
+    <wsdl:part name="Authorization" element="tns:Authorization" />
+  </wsdl:message>
+  <wsdl:message name="searchReportsSoapIn">
+    <wsdl:part name="parameters" element="tns:searchReports" />
+  </wsdl:message>
+  <wsdl:message name="searchReportsSoapOut">
+    <wsdl:part name="parameters" element="tns:searchReportsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchReportsAuthorization">
+    <wsdl:part name="Authorization" element="tns:Authorization" />
+  </wsdl:message>
+  <wsdl:message name="reportErrorSoapIn">
+    <wsdl:part name="parameters" element="tns:reportError" />
+  </wsdl:message>
+  <wsdl:message name="reportErrorSoapOut">
+    <wsdl:part name="parameters" element="tns:reportErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="reportErrorAuthorization">
+    <wsdl:part name="Authorization" element="tns:Authorization" />
+  </wsdl:message>
+  <wsdl:message name="getListSoapIn">
+    <wsdl:part name="parameters" element="tns:getList" />
+  </wsdl:message>
+  <wsdl:message name="getListSoapOut">
+    <wsdl:part name="parameters" element="tns:getListResponse" />
+  </wsdl:message>
+  <wsdl:message name="getListAuthorization">
+    <wsdl:part name="Authorization" element="tns:Authorization" />
+  </wsdl:message>
+  <wsdl:portType name="DatalinkOrderServicesSoap">
+    <wsdl:operation name="validateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validate User</wsdl:documentation>
+      <wsdl:input message="tns:validateUserSoapIn" />
+      <wsdl:output message="tns:validateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="changePassword">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Change Password</wsdl:documentation>
+      <wsdl:input message="tns:changePasswordSoapIn" />
+      <wsdl:output message="tns:changePasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return User Information</wsdl:documentation>
+      <wsdl:input message="tns:getUserInfoSoapIn" />
+      <wsdl:output message="tns:getUserInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="calculateTotalLoss">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send orders and receive RegCalc reports</wsdl:documentation>
+      <wsdl:input message="tns:calculateTotalLossSoapIn" />
+      <wsdl:output message="tns:calculateTotalLossSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sendDriverRelease">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send a driver release</wsdl:documentation>
+      <wsdl:input message="tns:sendDriverReleaseSoapIn" />
+      <wsdl:output message="tns:sendDriverReleaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sendOrders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send orders and receive reports</wsdl:documentation>
+      <wsdl:input message="tns:sendOrdersSoapIn" />
+      <wsdl:output message="tns:sendOrdersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sendBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send orders and receive reports</wsdl:documentation>
+      <wsdl:input message="tns:sendBatchSoapIn" />
+      <wsdl:output message="tns:sendBatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchReports">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Search authorized reports</wsdl:documentation>
+      <wsdl:input message="tns:searchReportsSoapIn" />
+      <wsdl:output message="tns:searchReportsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="reportError">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Report Errors to CDR</wsdl:documentation>
+      <wsdl:input message="tns:reportErrorSoapIn" />
+      <wsdl:output message="tns:reportErrorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve List Items</wsdl:documentation>
+      <wsdl:input message="tns:getListSoapIn" />
+      <wsdl:output message="tns:getListSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DatalinkOrderServicesSoap" type="tns:DatalinkOrderServicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="validateUser">
+      <soap:operation soapAction="http://datalinkservices.org/validateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:validateUserAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changePassword">
+      <soap:operation soapAction="http://datalinkservices.org/changePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:changePasswordAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserInfo">
+      <soap:operation soapAction="http://datalinkservices.org/getUserInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:getUserInfoAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="calculateTotalLoss">
+      <soap:operation soapAction="http://datalinkservices.org/calculateTotalLoss" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:calculateTotalLossAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendDriverRelease">
+      <soap:operation soapAction="http://datalinkservices.org/sendDriverRelease" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:sendDriverReleaseAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendOrders">
+      <soap:operation soapAction="http://datalinkservices.org/sendOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:sendOrdersAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBatch">
+      <soap:operation soapAction="http://datalinkservices.org/sendBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:sendBatchAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchReports">
+      <soap:operation soapAction="http://datalinkservices.org/searchReports" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:searchReportsAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reportError">
+      <soap:operation soapAction="http://datalinkservices.org/reportError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:reportErrorAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getList">
+      <soap:operation soapAction="http://datalinkservices.org/getList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:getListAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DatalinkOrderServicesSoap12" type="tns:DatalinkOrderServicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="validateUser">
+      <soap12:operation soapAction="http://datalinkservices.org/validateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:validateUserAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changePassword">
+      <soap12:operation soapAction="http://datalinkservices.org/changePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:changePasswordAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserInfo">
+      <soap12:operation soapAction="http://datalinkservices.org/getUserInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:getUserInfoAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="calculateTotalLoss">
+      <soap12:operation soapAction="http://datalinkservices.org/calculateTotalLoss" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:calculateTotalLossAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendDriverRelease">
+      <soap12:operation soapAction="http://datalinkservices.org/sendDriverRelease" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:sendDriverReleaseAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendOrders">
+      <soap12:operation soapAction="http://datalinkservices.org/sendOrders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:sendOrdersAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBatch">
+      <soap12:operation soapAction="http://datalinkservices.org/sendBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:sendBatchAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchReports">
+      <soap12:operation soapAction="http://datalinkservices.org/searchReports" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:searchReportsAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reportError">
+      <soap12:operation soapAction="http://datalinkservices.org/reportError" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:reportErrorAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getList">
+      <soap12:operation soapAction="http://datalinkservices.org/getList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:getListAuthorization" part="Authorization" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DatalinkOrderServices">
+    <wsdl:port name="DatalinkOrderServicesSoap" binding="tns:DatalinkOrderServicesSoap">
+      <soap:address location="https://www.testimvrs.com/DLOrderService/DatalinkOrderService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DatalinkOrderServicesSoap12" binding="tns:DatalinkOrderServicesSoap12">
+      <soap12:address location="https://www.testimvrs.com/DLOrderService/DatalinkOrderService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
