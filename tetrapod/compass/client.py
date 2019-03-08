@@ -6,6 +6,7 @@ from mudskipper.response import Response_xml as Response
 from requests import Session
 from zeep import Client as Zeep_client
 from zeep.transports import Transport
+from zeep import exceptions as zeep_exceptions
 
 from .build_xml import build_send_orders_input
 from tetrapod.compass import exceptions
@@ -91,7 +92,10 @@ class Client( Client_soap ):
                 partner_worker_id=partner_worker_id,
                 **self.account_info )
 
-            raw_response = self.client.service.sendOrders( body )
+            try:
+                raw_response = self.client.service.sendOrders( body )
+            except zeep_exceptions.Fault as e:
+                exceptions.Compass_soap.find_correct_exception( e )
             response = Response( raw_response )
 
         try:
