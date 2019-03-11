@@ -39,11 +39,12 @@ class Pipeline_manager:
         return result
 
     def __or__( self, other ):
+        me = copy.deepcopy(self)
         if isinstance( other, Pipeline_manager ):
-            return self + other
+            return me + other
 
-        self.append( other )
-        return self
+        me.append(other)
+        return me
 
     def to_dict( self ):
         result = {
@@ -255,14 +256,27 @@ class Parse_dict( Pipeline ):
         return obj
 
 
-class Parse_full_dict_date( Parse_dict ):
+class Parse_full_dict_date(Parse_dict):
+    def __init__(self, **kw):
+        super().__init__('year', 'month', 'day')
+
+    def transform(self, d):
+        def x(a, b):
+            return int(a) if a not in ('', '0', '00', '0000') else b
+        year = x(d['year'], 1000)
+        month = x(d['month'], 1)
+        day = x(d['day'], 1)
+        return datetime.date(year, month, day)
+
+
+class Remove_year_zero( Parse_dict ):
     def __init__( self, **kw ):
         super().__init__( 'year', 'month', 'day' )
 
     def transform( self, d ):
-        return datetime.date(
-            year=int( d[ 'year' ] ), month=int( d[ 'month' ] ),
-            day=int( d[ 'day' ] ) )
+        if int( d[ 'year' ] ) == 0:
+            return { 'month': d[ 'month' ], 'day': d[ 'day' ] }
+        return d
 
 
 class Parse_partial_dict_date( Parse_dict ):
@@ -270,6 +284,8 @@ class Parse_partial_dict_date( Parse_dict ):
         super().__init__( 'year', 'month', )
 
     def transform( self, d ):
+        if int( d[ 'year' ] ) == 0:
+            return datetime.date( year=1000, month=int( d[ 'month' ] ), day=1 )
         return datetime.date(
             year=int( d[ 'year' ] ), month=int( d[ 'month' ] ), day=1 )
 
@@ -430,6 +446,9 @@ class Convert_time( Pipeline ):
             for k, v in obj.items():
                 if isinstance( v, str ) and k in self._keys:
                     result[k] = self.transform( v )
+                    result["{}__raw".format( k )] = v
+                    date_iso = self.transform_iso( result[k])
+                    result["{}__iso".format( k )] = date_iso
                 else:
                     result[k] = self.process( v )
             return result
