@@ -16,11 +16,11 @@ class IEI_fact_record_list(factory.Factory):
     class Meta:
         model = dict
 
-
+La c
 class IEI_summary_information(factory.Factory):
-    distinctaddresscount: factory.lazy_attribute(
+    distinctaddresscount = factory.lazy_attribute(
         lambda x: random.randint(1, 10))
-    uniquenames: factory.List(params, list_factory)([
+    uniquenames = factory.List(params, list_factory)([
         '{} {} {}'.format(
             faker.last_name(), faker.first_name(), faker.first_name()
         ) for _ in range(5)
