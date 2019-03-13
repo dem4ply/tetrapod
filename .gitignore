@@ -45,3 +45,6 @@ venv
 *.egg*
 
 .env
+
+
+tests/compass/cassettes/Test_send_orders_local.test_example_*
