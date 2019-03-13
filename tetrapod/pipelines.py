@@ -440,6 +440,11 @@ class Convert_time( Pipeline ):
         date = datetime.datetime.strptime( x, self._from_format )
         return date.time()
 
+    def transform_iso( self, d ):
+        if d is None:
+            return d
+        return d.isoformat()
+
     def process( self, obj, *args, **kw ):
         if isinstance( obj, dict ):
             result = {}
