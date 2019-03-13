@@ -17,12 +17,26 @@ class IEI_fact_record_list(factory.Factory):
         model = dict
 
 
+class IEI_summary_information(factory.Factory):
+    distinctaddresscount: factory.lazy_attribute(
+        lambda x: random.randint(1, 10))
+    uniquenames: factory.List(params, list_factory)([
+        '{} {} {}'.format(
+            faker.last_name(), faker.first_name(), faker.first_name()
+        ) for _ in range(5)
+    ])
+
+    class Meta:
+        model = dict
+
+
 class IEI_address_information(factory.Factory):
     message = factory.lazy_attribute(
         lambda x: "SSN IS VALID.  ISSUED IN {}".format(fake.state_abbr()))
     year = factory.lazy_attribute(
         lambda x: "IN THE YEAR {}".format(random.randint(1980, 2018)))
     records = factory.SubFactory(IEI_fact_record_list)
+    summaryinformation = factory.SubFactory(factory)
 
     class Meta:
         model = dict
