@@ -16,7 +16,7 @@ class IEI_fact_record_list(factory.Factory):
     class Meta:
         model = dict
 
-La c
+        
 class IEI_summary_information(factory.Factory):
     distinctaddresscount = factory.lazy_attribute(
         lambda x: random.randint(1, 10))
