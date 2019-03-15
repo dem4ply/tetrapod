@@ -1,22 +1,9 @@
-import xmltodict
-from collections import OrderedDict
+import copy
+
 from mudskipper import Client as Client_base
 from mudskipper.connection import Connections as Connections_base
-from tetrapod.bgc.endpoint import Endpoint
-from tetrapod.bgc.exceptions import (
-    BGC_exception_base, BGC_us_one_trace_exception,
-    BGC_us_one_search_exception
-)
-import copy
-from tetrapod.pipelines import (
-    Transform_keys_camel_case_to_snake, Guaranteed_list,
-    Remove_xml_garage, Replace_string, Compress_dummy_list,
-    Compress_double_list, Parse_full_dict_date,
-    Parse_partial_dict_date, Expand_dict_with_start_with,
-)
-from tetrapod.laniidae.endpoints import (
-    Users, User_detail, Package, Profile_detail
-)
+
+from tetrapod.laniidae.endpoints import Users, Package, Profile_detail
 
 
 class Connections( Connections_base ):
@@ -44,14 +31,15 @@ class Connections( Connections_base ):
 
 class Client( Client_base ):
     def create_user(
-        self, *, user_name, password, email,
-        first_name, last_name, is_superuser=False, is_staff=False,
-        partner_name, webhook_url ):
+            self, *, user_name, password, email,
+            first_name, last_name, is_superuser=False, is_staff=False,
+            partner_name, webhook_url ):
         data = dict(
             username=user_name, password=password, email=email,
             first_name=first_name, last_name=last_name,
             is_superuser=is_superuser, is_staff=is_staff,
-            partners=[{ 'name': partner_name }], hookshot={ 'url': webhook_url },
+            partners=[ { 'name': partner_name } ],
+            hookshot={ 'url': webhook_url },
         )
         endpoint = Users(
             host=self.host, headers=self.headers, schema=self.schema )

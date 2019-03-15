@@ -1,4 +1,3 @@
-import os
 from tetrapod.laniidae import connections
 
 

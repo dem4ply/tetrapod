@@ -1,5 +1,6 @@
 from zeep import exceptions as zeep_exceptions
 
+
 class Compass_exception_base( Exception ):
     def __init__( self, *args, error_code, additional_messages=None, **kw ):
         self.error_code = error_code

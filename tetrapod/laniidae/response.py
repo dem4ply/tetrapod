@@ -1,7 +1,5 @@
-from mudskipper.endpoint import Response
 from chibi.atlas import Chibi_atlas
-from functools import reduce
-import datetime
+from mudskipper.endpoint import Response
 
 
 class User_list( Response ):
@@ -19,7 +17,6 @@ class User_list( Response ):
                     params = vars( self.from_endpoint )()
                     params.pop( 'url', None )
                     user.detail = User_detail( pk=user.pk, **params )
-                params[ 'url' ] = url
 
                 self._native.append( user )
             return self._native

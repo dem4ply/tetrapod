@@ -1,17 +1,9 @@
-from tetrapod.laniidae import laniidae, connections
-import unittest
-from unittest.mock import patch, Mock
-
-from tetrapod.bgc import bgc, exceptions
-from tetrapod.bgc.factories.us_one_validate import (
-    Us_one_trace as Us_one_trace_factory
-)
-from tetrapod.laniidae.endpoints import User_detail
-from tetrapod.bgc.factories.bgc import BGC_error as BGC_error_factory
-from vcr_unittest import VCRTestCase
-import datetime
-from chibi.atlas import Chibi_atlas
 from faker import Factory as Faker_factory
+from vcr_unittest import VCRTestCase
+
+from tetrapod.laniidae import laniidae, connections
+from tetrapod.laniidae.endpoints import User_detail
+
 
 fake = Faker_factory.create()
 
