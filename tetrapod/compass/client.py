@@ -109,10 +109,6 @@ class Client( Client_soap ):
                 "was receiving a query and not the expected response" )
             order = order[1]
         self._validate_response( order )
-        if 'error' in str( order ).lower():
-            import pdb
-            pdb.set_trace()
-            pass
         return order
 
     @property

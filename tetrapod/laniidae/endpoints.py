@@ -32,8 +32,6 @@ class Users( Endpoint, GET, POST ):
                 params[ 'url' ] = url
                 return User_detail( **params, from_endpoint=self )
             else:
-                import pdb
-                pdb.set_trace()
                 raise NotImplementedError(
                     "not implemented the status {}".format(
                         response.status_code) )
