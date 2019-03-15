@@ -16,7 +16,8 @@ setup(
     author='',
     author_email='',
     packages=find_packages(),
-    install_requires=[ 'xmltodict>=0.11.0', 'pusher==2.1.2', ],
+    install_requires=[
+        'xmltodict>=0.11.0', 'pusher==2.1.2', 'chibi==0.4.0.5' ],
     dependency_links=[],
     classifiers=[
         'Environment :: Console',

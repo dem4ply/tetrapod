@@ -1,0 +1,27 @@
+interactions:
+- request:
+    body: '{"username": "aaaaaaaaaaaauaa", "password": "", "email": "aa11111aaaaaaaaa@email.com",
+      "first_name": "jonh", "last_name": "doe", "is_superuser": false, "is_staff":
+      false}'
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Token 13caiCytdXr3KY7WqiLyu7vSKcI=]
+      Connection: [keep-alive]
+      Content-Length: ['170']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.19.1]
+    method: POST
+    uri: http://127.0.0.1:8000/users/
+  response:
+    body: {string: ''}
+    headers:
+      Allow: ['GET, POST, HEAD, OPTIONS']
+      Content-Length: ['0']
+      Date: ['Thu, 14 Mar 2019 18:36:17 GMT']
+      Location: ['http://127.0.0.1:8000/users/Aqms6kF08WLjXV8utz0Lb9su6PDsyrTo/']
+      Server: [WSGIServer/0.2 CPython/3.7.1]
+      Vary: [Accept]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 201, message: Created}
+version: 1
