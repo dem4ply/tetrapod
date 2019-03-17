@@ -54,7 +54,8 @@ class Test_send_orders_local( VCRTestCase, Test_compass ):
                     self.client.send_orders(
                         first_name='PRETEND', last_name='AKKEREN', state='GA',
                         driver_license_number='884148516',
-                        date_of_birth=datetime.date( 1992, 9, 12 ), gender='', )
+                        date_of_birth=datetime.date( 1992, 9, 12 ),
+                        gender='', )
             except (
                     exceptions.No_match, exceptions.Still_processing,
                     exceptions.Deleted_report,

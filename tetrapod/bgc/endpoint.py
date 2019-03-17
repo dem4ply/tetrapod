@@ -25,7 +25,7 @@ class Response( Response_base ):
 
 
 class Endpoint( Endpoint_base, POST ):
-    def build_response( self, response ):
+    def build_response( self, response, method=None ):
         return Response( response )
 
     def generate_post_headers( self ):

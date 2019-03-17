@@ -1,0 +1,122 @@
+interactions:
+- request:
+    body: '{"username": "elainejones", "password": "$D4&TA+c4i", "email": "joseph24@hotmail.com",
+      "first_name": "Ronald", "last_name": "Ritter", "is_superuser": false, "is_staff":
+      false, "partners": [{"name": "Brian Shelton"}], "hookshot": {"url": "http://google.com"}}'
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Token o8S7u_x_zsbMwHVaEvbKu0mkLAA=]
+      Connection: [keep-alive]
+      Content-Length: ['258']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.19.1]
+    method: POST
+    uri: http://127.0.0.1:8000/users/
+  response:
+    body: {string: ''}
+    headers:
+      Allow: ['GET, POST, HEAD, OPTIONS']
+      Content-Length: ['0']
+      Date: ['Fri, 15 Mar 2019 00:55:44 GMT']
+      Location: ['http://127.0.0.1:8000/users/EZPQYnL3YijKQWAofAsRU_5droODRfpX/']
+      Server: [WSGIServer/0.2 CPython/3.7.1]
+      Vary: [Accept]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Token o8S7u_x_zsbMwHVaEvbKu0mkLAA=]
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: http://127.0.0.1:8000/users/EZPQYnL3YijKQWAofAsRU_5droODRfpX/token
+  response:
+    body: {string: ''}
+    headers:
+      Content-Length: ['0']
+      Content-Type: [text/html; charset=utf-8]
+      Date: ['Fri, 15 Mar 2019 00:55:44 GMT']
+      Location: [/users/EZPQYnL3YijKQWAofAsRU_5droODRfpX/token/]
+      Server: [WSGIServer/0.2 CPython/3.7.1]
+    status: {code: 301, message: Moved Permanently}
+- request:
+    body: null
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Token o8S7u_x_zsbMwHVaEvbKu0mkLAA=]
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: http://127.0.0.1:8000/users/EZPQYnL3YijKQWAofAsRU_5droODRfpX/token/
+  response:
+    body: {string: '[{"key":"rBTeUVQuefNuzn-Jx1MpBCSgyaI=","create_at":"2019-03-15T00:55:44.459155Z"}]'}
+    headers:
+      Allow: ['GET, POST, HEAD, OPTIONS']
+      Content-Length: ['82']
+      Content-Type: [application/json]
+      Date: ['Fri, 15 Mar 2019 00:55:44 GMT']
+      Server: [WSGIServer/0.2 CPython/3.7.1]
+      Vary: [Accept]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Pagination-Current-Page: ['1']
+      X-Pagination-Page-Count: ['1']
+      X-Pagination-Per-Page: ['10']
+      X-Pagination-Total-Count: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Token rBTeUVQuefNuzn-Jx1MpBCSgyaI=]
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: http://127.0.0.1:8000/packages/?name__eq=compass
+  response:
+    body: {string: '[{"pk":"I67tp78e2HUchd7f5BH7WefEPn9iW9z0","name":"compass","dependencies":[]}]'}
+    headers:
+      Allow: ['GET, POST, HEAD, OPTIONS']
+      Content-Length: ['78']
+      Content-Type: [application/json]
+      Date: ['Fri, 15 Mar 2019 00:55:44 GMT']
+      Server: [WSGIServer/0.2 CPython/3.7.1]
+      Vary: [Accept]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Pagination-Current-Page: ['1']
+      X-Pagination-Page-Count: ['1']
+      X-Pagination-Per-Page: ['10']
+      X-Pagination-Total-Count: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: '{"first_name": "Norman", "last_name": "Fuentes", "state": "IL", "driver_license_number":
+      "123456789", "date_of_birth": "1980-01-01", "gender": ""}'
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Token rBTeUVQuefNuzn-Jx1MpBCSgyaI=]
+      Connection: [keep-alive]
+      Content-Length: ['146']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.19.1]
+    method: POST
+    uri: http://127.0.0.1:8000/packages/I67tp78e2HUchd7f5BH7WefEPn9iW9z0/check/
+  response:
+    body: {string: ''}
+    headers:
+      Allow: ['POST, OPTIONS']
+      Content-Length: ['0']
+      Date: ['Fri, 15 Mar 2019 00:55:54 GMT']
+      Location: ['http://127.0.0.1:8000/profiles/g96ErKwhP6rFLNRyirRC1t1PXRRqZZXJ/']
+      Server: [WSGIServer/0.2 CPython/3.7.1]
+      Vary: [Accept]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 201, message: Created}
+version: 1
