@@ -93,6 +93,9 @@ class Client( Client_soap ):
                 **self.account_info )
 
             try:
+                logger_send_orders.info(
+                    'body sended to compass.send_orders\n{}'.format(
+                        str( body ) ) )
                 raw_response = self.client.service.sendOrders( body )
             except zeep_exceptions.Fault as e:
                 exceptions.Compass_soap.find_correct_exception( e )
