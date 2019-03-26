@@ -4,6 +4,7 @@ from tetrapod.laniidae.response import (
     Profile_detail as Profile_detail_response,
 )
 from urllib.parse import urljoin
+from .exceptions import Laniidae_exception
 
 
 class Endpoint( Endpoint_base ):
@@ -32,9 +33,9 @@ class Users( Endpoint, GET, POST ):
                 params[ 'url' ] = url
                 return User_detail( **params, from_endpoint=self )
             else:
-                raise NotImplementedError(
-                    "not implemented the status {}".format(
-                        response.status_code) )
+                raise Laniidae_exception(
+                    status_code=response.status_code,
+                    body=response.text )
         return User_list( response, from_endpoint=self )
 
 
@@ -75,9 +76,9 @@ class Package_check( Endpoint, POST ):
                 params[ 'url' ] = url
                 return Profile_detail( **params, from_endpoint=self )
             else:
-                raise NotImplementedError(
-                    "not implemented the status {}".format(
-                        response.status_code) )
+                raise Laniidae_exception(
+                    status_code=response.status_code,
+                    body=response.text )
 
 
 class Profile_detail( Endpoint, GET ):
