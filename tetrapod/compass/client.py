@@ -56,13 +56,16 @@ class Client( Client_soap ):
             ( 'exp_date', 'expedition_date' ), )
         | Guaranteed_list(
             'additional_messages', 'addresses', 'sub_violations',
-            'licenses', 'classes', 'violations', 'sub_violations', 'statuses' )
+            'licenses', 'classes', 'violations', 'statuses', 'accidents',
+            'actions' )
         | Compress_dummy_list(
             'additional_messages', 'addresses', 'sub_violations',
-            'licenses', 'classes', 'violations', 'sub_violations', 'statuses' )
+            'licenses', 'classes', 'violations', 'statuses', 'accidents',
+            'actions' )
         | Compress_double_list(
             'additional_messages', 'addresses', 'sub_violations',
-            'licenses', 'classes', 'violations', 'statuses' )
+            'licenses', 'classes', 'violations', 'statuses', 'accidents',
+            'actions' )
         | Convert_dates(
             ( '%m/%d/%Y', '%Y-%m-%d' ), 'order_date', 'date_of_bird',
             'exp_date', 'original_issue', 'conviction_date', 'incident_date',
