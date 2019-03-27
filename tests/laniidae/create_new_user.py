@@ -119,7 +119,7 @@ class Test_package( VCRTestCase ):
             'date_of_birth': '1980-01-01', 'gender': '',
         } )
         profile_response = response.get().native
-        self.assertEqual( profile_response.status, 'error' )
+        self.assertEqual( profile_response.status, 'wait' )
 
     def test_get_profile_with_url( self ):
         response = self.client.using( 'super_user' ).create_user(

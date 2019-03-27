@@ -1,14 +1,14 @@
 interactions:
 - request:
-    body: '{"username": "joeljackson", "password": "(SIJMn&L4&", "email": "fpeters@hunter.com",
-      "first_name": "Sean", "last_name": "King", "is_superuser": false, "is_staff":
-      false, "partners": [{"name": "Elizabeth Evans MD"}], "hookshot": {"url": "http://google.com"}}'
+    body: '{"username": "conneremily", "password": "5(p2AFH_@a", "email": "mpeterson@hotmail.com",
+      "first_name": "Roberto", "last_name": "Gutierrez", "is_superuser": false, "is_staff":
+      false, "partners": [{"name": "Sean Chambers"}], "hookshot": {"url": "http://google.com"}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
       Authorization: [Token o8S7u_x_zsbMwHVaEvbKu0mkLAA=]
       Connection: [keep-alive]
-      Content-Length: ['257']
+      Content-Length: ['263']
       Content-Type: [application/json]
       User-Agent: [python-requests/2.19.1]
     method: POST
@@ -18,8 +18,8 @@ interactions:
     headers:
       Allow: ['GET, POST, HEAD, OPTIONS']
       Content-Length: ['0']
-      Date: ['Tue, 26 Mar 2019 19:21:22 GMT']
-      Location: ['http://laniidae:8000/users/CG_IrxhBufGXUTsquomZnIVM60lGFPs_/']
+      Date: ['Wed, 27 Mar 2019 18:02:12 GMT']
+      Location: ['http://laniidae:8000/users/MGE8pQ4UrkZigYU395Nm-lmr6Bbemgfr/']
       Server: [WSGIServer/0.2 CPython/3.7.1]
       Vary: [Accept]
       X-Frame-Options: [SAMEORIGIN]

@@ -1,14 +1,14 @@
 interactions:
 - request:
-    body: '{"username": "millerrichard", "password": "t+4EE!KpNu", "email": "edaniel@wolfe.biz",
-      "first_name": "Maria", "last_name": "Cherry", "is_superuser": false, "is_staff":
-      false, "partners": [{"name": "Victoria Ferguson"}], "hookshot": {"url": "http://google.com"}}'
+    body: '{"username": "nfreeman", "password": "N9#67JJp0K", "email": "medwards@byrd.biz",
+      "first_name": "Elizabeth", "last_name": "Lee", "is_superuser": false, "is_staff":
+      false, "partners": [{"name": "Alex Young"}], "hookshot": {"url": "http://google.com"}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
       Authorization: [Token o8S7u_x_zsbMwHVaEvbKu0mkLAA=]
       Connection: [keep-alive]
-      Content-Length: ['260']
+      Content-Length: ['249']
       Content-Type: [application/json]
       User-Agent: [python-requests/2.19.1]
     method: POST
@@ -18,8 +18,8 @@ interactions:
     headers:
       Allow: ['GET, POST, HEAD, OPTIONS']
       Content-Length: ['0']
-      Date: ['Tue, 26 Mar 2019 19:24:06 GMT']
-      Location: ['http://laniidae:8000/users/kleZ5PR4eVbetlg2M6tGsGYidyW7z3KZ/']
+      Date: ['Wed, 27 Mar 2019 18:02:14 GMT']
+      Location: ['http://laniidae:8000/users/S7l-uz31146Ar9EQ9fJGdp7-lKNn516n/']
       Server: [WSGIServer/0.2 CPython/3.7.1]
       Vary: [Accept]
       X-Frame-Options: [SAMEORIGIN]
@@ -34,14 +34,14 @@ interactions:
       Content-Type: [application/json]
       User-Agent: [python-requests/2.19.1]
     method: GET
-    uri: http://laniidae:8000/users/kleZ5PR4eVbetlg2M6tGsGYidyW7z3KZ/token
+    uri: http://laniidae:8000/users/S7l-uz31146Ar9EQ9fJGdp7-lKNn516n/token
   response:
     body: {string: ''}
     headers:
       Content-Length: ['0']
       Content-Type: [text/html; charset=utf-8]
-      Date: ['Tue, 26 Mar 2019 19:24:06 GMT']
-      Location: [/users/kleZ5PR4eVbetlg2M6tGsGYidyW7z3KZ/token/]
+      Date: ['Wed, 27 Mar 2019 18:02:14 GMT']
+      Location: [/users/S7l-uz31146Ar9EQ9fJGdp7-lKNn516n/token/]
       Server: [WSGIServer/0.2 CPython/3.7.1]
     status: {code: 301, message: Moved Permanently}
 - request:
@@ -53,14 +53,14 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.19.1]
     method: GET
-    uri: http://laniidae:8000/users/kleZ5PR4eVbetlg2M6tGsGYidyW7z3KZ/token/
+    uri: http://laniidae:8000/users/S7l-uz31146Ar9EQ9fJGdp7-lKNn516n/token/
   response:
-    body: {string: '[{"key":"O_9Irj9aZEdYrtwyUseiD7ssXYM=","create_at":"2019-03-26T19:24:06.672689Z"}]'}
+    body: {string: '[{"key":"AI0PoUL4xo8nULRN5wG69PK0e4E=","create_at":"2019-03-27T18:02:14.044298Z"}]'}
     headers:
       Allow: ['GET, POST, HEAD, OPTIONS']
       Content-Length: ['82']
       Content-Type: [application/json]
-      Date: ['Tue, 26 Mar 2019 19:24:06 GMT']
+      Date: ['Wed, 27 Mar 2019 18:02:14 GMT']
       Server: [WSGIServer/0.2 CPython/3.7.1]
       Vary: [Accept]
       X-Frame-Options: [SAMEORIGIN]
@@ -74,327 +74,93 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      Authorization: [Token O_9Irj9aZEdYrtwyUseiD7ssXYM=]
+      Authorization: [Token AI0PoUL4xo8nULRN5wG69PK0e4E=]
       Connection: [keep-alive]
       Content-Type: [application/json]
       User-Agent: [python-requests/2.19.1]
     method: GET
-    uri: http://laniidae:8000/packages/?name__eq=compass
+    uri: http://laniidae:8000/packages/?name=compass
   response:
-    body: {string: '[{"pk":"9p7DHx7uSauTtkmq6QlZ2S4TiqoHP4X0","name":"compass_2","dependencies":[]},{"pk":"I67tp78e2HUchd7f5BH7WefEPn9iW9z0","name":"compass","dependencies":[]}]'}
+    body: {string: '[{"pk":"I67tp78e2HUchd7f5BH7WefEPn9iW9z0","name":"compass","dependencies":[]}]'}
     headers:
       Allow: ['GET, POST, HEAD, OPTIONS']
-      Content-Length: ['157']
+      Content-Length: ['78']
       Content-Type: [application/json]
-      Date: ['Tue, 26 Mar 2019 19:24:06 GMT']
+      Date: ['Wed, 27 Mar 2019 18:02:14 GMT']
       Server: [WSGIServer/0.2 CPython/3.7.1]
       Vary: [Accept]
       X-Frame-Options: [SAMEORIGIN]
       X-Pagination-Current-Page: ['1']
-      X-Pagination-Page-Count: ['2']
+      X-Pagination-Page-Count: ['1']
       X-Pagination-Per-Page: ['10']
-      X-Pagination-Total-Count: ['2']
+      X-Pagination-Total-Count: ['1']
     status: {code: 200, message: OK}
 - request:
-    body: '{"first_name": "Stephanie", "last_name": "Conner", "state": "IL", "driver_license_number":
+    body: '{"first_name": "Andrea", "last_name": "Thompson", "state": "IL", "driver_license_number":
       "123456789", "date_of_birth": "1980-01-01", "gender": ""}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      Authorization: [Token O_9Irj9aZEdYrtwyUseiD7ssXYM=]
+      Authorization: [Token AI0PoUL4xo8nULRN5wG69PK0e4E=]
       Connection: [keep-alive]
-      Content-Length: ['148']
+      Content-Length: ['147']
       Content-Type: [application/json]
       User-Agent: [python-requests/2.19.1]
     method: POST
-    uri: http://laniidae:8000/packages/9p7DHx7uSauTtkmq6QlZ2S4TiqoHP4X0/check/
+    uri: http://laniidae:8000/packages/I67tp78e2HUchd7f5BH7WefEPn9iW9z0/check/
   response:
-    body: {string: "ValueError at /packages/9p7DHx7uSauTtkmq6QlZ2S4TiqoHP4X0/check/\nEmpty
-        module name\n\nRequest Method: POST\nRequest URL: http://laniidae:8000/packages/9p7DHx7uSauTtkmq6QlZ2S4TiqoHP4X0/check/\nDjango
-        Version: 2.1.5\nPython Executable: /home/dem4ply/Documentos/proyectos/work_turn/laniidae/venv/bin/python\nPython
-        Version: 3.7.1\nPython Path: ['/home/dem4ply/Documentos/proyectos/work_turn/laniidae',
-        '/home/dem4ply/Documentos/proyectos/work_turn/laniidae', '/home/dem4ply/Documentos/proyectos/work_turn/laniidae/venv/lib/python37.zip',
-        '/home/dem4ply/Documentos/proyectos/work_turn/laniidae/venv/lib/python3.7',
-        '/home/dem4ply/Documentos/proyectos/work_turn/laniidae/venv/lib/python3.7/lib-dynload',
-        '/usr/lib64/python3.7', '/usr/lib/python3.7', '/home/dem4ply/Documentos/proyectos/work_turn/laniidae/venv/lib/python3.7/site-packages',
-        '/home/dem4ply/Documentos/proyectos/work_turn/tetrapod', '/home/dem4ply/Documentos/proyectos/work_turn/mudskipper',
-        '/home/dem4ply/Documentos/proyectos/chibi_django', '/usr/lib/python3.7/site-packages',
-        '/home/dem4ply/Documentos/proyectos/others/pyw3mimg', '/home/dem4ply/Documentos/proyectos/chibi',
-        '/home/dem4ply/Documentos/proyectos/chibi_genjuu', '/home/dem4ply/Documentos/proyectos/work_turn/laniidae']\nServer
-        time: Tue, 26 Mar 2019 19:24:07 +0000\nInstalled Applications:\n['django.contrib.admin',\n
-        'django.contrib.auth',\n 'django.contrib.contenttypes',\n 'django.contrib.sessions',\n
-        'django.contrib.messages',\n 'django.contrib.staticfiles',\n 'django_extensions',\n
-        'rest_framework',\n 'corsheaders',\n 'chibi_django',\n 'chibi_user',\n 'partner',\n
-        'package',\n 'profiles',\n 'hookshot']\nInstalled Middleware:\n('whitenoise.middleware.WhiteNoiseMiddleware',\n
-        'django.middleware.security.SecurityMiddleware',\n 'django.contrib.sessions.middleware.SessionMiddleware',\n
-        'django.middleware.common.CommonMiddleware',\n 'django.middleware.csrf.CsrfViewMiddleware',\n
-        'django.contrib.auth.middleware.AuthenticationMiddleware',\n 'django.contrib.messages.middleware.MessageMiddleware',\n
-        'django.middleware.clickjacking.XFrameOptionsMiddleware',\n 'whitenoise.middleware.WhiteNoiseMiddleware',\n
-        'django.middleware.security.SecurityMiddleware')\n\n\nTraceback:\n\nFile \"/usr/lib/python3.7/site-packages/django/core/handlers/exception.py\"
-        in inner\n  34.             response = get_response(request)\n\nFile \"/usr/lib/python3.7/site-packages/django/core/handlers/base.py\"
-        in _get_response\n  126.                 response = self.process_exception_by_middleware(e,
-        request)\n\nFile \"/usr/lib/python3.7/site-packages/django/core/handlers/base.py\"
-        in _get_response\n  124.                 response = wrapped_callback(request,
-        *callback_args, **callback_kwargs)\n\nFile \"/usr/lib/python3.7/site-packages/django/views/decorators/csrf.py\"
-        in wrapped_view\n  54.         return view_func(*args, **kwargs)\n\nFile \"/home/dem4ply/Documentos/proyectos/work_turn/laniidae/venv/lib/python3.7/site-packages/rest_framework/viewsets.py\"
-        in view\n  116.             return self.dispatch(request, *args, **kwargs)\n\nFile
-        \"/home/dem4ply/Documentos/proyectos/work_turn/laniidae/venv/lib/python3.7/site-packages/rest_framework/views.py\"
-        in dispatch\n  495.             response = self.handle_exception(exc)\n\nFile
-        \"/home/dem4ply/Documentos/proyectos/work_turn/laniidae/venv/lib/python3.7/site-packages/rest_framework/views.py\"
-        in handle_exception\n  455.             self.raise_uncaught_exception(exc)\n\nFile
-        \"/home/dem4ply/Documentos/proyectos/work_turn/laniidae/venv/lib/python3.7/site-packages/rest_framework/views.py\"
-        in dispatch\n  492.             response = handler(request, *args, **kwargs)\n\nFile
-        \"/home/dem4ply/Documentos/proyectos/work_turn/laniidae/package/views.py\"
-        in check\n  32.             request.data, user=request.user, request=request
-        )\n\nFile \"/home/dem4ply/Documentos/proyectos/work_turn/laniidae/package/models.py\"
-        in start_check\n  117.         self.validate( data )\n\nFile \"/home/dem4ply/Documentos/proyectos/work_turn/laniidae/package/models.py\"
-        in validate\n  86.                 result.update( package.adapter().validate(
-        **data ) )\n\nFile \"/home/dem4ply/Documentos/proyectos/work_turn/laniidae/package/models.py\"
-        in adapter\n  45.         module = self.module\n\nFile \"/home/dem4ply/Documentos/proyectos/work_turn/laniidae/package/models.py\"
-        in module\n  62.         return importlib.import_module( self.adapter_module
-        )\n\nFile \"/home/dem4ply/Documentos/proyectos/work_turn/laniidae/venv/lib/python3.7/importlib/__init__.py\"
-        in import_module\n  127.     return _bootstrap._gcd_import(name[level:], package,
-        level)\n\nFile \"<frozen importlib._bootstrap>\" in _gcd_import\n  1003. <source
-        code not available>\n\nFile \"<frozen importlib._bootstrap>\" in _sanity_check\n
-        \ 942. <source code not available>\n\nException Type: ValueError at /packages/9p7DHx7uSauTtkmq6QlZ2S4TiqoHP4X0/check/\nException
-        Value: Empty module name\nRequest information:\nUSER: pk: kleZ5PR4eVbetlg2M6tGsGYidyW7z3KZ
-        :: username: millerrichard\n\nGET: No GET data\n\nPOST: No POST data\n\nFILES:
-        No FILES data\n\nCOOKIES: No cookie data\n\nMETA:\nADMIN_AUTH0_AUDIENCE =
-        'https://turning.io/partner-dashboard'\nADMIN_AUTH0_CLIENT_ID = 'FAFPoiP7g7oLOEWO5JYqW6FcvGSY6DbE'\nADMIN_AUTH0_CLIENT_SECRET
-        = '0vNpNyJrh5l9hWg78jU36kGAY47GUPMs'\nADMIN_AUTH0_CLIENT_SECRET_CLAIMS = 'gkL3tz06lfYy8_Vp5VLusWdZcrUapqf-3Dw0Wt4Krd9FrtDFJ6kbn4UxmvzQw_0A'\nANDROID_HOME
-        = '/home/dem4ply/Android/Sdk'\nAPP_SETTINGS = 'config.HerokuDev'\nAUTH0_CLIENT_ID
-        = 'uk75buajZzoIkGkPHJSZDAaGgG4A7Sj9'\nAUTH0_DOMAIN = 'turn.auth0.com'\nBCG_ACCOUNT_ID
-        = '10120361'\nBCG_PASSWORD = '!nt3grat!0n1'\nBCG_USER = 'TurnTechINTtest'\nBGC__DEFAULT__ACCOUNT
-        = '10157222'\nBGC__DEFAULT__HOST = 'https://direct2m.backgroundchecks.com/integration/bgcdirectpost.aspx'\nBGC__DEFAULT__PASSWORD
-        = '!nt3grat!0n1'\nBGC__DEFAULT__USER = 'TurnTechint'\nBLOCK_PARTNERS_WITHOUT_CONSENT
-        = ''\nBONSAI_URL = 'waifus:80'\nBRITE_VERIFY_API_KEY = 'ff72bf75-b3c3-4d72-8159-43752e924a19'\nBUCKETEER_BLACK_AWS_ACCESS_KEY_ID
-        = 'AKIAI7EIPAKSC7KRO2GQ'\nBUCKETEER_BLACK_AWS_REGION = 'us-east-1'\nBUCKETEER_BLACK_AWS_SECRET_ACCESS_KEY
-        = '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'\nBUCKETEER_BLACK_BUCKET_NAME
-        = 'bucketeer-8a9356df-200c-48ea-95b5-4e3b946651c2'\nBUGSNAG_KEY = ''\nCACHED_PROP_ENABLED
-        = 'True'\nCLOUDAMQP_URL = 'amqp://laniidae:password@Chino:5672/laniidae_vhost'\nCOLORTERM
-        = 'truecolor'\nCOLUMNS = '170'\nCOMPASS_ACCOUNT_ID = 'D2936'\nCOMPASS_PASSWORD
-        = 'ability4420'\nCOMPASS_USER_ID = 'Server01'\nCOMPASS__DEFAULT__ACCOUNT =
-        'D2936'\nCOMPASS__DEFAULT__PASSWORD = 'ability4420'\nCOMPASS__DEFAULT__USER
-        = 'Server01'\nCOMPASS__DEFAULT__WSDL = 'package/tests/integration/DatalinkOrderService.wsdl.xml'\nCONTENT_LENGTH
-        = '148'\nCONTENT_TYPE = 'application/json'\nDATABASE_URL = 'postgresql://dem4ply:asdf@Cyborg.003:5432/laniidae_db_dev'\nDBUS_SESSION_BUS_ADDRESS
-        = 'unix:path=/run/user/1000/bus'\nDEFAULT_NAT_SEX_WATCH_SERVICE = 'IEI'\nDESKTOP_SESSION
-        = '/usr/bin/startxfce4'\nDISPLAY = ':0.0'\nDJANGO_LOG_LEVEL = 'INFO'\nDJANGO_SETTINGS_MODULE
-        = 'laniidae.settings'\nEDITOR = 'vim'\nELASTICSEARCH_IS_ON = 'false'\nELASTICSEARCH_PASSWORD
-        = 'pipiconpopo'\nELASTICSEARCH_USER = 'dem4ply'\nELASTIC__DEFAULT__HOSTS =
-        'waifus:80'\nELASTIC__DEFAULT__PASSWORD = 'pipiconpopo'\nELASTIC__DEFAULT__TIMEOUT
-        = '3000'\nELASTIC__DEFAULT__USER = 'dem4ply'\nENCRYPTED_TYPE_SECRET_KEY =
-        'asdfasfasdfasdfasdfasdfasdfaf'\nENCRYPTION_KEY_FOR_PARTNER_PUBLIC_AUTH =
-        'LZFgCoFesWhw_ucr1O-9l0uLWF2pqd16g2C-dFvcN5uqly0lMkydg1-XmlrrCiKp'\nFLASK_APP
-        = 'api:app'\nGATEWAY_INTERFACE = 'CGI/1.1'\nGLADE_CATALOG_PATH = ':'\nGLADE_MODULE_PATH
-        = ':'\nGLADE_PIXMAP_PATH = ':'\nGOOGLE_LOGIN_CLIENT_ID = '52705077122-7d4juseegqjsvi72sm400bh5lsk0f02r.apps.googleusercontent.com'\nGOOGLE_LOGIN_CLIENT_SECRET
-        = 'Z84IrOgMmYaWVJBF12ieY8WJ'\nGOOGLE_LOGIN_REDIRECT_PATH = '/callback'\nGOOGLE_MAPS_API_KEY
-        = 'AIzaSyDUHCU6i3NGQcXHjXojlGzsFCqdusvqV1Y'\nGREP_COLOR = '1;33'\nGTK_MODULES
-        = 'canberra-gtk-module:canberra-gtk-module'\nHEROKU_API_TOKEN = '405ed4b9-9c52-4d52-8f7b-292fca3d062c'\nHEROKU_APP_NAME
-        = 'dem4ply_local'\nHEROKU__APP_NAME = 'dem4ply_local_laniidae'\nHG = '/usr/bin/hg'\nHISTCONTROL
-        = 'ignoredups'\nHISTIGNORE = '\u2019ls:pwd:date:\u2019'\nHOME = '/home/dem4ply'\nHOOKSHOT__SIGNATURE
-        = '724e41928e796cffa1ef4ccc05b0a3a4'\nHTTP_ACCEPT = 'application/json'\nHTTP_ACCEPT_ENCODING
-        = 'gzip, deflate'\nHTTP_AUTHORIZATION = 'Token O_9Irj9aZEdYrtwyUseiD7ssXYM='\nHTTP_CONNECTION
-        = 'keep-alive'\nHTTP_HOST = 'laniidae:8000'\nHTTP_USER_AGENT = 'python-requests/2.19.1'\nIEI__DEFAULT__LOGIN
-        = '21579'\nIEI__DEFAULT__PASSWORD = 'jQNm43$#'\nIEI__DEFAULT__WSDL = 'https://xml.innovativedatasolutions.com/NatCrimWs/Search.asmx?WSDL'\nINTUIT_WORKFORCE_PASSWORD
-        = 'p879f8KmIges8Cew40K6kuCCy2yegaMU'\nINTUIT_WORKFORCE_USER = 'turn'\nINVOCATION_ID
-        = 'bf3ef2829c0240ff991469e1fce56420'\nJOURNAL_STREAM = '9:19760'\nJWT_EXPIRATION_DELTA
-        = '1800'\nJWT_SECRET_KEY = 'V0ns5xNsKE5t86AdI7W5lFMfaf2cxXY6izVZ-D6rUYKKRYnEMiV-6dxVkIppUkSa'\nLANG
-        = 'es_MX.UTF-8'\nLANIIDAE__DEFAULT__HOST = 'laniidae:8000'\nLANIIDAE__DEFAULT__SCHEMA
-        = 'http'\nLANIIDAE__ENVIRONMENT = 'LOCAL'\nLANIIDAE__RABBITMQ__KEY__URL =
-        'CLOUDAMQP_URL'\nLANIIDAE__REST__PAGE_SIZE = '10'\nLANIIDAE__SECRET_KEY =
-        'hpwg( 8n6r4kyv$*jopwj8( e8azi@v7ag$nd7-xxs!8jq73luj$'\nLANIIDAE__SUPER_USER__HOST
-        = 'laniidae:8000'\nLANIIDAE__SUPER_USER__SCHEMA = 'http'\nLANIIDAE__SUPER_USER__TOKEN
-        = 'o8S7u_x_zsbMwHVaEvbKu0mkLAA='\nLANIIDAE__WEB__LOG_LEVEL = 'info'\nLANIIDAE__WEB__THREADS
-        = '2'\nLANIIDAE__WORKER__LOG_LEVEL = 'info'\nLANIIDAE__WORKER__NAME = 'default@curie'\nLANIIDAE__WORKER__QUEUE
-        = 'default,debug'\nLANIIDAE__WORKER__THREADS = '2'\nLESS_TERMCAP_mb = '\\x1b[01;31m'\nLESS_TERMCAP_md
-        = '\\x1b[01;31m'\nLESS_TERMCAP_me = '\\x1b[0m'\nLESS_TERMCAP_se = '\\x1b[0m'\nLESS_TERMCAP_so
-        = '\\x1b[01;44;33m'\nLESS_TERMCAP_ue = '\\x1b[0m'\nLESS_TERMCAP_us = '\\x1b[01;32m'\nLINES
-        = '42'\nLOGGER__ELASTIC__ELASTIC_LOG__ES_INDEX_NAME = 'dem4ply_local__laniidae__logs'\nLOGGER__ELASTIC__ELASTIC_LOG__FLUSH_FREQUENCY_IN_SEC
-        = '1'\nLOGGER__ELASTIC__ELASTIC_LOG__HOSTS = 'waifus:80'\nLOGGER__ELASTIC__ELASTIC_LOG__INDEX_NAME_FREQUENCY
-        = 'monthly'\nLOGGER__ELASTIC__ELASTIC_LOG__LEVEL = 'INFO'\nLOGGER__ELASTIC__ELASTIC_LOG__PASSWORD
-        = 'pipiconpopo'\nLOGGER__ELASTIC__ELASTIC_LOG__USER = 'dem4ply'\nLOGNAME =
-        'dem4ply'\nMAIL = '/var/spool/mail/dem4ply'\nMANDRILL_API_KEY = 'wmhq4KI0ZLeLdMwwLGDXYQ'\nMANDRILL_DEFAULT_FROM
-        = 'noreply@turning.io'\nMANDRILL_TEST_KEY = '33EK37YE5Meanm_eBxsEEw'\nMOZ_DISABLE_PANGO
-        = '1'\nMOZ_PLUGIN_PATH = '/usr/lib/mozilla/plugins'\nOLDPWD = '/home/dem4ply/Documentos/proyectos/work_turn'\nPARTNER_AUTH0_CLIENT_ID
-        = 'SsyUp6zbRDJ61aTCv4edRAdaUH05HBvL'\nPARTNER_AUTH0_CLIENT_SECRET = 'puzheyEZJFLxCUeHioRR0IMyckSDGbQIF-tmxaK6jlZpWF6ghpWFMqLAwZeOYAT9'\nPARTNER_AUTH0_DOMAIN
-        = 'turn.auth0.com'\nPARTNER_DASHBOARD_DOMAIN = 'http://partners.turn-test.io'\nPARTNER_JWT_SECRET_KEY
-        = 'puzheyEZJFLxCUeHioRR0IMyckSDGbQIF-tmxaK6jlZpWF6ghpWFMqLAwZeOYAT9'\nPATH
-        = '/home/dem4ply/Documentos/proyectos/work_turn/laniidae/venv/bin:/home/dem4ply/bin:/home/dem4ply/.gem/ruby/2.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/android-sdk/platform-tools/:/home/dem4ply/Documentos/scripts/'\nPATH_INFO
-        = '/packages/9p7DHx7uSauTtkmq6QlZ2S4TiqoHP4X0/check/'\nPUBLIC_PARTER_JWT_EXPIRATION_DELTA_SECONDS
-        = '31536000'\nPUSHER__DEFAULT__APP_ID = '687123'\nPUSHER__DEFAULT__CLUSTER
-        = 'us2'\nPUSHER__DEFAULT__KEY = '5a04ebaffb5eaa18bee5'\nPUSHER__DEFAULT__SECRET
-        = 'b5549e65b8b556a54d2f'\nPUSHER__DEFAULT__TEST_MODE = 'True'\nPWD = '/home/dem4ply/Documentos/proyectos/work_turn/laniidae'\nPYTHONPATH
-        = '.'\nQUERY_STRING = ''\nREDIS_URL = 'redis://Nanoha:6379/0'\nREMOTE_ADDR
-        = '127.0.0.1'\nREMOTE_HOST = ''\nREQUEST_METHOD = 'POST'\nRUN_MAIN = 'true'\nSCRIPT_NAME
-        = ''\nSECRET_KEY = 'V0ns5xNsKE5t86AdI7W5lFMfaf2cxXY6izVZ-D6rUYKKRYnEMiV-6dxVkIppUkSa'\nSEGMENTIO_WRITE_KEY
-        = 'QMKeKuEbAVePGrDOAafT8Wd94o4bj55W'\nSERVER_NAME = 'localhost'\nSERVER_PORT
-        = '8000'\nSERVER_PROTOCOL = 'HTTP/1.1'\nSERVER_SOFTWARE = 'WSGIServer/0.2'\nSESSION_MANAGER
-        = 'local/curie:@/tmp/.ICE-unix/614,unix/curie:/tmp/.ICE-unix/614'\nSHELL =
-        '/bin/bash'\nSHLVL = '2'\nSQLALCHEMY_DATABASE_URI = 'postgresql://dem4ply:asdf@Cyborg.003:5432/turning_db_dev'\nSSH_AGENT_PID
-        = '621'\nSSH_AUTH_SOCK = '/tmp/ssh-uvNm6uknd94T/agent.620'\nTERM = 'xterm-termite'\nTEST_SQLALCHEMY_DATABASE_URI
-        = 'postgresql://dem4ply:asdf@Cyborg.003:5432/turning_db_test'\nTLO_API_VERSION
-        = '42'\nTLO_HTTPS_PROXY = 'https://fixie:YoAzlpvu3OG7Uiz@velodrome.usefixie.com:80'\nTLO_HTTP_PROXY
-        = 'http://fixie:YoAzlpvu3OG7Uiz@velodrome.usefixie.com:80'\nTLO_PASSWORD =
-        '&DfZMjNMiGaZ({7AdK<du%c<{Eo.O1'\nTLO_USERNAME = 'DEVAPI.TURNING'\nTRIAL_DURATION_IN_SECONDS
-        = '1209600'\nTZ = 'UTC'\nUSER = 'dem4ply'\nVIRTUAL_ENV = '/home/dem4ply/Documentos/proyectos/work_turn/laniidae/venv'\nVIRTUAL_ENV_DISABLE_PROMPT
-        = '1'\nVTE_VERSION = '5402'\nWINDOWID = '102760451'\nWSS_API_KEY = 'bf4d5fc8d9c2f0fda457b3087c4cdf12358066e2'\nWSS_API_URL
-        = 'https://sandbox.fuseos.net/api/v1'\nXAUTHORITY = '/home/dem4ply/.Xauthority'\nXDG_CONFIG_DIRS
-        = '/etc/xdg'\nXDG_CONFIG_HOME = '/home/dem4ply/.config'\nXDG_CURRENT_DESKTOP
-        = 'XFCE'\nXDG_DATA_DIRS = '/usr/local/share:/usr/share'\nXDG_MENU_PREFIX =
-        'xfce-'\nXDG_RUNTIME_DIR = '/run/user/1000'\nXDG_SEAT = 'seat0'\nXDG_SESSION_ID
-        = '1'\nXDG_VTNR = '1'\nZUMIGO_CLIENT_ID = 'TURNING'\nZUMIGO_ENVIRONMENT =
-        'UAT'\nZUMIGO_PASSWORD = 'TurnA91U53r!'\nZUMIGO_USERNAME = 'turnapiuser'\n_
-        = './manage.py'\nwsgi.errors = <_io.TextIOWrapper name='<stderr>' mode='w'
-        encoding='UTF-8'>\nwsgi.file_wrapper = ''\nwsgi.input = <django.core.handlers.wsgi.LimitedStream
-        object at 0x7fe89ccef080>\nwsgi.multiprocess = False\nwsgi.multithread = True\nwsgi.run_once
-        = False\nwsgi.url_scheme = 'http'\nwsgi.version = '(1, 0)'\n\nSettings:\nUsing
-        settings module laniidae.settings\nABSOLUTE_URL_OVERRIDES = {}\nADMINS = []\nALLOWED_HOSTS
-        = ['*']\nAPPEND_SLASH = True\nAPP_NAME = 'dem4ply_local_laniidae'\nAUTHENTICATION_BACKENDS
-        = \"('django.contrib.auth.backends.ModelBackend',)\"\nAUTH_PASSWORD_VALIDATORS
-        = '********************'\nAUTH_USER_MODEL = 'chibi_user.User'\nBASE_DIR =
-        '/home/dem4ply/Documentos/proyectos/work_turn/laniidae/laniidae/settings'\nBROKER_URL
-        = 'amqp://laniidae:password@Chino:5672/laniidae_vhost'\nCACHES = {'default':
-        {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}}\nCACHE_MIDDLEWARE_ALIAS
-        = 'default'\nCACHE_MIDDLEWARE_KEY_PREFIX = '********************'\nCACHE_MIDDLEWARE_SECONDS
-        = 600\nCELERY_ALWAYS_EAGER = False\nCELERY_RESULT_BACKEND = 'amqp://laniidae:password@Chino:5672/laniidae_vhost'\nCORS_ALLOW_CREDENTIALS
-        = False\nCORS_ORIGIN_ALLOW_ALL = True\nCSRF_COOKIE_AGE = 31449600\nCSRF_COOKIE_DOMAIN
-        = None\nCSRF_COOKIE_HTTPONLY = False\nCSRF_COOKIE_NAME = 'csrftoken'\nCSRF_COOKIE_PATH
-        = '/'\nCSRF_COOKIE_SAMESITE = 'Lax'\nCSRF_COOKIE_SECURE = False\nCSRF_FAILURE_VIEW
-        = 'django.views.csrf.csrf_failure'\nCSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'\nCSRF_TRUSTED_ORIGINS
-        = []\nCSRF_USE_SESSIONS = False\nDATABASES = {'default': {'NAME': 'laniidae_db_dev',
-        'USER': 'dem4ply', 'PASSWORD': '********************', 'HOST': 'cyborg.003',
-        'PORT': 5432, 'CONN_MAX_AGE': 600, 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'ATOMIC_REQUESTS': False, 'AUTOCOMMIT': True, 'OPTIONS': {}, 'TIME_ZONE':
-        None, 'TEST': {'CHARSET': None, 'COLLATION': None, 'NAME': None, 'MIRROR':
-        None}}}\nDATABASE_ROUTERS = []\nDATA_UPLOAD_MAX_MEMORY_SIZE = 2621440\nDATA_UPLOAD_MAX_NUMBER_FIELDS
-        = 1000\nDATETIME_FORMAT = 'N j, Y, P'\nDATETIME_INPUT_FORMATS = ['%Y-%m-%d
-        %H:%M:%S', '%Y-%m-%d %H:%M:%S.%f', '%Y-%m-%d %H:%M', '%Y-%m-%d', '%m/%d/%Y
-        %H:%M:%S', '%m/%d/%Y %H:%M:%S.%f', '%m/%d/%Y %H:%M', '%m/%d/%Y', '%m/%d/%y
-        %H:%M:%S', '%m/%d/%y %H:%M:%S.%f', '%m/%d/%y %H:%M', '%m/%d/%y']\nDATE_FORMAT
-        = 'N j, Y'\nDATE_INPUT_FORMATS = ['%Y-%m-%d', '%m/%d/%Y', '%m/%d/%y', '%b
-        %d %Y', '%b %d, %Y', '%d %b %Y', '%d %b, %Y', '%B %d %Y', '%B %d, %Y', '%d
-        %B %Y', '%d %B, %Y']\nDEBUG = True\nDEBUG_PROPAGATE_EXCEPTIONS = False\nDECIMAL_SEPARATOR
-        = '.'\nDEFAULT_CHARSET = 'utf-8'\nDEFAULT_CONTENT_TYPE = 'text/html'\nDEFAULT_EXCEPTION_REPORTER_FILTER
-        = 'django.views.debug.SafeExceptionReporterFilter'\nDEFAULT_FILE_STORAGE =
-        'django.core.files.storage.FileSystemStorage'\nDEFAULT_FROM_EMAIL = 'webmaster@localhost'\nDEFAULT_INDEX_TABLESPACE
-        = ''\nDEFAULT_TABLESPACE = ''\nDISALLOWED_USER_AGENTS = []\nEMAIL_BACKEND
-        = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'localhost'\nEMAIL_HOST_PASSWORD
-        = '********************'\nEMAIL_HOST_USER = ''\nEMAIL_PORT = 25\nEMAIL_SSL_CERTFILE
-        = None\nEMAIL_SSL_KEYFILE = '********************'\nEMAIL_SUBJECT_PREFIX =
-        '[Django] '\nEMAIL_TIMEOUT = None\nEMAIL_USE_LOCALTIME = False\nEMAIL_USE_SSL
-        = False\nEMAIL_USE_TLS = False\nFILE_CHARSET = 'utf-8'\nFILE_UPLOAD_DIRECTORY_PERMISSIONS
-        = None\nFILE_UPLOAD_HANDLERS = ['django.core.files.uploadhandler.MemoryFileUploadHandler',
-        'django.core.files.uploadhandler.TemporaryFileUploadHandler']\nFILE_UPLOAD_MAX_MEMORY_SIZE
-        = 2621440\nFILE_UPLOAD_PERMISSIONS = None\nFILE_UPLOAD_TEMP_DIR = None\nFIRST_DAY_OF_WEEK
-        = 0\nFIXTURE_DIRS = []\nFORCE_SCRIPT_NAME = None\nFORMAT_MODULE_PATH = None\nFORM_RENDERER
-        = 'django.forms.renderers.DjangoTemplates'\nHOOKSHOT = {'SIGNATURE': '********************'}\nIGNORABLE_404_URLS
-        = []\nINSTALLED_APPS = ['django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes',
-        'django.contrib.sessions', 'django.contrib.messages', 'django.contrib.staticfiles',
-        'django_extensions', 'rest_framework', 'corsheaders', 'chibi_django', 'chibi_user',
-        'partner', 'package', 'profiles', 'hookshot']\nINTERNAL_IPS = []\nLANGUAGES
-        = [('af', 'Afrikaans'), ('ar', 'Arabic'), ('ast', 'Asturian'), ('az', 'Azerbaijani'),
-        ('bg', 'Bulgarian'), ('be', 'Belarusian'), ('bn', 'Bengali'), ('br', 'Breton'),
-        ('bs', 'Bosnian'), ('ca', 'Catalan'), ('cs', 'Czech'), ('cy', 'Welsh'), ('da',
-        'Danish'), ('de', 'German'), ('dsb', 'Lower Sorbian'), ('el', 'Greek'), ('en',
-        'English'), ('en-au', 'Australian English'), ('en-gb', 'British English'),
-        ('eo', 'Esperanto'), ('es', 'Spanish'), ('es-ar', 'Argentinian Spanish'),
-        ('es-co', 'Colombian Spanish'), ('es-mx', 'Mexican Spanish'), ('es-ni', 'Nicaraguan
-        Spanish'), ('es-ve', 'Venezuelan Spanish'), ('et', 'Estonian'), ('eu', 'Basque'),
-        ('fa', 'Persian'), ('fi', 'Finnish'), ('fr', 'French'), ('fy', 'Frisian'),
-        ('ga', 'Irish'), ('gd', 'Scottish Gaelic'), ('gl', 'Galician'), ('he', 'Hebrew'),
-        ('hi', 'Hindi'), ('hr', 'Croatian'), ('hsb', 'Upper Sorbian'), ('hu', 'Hungarian'),
-        ('ia', 'Interlingua'), ('id', 'Indonesian'), ('io', 'Ido'), ('is', 'Icelandic'),
-        ('it', 'Italian'), ('ja', 'Japanese'), ('ka', 'Georgian'), ('kab', 'Kabyle'),
-        ('kk', 'Kazakh'), ('km', 'Khmer'), ('kn', 'Kannada'), ('ko', 'Korean'), ('lb',
-        'Luxembourgish'), ('lt', 'Lithuanian'), ('lv', 'Latvian'), ('mk', 'Macedonian'),
-        ('ml', 'Malayalam'), ('mn', 'Mongolian'), ('mr', 'Marathi'), ('my', 'Burmese'),
-        ('nb', 'Norwegian Bokm\xE5l'), ('ne', 'Nepali'), ('nl', 'Dutch'), ('nn', 'Norwegian
-        Nynorsk'), ('os', 'Ossetic'), ('pa', 'Punjabi'), ('pl', 'Polish'), ('pt',
-        'Portuguese'), ('pt-br', 'Brazilian Portuguese'), ('ro', 'Romanian'), ('ru',
-        'Russian'), ('sk', 'Slovak'), ('sl', 'Slovenian'), ('sq', 'Albanian'), ('sr',
-        'Serbian'), ('sr-latn', 'Serbian Latin'), ('sv', 'Swedish'), ('sw', 'Swahili'),
-        ('ta', 'Tamil'), ('te', 'Telugu'), ('th', 'Thai'), ('tr', 'Turkish'), ('tt',
-        'Tatar'), ('udm', 'Udmurt'), ('uk', 'Ukrainian'), ('ur', 'Urdu'), ('vi', 'Vietnamese'),
-        ('zh-hans', 'Simplified Chinese'), ('zh-hant', 'Traditional Chinese')]\nLANGUAGES_BIDI
-        = ['he', 'ar', 'fa', 'ur']\nLANGUAGE_CODE = 'en-us'\nLANGUAGE_COOKIE_AGE =
-        None\nLANGUAGE_COOKIE_DOMAIN = None\nLANGUAGE_COOKIE_NAME = 'django_language'\nLANGUAGE_COOKIE_PATH
-        = '/'\nLOCALE_PATHS = []\nLOGGING = {'version': 1, 'disable_existing_loggers':
-        False, 'handlers': {'console': {'class': 'logging.StreamHandler', 'formatter':
-        'simple', 'stream': 'ext://sys.stdout'}, 'elastic_log': {'flush_frequency_in_sec':
-        1, 'hosts': ['waifus:80'], 'es_index_name': 'dem4ply_local__laniidae__logs',
-        'index_name_frequency': <IndexNameFrequency.MONTHLY: 2>, 'level': 'INFO',
-        'auth_type': <AuthType.NO_AUTH: 0>, 'class': 'cmreslogging.handlers.CMRESHandler',
-        'use_ssl': False, 'verify_ssl': False, 'es_additional_fields': {'app': 'dem4ply_local_laniidae',
-        'tags': ['laniidae', 'dem4ply_local_laniidae']}}}, 'formatters': {'verbose':
-        {'format': '%(levelname)s %(asctime)s %(name)s %(process)d %(thread)d %(message)s'},
-        'simple': {'format': '%(levelname)s %(name)s %(asctime)s %(message)s'}}, 'loggers':
-        {'': {'handlers': ['console', 'elastic_log'], 'level': 'INFO', 'propagate':
-        True}, 'django': {'handlers': ['console', 'elastic_log'], 'level': 'INFO'},
-        'django.request': {'handlers': ['console'], 'level': 'ERROR', 'propagate':
-        True}, 'requests': {'handlers': ['console', 'elastic_log'], 'level': 'ERROR'},
-        'elasticsearch': {'handlers': ['console'], 'level': 'ERROR', 'propagate':
-        True}, 'celery.task': {'handlers': ['console', 'elastic_log'], 'level': 'INFO',
-        'propagate': True}, 'vcr': {'handlers': ['console'], 'level': 'WARNING', 'propagate':
-        True}}}\nLOGGING_CONFIG = 'logging.config.dictConfig'\nLOGIN_REDIRECT_URL
-        = '/accounts/profile/'\nLOGIN_URL = '/accounts/login/'\nLOGOUT_REDIRECT_URL
-        = None\nMANAGERS = []\nMEDIA_ROOT = ''\nMEDIA_URL = ''\nMESSAGE_STORAGE =
-        'django.contrib.messages.storage.fallback.FallbackStorage'\nMIDDLEWARE = \"('whitenoise.middleware.WhiteNoiseMiddleware',
-        'django.middleware.security.SecurityMiddleware', 'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.middleware.common.CommonMiddleware', 'django.middleware.csrf.CsrfViewMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware', 'django.contrib.messages.middleware.MessageMiddleware',
-        'django.middleware.clickjacking.XFrameOptionsMiddleware', 'whitenoise.middleware.WhiteNoiseMiddleware',
-        'django.middleware.security.SecurityMiddleware')\"\nMIGRATION_MODULES = {}\nMONTH_DAY_FORMAT
-        = 'F j'\nNUMBER_GROUPING = 0\nPASSWORD_HASHERS = '********************'\nPASSWORD_RESET_TIMEOUT_DAYS
-        = '********************'\nPREPEND_WWW = False\nREST_FRAMEWORK = {'DEFAULT_AUTHENTICATION_CLASSES':
-        ['chibi_user.authentication.Token_simple_authentication', 'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication'], 'DEFAULT_PERMISSION_CLASSES':
-        ('rest_framework.permissions.IsAuthenticated',), 'DEFAULT_RENDERER_CLASSES':
-        ('rest_framework.renderers.JSONRenderer', 'rest_framework_xml.renderers.XMLRenderer',
-        'rest_framework_yaml.renderers.YAMLRenderer'), 'DEFAULT_PARSER_CLASSES': ('rest_framework.parsers.JSONParser',
-        'rest_framework_xml.parsers.XMLParser', 'rest_framework_yaml.parsers.YAMLParser'),
-        'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',
-        'rest_framework.filters.OrderingFilter'), 'DEFAULT_CONTENT_NEGOTIATION_CLASS':
-        'rest_framework.negotiation.DefaultContentNegotiation', 'EXCEPTION_HANDLER':
-        'chibi_django.exceptions.generic_exception_handler', 'NON_FIELD_ERRORS_KEY':
-        '********************', 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.AcceptHeaderVersioning',
-        'DEFAULT_VERSION': 'tigrinus', 'ALLOWED_VERSIONS': ('tigrinus',), 'VERSION_PARAM':
-        'lanius', 'TEST_REQUEST_DEFAULT_FORMAT': 'json', 'DEFAULT_PAGINATION_CLASS':
-        'chibi_django.pagination.Link_header_pagination', 'PAGE_SIZE': 10}\nRESULT_BACKEND
-        = 'amqp://laniidae:password@Chino:5672/laniidae_vhost'\nRESULT_SERIALIZER
-        = 'json'\nROOT_URLCONF = 'laniidae.urls'\nSECRET_KEY = '********************'\nSECURE_BROWSER_XSS_FILTER
-        = False\nSECURE_CONTENT_TYPE_NOSNIFF = False\nSECURE_HSTS_INCLUDE_SUBDOMAINS
-        = False\nSECURE_HSTS_PRELOAD = False\nSECURE_HSTS_SECONDS = 0\nSECURE_PROXY_SSL_HEADER
-        = \"('HTTP_X_FORWARDED_PROTO', 'https')\"\nSECURE_REDIRECT_EXEMPT = []\nSECURE_SSL_HOST
-        = None\nSECURE_SSL_REDIRECT = False\nSERVER_EMAIL = 'root@localhost'\nSESSION_CACHE_ALIAS
-        = 'default'\nSESSION_COOKIE_AGE = 1209600\nSESSION_COOKIE_DOMAIN = None\nSESSION_COOKIE_HTTPONLY
-        = True\nSESSION_COOKIE_NAME = 'sessionid'\nSESSION_COOKIE_PATH = '/'\nSESSION_COOKIE_SAMESITE
-        = 'Lax'\nSESSION_COOKIE_SECURE = False\nSESSION_ENGINE = 'django.contrib.sessions.backends.db'\nSESSION_EXPIRE_AT_BROWSER_CLOSE
-        = False\nSESSION_FILE_PATH = None\nSESSION_SAVE_EVERY_REQUEST = False\nSESSION_SERIALIZER
-        = 'django.contrib.sessions.serializers.JSONSerializer'\nSETTINGS_MODULE =
-        'laniidae.settings'\nSHORT_DATETIME_FORMAT = 'm/d/Y P'\nSHORT_DATE_FORMAT
-        = 'm/d/Y'\nSIGNING_BACKEND = 'django.core.signing.TimestampSigner'\nSILENCED_SYSTEM_CHECKS
-        = []\nSTATICFILES_DIRS = []\nSTATICFILES_FINDERS = ['django.contrib.staticfiles.finders.FileSystemFinder',
-        'django.contrib.staticfiles.finders.AppDirectoriesFinder']\nSTATICFILES_STORAGE
-        = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nSTATIC_ROOT =
-        '/home/dem4ply/Documentos/proyectos/work_turn/laniidae/laniidae/settings/staticfiles'\nSTATIC_URL
-        = '/static/'\nTASK_SERIALIZER = 'json'\nTEMPLATES = [{'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [], 'APP_DIRS': True, 'OPTIONS': {'context_processors': ['django.template.context_processors.debug',
-        'django.template.context_processors.request', 'django.contrib.auth.context_processors.auth',
-        'django.contrib.messages.context_processors.messages']}}]\nTEST_NON_SERIALIZED_APPS
-        = []\nTEST_RUNNER = 'django.test.runner.DiscoverRunner'\nTHOUSAND_SEPARATOR
-        = ','\nTIME_FORMAT = 'P'\nTIME_INPUT_FORMATS = ['%H:%M:%S', '%H:%M:%S.%f',
-        '%H:%M']\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_L10N = True\nUSE_THOUSAND_SEPARATOR
-        = False\nUSE_TZ = True\nUSE_X_FORWARDED_HOST = False\nUSE_X_FORWARDED_PORT
-        = False\nWSGI_APPLICATION = 'laniidae.wsgi.application'\nX_FRAME_OPTIONS =
-        'SAMEORIGIN'\nYEAR_MONTH_FORMAT = 'F Y'\n\n\nYou're seeing this error because
-        you have DEBUG = True in your\nDjango settings file. Change that to False,
-        and Django will\ndisplay a standard page generated by the handler for this
-        status code.\n\n"}
+    body: {string: ''}
     headers:
-      Content-Length: ['25473']
-      Content-Type: [text/plain; charset=utf-8]
-      Date: ['Tue, 26 Mar 2019 19:24:07 GMT']
+      Allow: ['POST, OPTIONS']
+      Content-Length: ['0']
+      Date: ['Wed, 27 Mar 2019 18:02:14 GMT']
+      Location: ['http://laniidae:8000/profiles/hALSF6Dclpju8tFWKJoYPgLsJLtITzQm/']
       Server: [WSGIServer/0.2 CPython/3.7.1]
+      Vary: [Accept]
       X-Frame-Options: [SAMEORIGIN]
-    status: {code: 500, message: Internal Server Error}
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Token AI0PoUL4xo8nULRN5wG69PK0e4E=]
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: http://laniidae:8000/profiles/hALSF6Dclpju8tFWKJoYPgLsJLtITzQm/
+  response:
+    body: {string: '{"pk":"hALSF6Dclpju8tFWKJoYPgLsJLtITzQm","create_at":"2019-03-27T18:02:14.267525Z","update_at":"2019-03-27T18:02:14.267552Z","complete_at":null,"status":"wait","url":"http://laniidae:8000/profiles/hALSF6Dclpju8tFWKJoYPgLsJLtITzQm/","detail":{},"meta":{}}'}
+    headers:
+      Allow: ['GET, PUT, PATCH, DELETE, HEAD, OPTIONS']
+      Content-Length: ['254']
+      Content-Type: [application/json]
+      Date: ['Wed, 27 Mar 2019 18:02:14 GMT']
+      Server: [WSGIServer/0.2 CPython/3.7.1]
+      Vary: [Accept]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Token o8S7u_x_zsbMwHVaEvbKu0mkLAA=]
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: http://laniidae:8000/profiles/hALSF6Dclpju8tFWKJoYPgLsJLtITzQm/
+  response:
+    body: {string: '{"pk":"hALSF6Dclpju8tFWKJoYPgLsJLtITzQm","create_at":"2019-03-27T18:02:14.267525Z","update_at":"2019-03-27T18:02:14.267552Z","complete_at":null,"status":"wait","url":"http://laniidae:8000/profiles/hALSF6Dclpju8tFWKJoYPgLsJLtITzQm/","detail":{},"meta":{}}'}
+    headers:
+      Allow: ['GET, PUT, PATCH, DELETE, HEAD, OPTIONS']
+      Content-Length: ['254']
+      Content-Type: [application/json]
+      Date: ['Wed, 27 Mar 2019 18:02:14 GMT']
+      Server: [WSGIServer/0.2 CPython/3.7.1]
+      Vary: [Accept]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: OK}
 version: 1
