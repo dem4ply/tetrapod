@@ -62,7 +62,7 @@ class Test_package( VCRTestCase ):
         token = dump()
         token.token = token_response.native[0].key
         response = self.client.using( token ).package()
-        # response = self.client.using( token ).package( name__eq='compass' )
+        # response = self.client.using( token ).package( name='compass' )
         have_compass = False
         for package in response.native:
             if package.name == 'compass':
@@ -79,7 +79,7 @@ class Test_package( VCRTestCase ):
         token_response = response.token.get()
         token = dump()
         token.token = token_response.native[0].key
-        response = self.client.using( token ).package( name__eq='compass' )
+        response = self.client.using( token ).package( name='compass' )
         self.assertEqual( response.native[0].name, 'compass' )
 
     def test_do_a_check( self ):
@@ -91,7 +91,7 @@ class Test_package( VCRTestCase ):
         token_response = response.token.get()
         token = dump()
         token.token = token_response.native[0].key
-        response = self.client.using( token ).package( name__eq='compass' )
+        response = self.client.using( token ).package( name='compass' )
         compass = response.native[0]
         response = compass.check.post( {
             'first_name': fake.first_name(), 'last_name': fake.last_name(),
@@ -100,7 +100,7 @@ class Test_package( VCRTestCase ):
         } )
         self.assertTrue(
             response.format_url.startswith(
-                'http://127.0.0.1:8000/profiles/' ) )
+                'http://laniidae:8000/profiles/' ) )
 
     def test_get_the_profile_after_check( self ):
         response = self.client.using( 'super_user' ).create_user(
@@ -111,7 +111,7 @@ class Test_package( VCRTestCase ):
         token_response = response.token.get()
         token = dump()
         token.token = token_response.native[0].key
-        response = self.client.using( token ).package( name__eq='compass' )
+        response = self.client.using( token ).package( name='compass' )
         compass = response.native[0]
         response = compass.check.post( {
             'first_name': fake.first_name(), 'last_name': fake.last_name(),
@@ -119,7 +119,7 @@ class Test_package( VCRTestCase ):
             'date_of_birth': '1980-01-01', 'gender': '',
         } )
         profile_response = response.get().native
-        self.assertEqual( profile_response.status, 'error' )
+        self.assertEqual( profile_response.status, 'wait' )
 
     def test_get_profile_with_url( self ):
         response = self.client.using( 'super_user' ).create_user(
@@ -130,7 +130,7 @@ class Test_package( VCRTestCase ):
         token_response = response.token.get()
         token = dump()
         token.token = token_response.native[0].key
-        response = self.client.using( token ).package( name__eq='compass' )
+        response = self.client.using( token ).package( name='compass' )
         compass = response.native[0]
         response = compass.check.post( {
             'first_name': fake.first_name(), 'last_name': fake.last_name(),

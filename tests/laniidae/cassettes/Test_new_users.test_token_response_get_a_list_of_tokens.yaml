@@ -1,24 +1,25 @@
 interactions:
 - request:
-    body: '{"username": "wqw", "password": "", "email": "wqw@email.com", "first_name":
-      "jonh", "last_name": "doe", "is_superuser": false, "is_staff": false}'
+    body: '{"username": "michaelmills", "password": "(8YVM2vcBo", "email": "barnesjeffrey@wise-wilkerson.biz",
+      "first_name": "Kelly", "last_name": "Butler", "is_superuser": false, "is_staff":
+      false, "partners": [{"name": "Steven Garcia"}], "hookshot": {"url": "http://google.com"}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      Authorization: [Token 13caiCytdXr3KY7WqiLyu7vSKcI=]
+      Authorization: [Token o8S7u_x_zsbMwHVaEvbKu0mkLAA=]
       Connection: [keep-alive]
-      Content-Length: ['145']
+      Content-Length: ['270']
       Content-Type: [application/json]
       User-Agent: [python-requests/2.19.1]
     method: POST
-    uri: http://127.0.0.1:8000/users/
+    uri: http://laniidae:8000/users/
   response:
     body: {string: ''}
     headers:
       Allow: ['GET, POST, HEAD, OPTIONS']
       Content-Length: ['0']
-      Date: ['Thu, 14 Mar 2019 19:37:19 GMT']
-      Location: ['http://127.0.0.1:8000/users/W71RwdFxqDSFLdOK9taVyNR9erk5Q7b9/']
+      Date: ['Wed, 27 Mar 2019 18:02:12 GMT']
+      Location: ['http://laniidae:8000/users/koNyuVVWDXgVF7xmoIOWR9zhkgtn8QzN/']
       Server: [WSGIServer/0.2 CPython/3.7.1]
       Vary: [Accept]
       X-Frame-Options: [SAMEORIGIN]
@@ -28,19 +29,19 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      Authorization: [Token 13caiCytdXr3KY7WqiLyu7vSKcI=]
+      Authorization: [Token o8S7u_x_zsbMwHVaEvbKu0mkLAA=]
       Connection: [keep-alive]
       Content-Type: [application/json]
       User-Agent: [python-requests/2.19.1]
     method: GET
-    uri: http://127.0.0.1:8000/users/W71RwdFxqDSFLdOK9taVyNR9erk5Q7b9/token
+    uri: http://laniidae:8000/users/koNyuVVWDXgVF7xmoIOWR9zhkgtn8QzN/token
   response:
     body: {string: ''}
     headers:
       Content-Length: ['0']
       Content-Type: [text/html; charset=utf-8]
-      Date: ['Thu, 14 Mar 2019 19:37:19 GMT']
-      Location: [/users/W71RwdFxqDSFLdOK9taVyNR9erk5Q7b9/token/]
+      Date: ['Wed, 27 Mar 2019 18:02:12 GMT']
+      Location: [/users/koNyuVVWDXgVF7xmoIOWR9zhkgtn8QzN/token/]
       Server: [WSGIServer/0.2 CPython/3.7.1]
     status: {code: 301, message: Moved Permanently}
 - request:
@@ -48,18 +49,18 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      Authorization: [Token 13caiCytdXr3KY7WqiLyu7vSKcI=]
+      Authorization: [Token o8S7u_x_zsbMwHVaEvbKu0mkLAA=]
       Connection: [keep-alive]
       User-Agent: [python-requests/2.19.1]
     method: GET
-    uri: http://127.0.0.1:8000/users/W71RwdFxqDSFLdOK9taVyNR9erk5Q7b9/token/
+    uri: http://laniidae:8000/users/koNyuVVWDXgVF7xmoIOWR9zhkgtn8QzN/token/
   response:
-    body: {string: '[{"key":"332Ic3mzpVA-xuUa6aNc2i__4po=","create_at":"2019-03-14T19:37:19.805069Z"}]'}
+    body: {string: '[{"key":"ctNn8WvX2leRmKMT7VgKMxzpVYQ=","create_at":"2019-03-27T18:02:12.533776Z"}]'}
     headers:
       Allow: ['GET, POST, HEAD, OPTIONS']
       Content-Length: ['82']
       Content-Type: [application/json]
-      Date: ['Thu, 14 Mar 2019 19:37:19 GMT']
+      Date: ['Wed, 27 Mar 2019 18:02:12 GMT']
       Server: [WSGIServer/0.2 CPython/3.7.1]
       Vary: [Accept]
       X-Frame-Options: [SAMEORIGIN]

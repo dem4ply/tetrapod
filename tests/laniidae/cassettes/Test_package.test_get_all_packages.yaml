@@ -1,25 +1,25 @@
 interactions:
 - request:
-    body: '{"username": "williamwood", "password": "w84QYlob)x", "email": "hallchristopher@jacobs-juarez.com",
-      "first_name": "Janice", "last_name": "Green", "is_superuser": false, "is_staff":
-      false}'
+    body: '{"username": "dillonnelson", "password": "N0LXt#hF%t", "email": "thomasdonald@hansen-travis.info",
+      "first_name": "Christina", "last_name": "Torres", "is_superuser": false, "is_staff":
+      false, "partners": [{"name": "Gregory Nguyen"}], "hookshot": {"url": "http://google.com"}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
       Authorization: [Token o8S7u_x_zsbMwHVaEvbKu0mkLAA=]
       Connection: [keep-alive]
-      Content-Length: ['187']
+      Content-Length: ['274']
       Content-Type: [application/json]
       User-Agent: [python-requests/2.19.1]
     method: POST
-    uri: http://127.0.0.1:8000/users/
+    uri: http://laniidae:8000/users/
   response:
     body: {string: ''}
     headers:
       Allow: ['GET, POST, HEAD, OPTIONS']
       Content-Length: ['0']
-      Date: ['Thu, 14 Mar 2019 21:30:11 GMT']
-      Location: ['http://127.0.0.1:8000/users/OrtdnU3jejN2FGnl6QSmost1s2_dSbLY/']
+      Date: ['Wed, 27 Mar 2019 18:02:13 GMT']
+      Location: ['http://laniidae:8000/users/CGCbZpj_QSOEHHNfhO68lNYN57XtqnaI/']
       Server: [WSGIServer/0.2 CPython/3.7.1]
       Vary: [Accept]
       X-Frame-Options: [SAMEORIGIN]
@@ -34,14 +34,14 @@ interactions:
       Content-Type: [application/json]
       User-Agent: [python-requests/2.19.1]
     method: GET
-    uri: http://127.0.0.1:8000/users/OrtdnU3jejN2FGnl6QSmost1s2_dSbLY/token
+    uri: http://laniidae:8000/users/CGCbZpj_QSOEHHNfhO68lNYN57XtqnaI/token
   response:
     body: {string: ''}
     headers:
       Content-Length: ['0']
       Content-Type: [text/html; charset=utf-8]
-      Date: ['Thu, 14 Mar 2019 21:30:11 GMT']
-      Location: [/users/OrtdnU3jejN2FGnl6QSmost1s2_dSbLY/token/]
+      Date: ['Wed, 27 Mar 2019 18:02:13 GMT']
+      Location: [/users/CGCbZpj_QSOEHHNfhO68lNYN57XtqnaI/token/]
       Server: [WSGIServer/0.2 CPython/3.7.1]
     status: {code: 301, message: Moved Permanently}
 - request:
@@ -53,14 +53,14 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.19.1]
     method: GET
-    uri: http://127.0.0.1:8000/users/OrtdnU3jejN2FGnl6QSmost1s2_dSbLY/token/
+    uri: http://laniidae:8000/users/CGCbZpj_QSOEHHNfhO68lNYN57XtqnaI/token/
   response:
-    body: {string: '[{"key":"tNxuiwLCRGZhApJ0EMAMqYeYOC4=","create_at":"2019-03-14T21:30:11.929173Z"}]'}
+    body: {string: '[{"key":"cXZ-5Lb9OIaRr24mHRUsin4xcmo=","create_at":"2019-03-27T18:02:13.382107Z"}]'}
     headers:
       Allow: ['GET, POST, HEAD, OPTIONS']
       Content-Length: ['82']
       Content-Type: [application/json]
-      Date: ['Thu, 14 Mar 2019 21:30:11 GMT']
+      Date: ['Wed, 27 Mar 2019 18:02:13 GMT']
       Server: [WSGIServer/0.2 CPython/3.7.1]
       Vary: [Accept]
       X-Frame-Options: [SAMEORIGIN]
@@ -74,25 +74,25 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      Authorization: [Token tNxuiwLCRGZhApJ0EMAMqYeYOC4=]
+      Authorization: [Token cXZ-5Lb9OIaRr24mHRUsin4xcmo=]
       Connection: [keep-alive]
       Content-Type: [application/json]
       User-Agent: [python-requests/2.19.1]
     method: GET
-    uri: http://127.0.0.1:8000/packages/
+    uri: http://laniidae:8000/packages/
   response:
-    body: {string: '[{"pk":"I67tp78e2HUchd7f5BH7WefEPn9iW9z0","name":"compass","dependencies":[]}]'}
+    body: {string: '[{"pk":"9p7DHx7uSauTtkmq6QlZ2S4TiqoHP4X0","name":"compass_2","dependencies":[]},{"pk":"I67tp78e2HUchd7f5BH7WefEPn9iW9z0","name":"compass","dependencies":[]}]'}
     headers:
       Allow: ['GET, POST, HEAD, OPTIONS']
-      Content-Length: ['78']
+      Content-Length: ['157']
       Content-Type: [application/json]
-      Date: ['Thu, 14 Mar 2019 21:30:12 GMT']
+      Date: ['Wed, 27 Mar 2019 18:02:13 GMT']
       Server: [WSGIServer/0.2 CPython/3.7.1]
       Vary: [Accept]
       X-Frame-Options: [SAMEORIGIN]
       X-Pagination-Current-Page: ['1']
-      X-Pagination-Page-Count: ['1']
+      X-Pagination-Page-Count: ['2']
       X-Pagination-Per-Page: ['10']
-      X-Pagination-Total-Count: ['1']
+      X-Pagination-Total-Count: ['2']
     status: {code: 200, message: OK}
 version: 1
