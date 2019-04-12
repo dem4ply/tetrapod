@@ -62,6 +62,7 @@ class Compass_soap( Compass_exception_base ):
         super().__init__(
             "unhandled soap exception", error_code='-10' )
 
+    @classmethod
     def find_correct_exception( cls, exception ):
         if isinstance( exception, zeep_exceptions.Fault ):
             if 'Invalid Client Code or User' in str( exception ):
