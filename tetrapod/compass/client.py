@@ -53,7 +53,7 @@ class Client( Client_soap ):
             ( 'dob', 'date_of_birth' ), ( 'f_name', 'first_name' ),
             ( 'm_name', 'middle_name' ), ( 'l_name', 'last_name' ),
             ( 'full_name_fml', 'full_name' ),
-            ( 'exp_date', 'expedition_date' ), )
+            ( 'exp_date', 'expiration_date' ), )
         | Guaranteed_list(
             'additional_messages', 'addresses', 'sub_violations',
             'licenses', 'classes', 'violations', 'statuses', 'accidents',
@@ -69,7 +69,7 @@ class Client( Client_soap ):
         | Convert_dates(
             ( '%m/%d/%Y', '%Y-%m-%d' ), 'order_date', 'date_of_bird',
             'exp_date', 'original_issue', 'conviction_date', 'incident_date',
-            'report_date', 'date_of_birth', 'order_date', 'expedition_date' )
+            'report_date', 'date_of_birth', 'order_date', 'expiration_date' )
         | Convert_time( '%H:%M', 'report_time', 'order_time' )
         | Combine_date_and_time(
             ( 'report_date', 'report_time', 'report_date' ),
