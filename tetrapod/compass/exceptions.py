@@ -2,11 +2,15 @@ from zeep import exceptions as zeep_exceptions
 
 
 class Compass_exception_base( Exception ):
-    def __init__( self, *args, error_code, additional_messages=None, **kw ):
+    def __init__(
+            self, *args, error_code, additional_messages=None,
+            response=None, **kw ):
+
         self.error_code = error_code
         if additional_messages is None:
             additional_messages = []
         self.additional_messages = additional_messages
+        self.response = response
         super().__init__( *args, **kw )
 
     def __str__( self ):
@@ -60,7 +64,7 @@ class Bad_formatted_xml( Compass_exception_base ):
 class Compass_soap( Compass_exception_base ):
     def __init__( self, *args, **kw ):
         super().__init__(
-            "unhandled soap exception", error_code='-10' )
+            "unhandled soap exception", error_code='-10', **kw )
 
     @classmethod
     def find_correct_exception( cls, exception ):
@@ -76,4 +80,4 @@ class Compass_soap( Compass_exception_base ):
 class Not_authorized( Compass_soap ):
     def __init__( self, *args, **kw ):
         super().__init__(
-            "Invalid client code or user", error_code='-11' )
+            "Invalid client code or user", error_code='-11', **kw )

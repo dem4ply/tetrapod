@@ -153,9 +153,7 @@ class Client( Client_soap ):
             additional_messages = [
                 d[ 'text' ] for d in report_info[ 'additional_messages' ] ]
 
-            if error_code == '-5007':
-                exception_class = exceptions.Still_processing
-            elif error_code == '-5003':
+            if error_code == '-5003':
                 exception_class = exceptions.No_match
             elif error_code == '-5009':
                 exception_class = exceptions.Deleted_report
@@ -167,10 +165,12 @@ class Client( Client_soap ):
                 exception_class = exceptions.Not_authorized_for_product
             elif error_code == '-5006':
                 exception_class = exceptions.Duplicate_still_processing
+            elif error_code == '-5007':
+                exception_class = exceptions.Still_processing
             elif error_code == '-5010':
                 exception_class = exceptions.Duplicate_still_processing
             else:
                 exception_class = exceptions.Compass_exception_base
             raise exception_class(
                 msg, error_code=error_code,
-                additional_messages=additional_messages )
+                additional_messages=additional_messages, response=response )
