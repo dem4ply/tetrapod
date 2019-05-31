@@ -17,7 +17,8 @@ setup(
     author_email='',
     packages=find_packages(),
     install_requires=[
-        'xmltodict>=0.11.0', 'pusher==2.1.2', 'chibi==0.4.0.5' ],
+        'xmltodict>=0.11.0', 'pusher==2.1.2', 'chibi==0.4.0.5',
+        'heroku3==3.4.0' ],
     dependency_links=[],
     classifiers=[
         'Environment :: Console',
