@@ -1,8 +1,6 @@
-import heroku3
-import datetime
 import unittest
 
-import vcr
+import heroku3
 
 from tetrapod.heroku import heroku
 

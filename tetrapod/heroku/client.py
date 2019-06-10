@@ -2,7 +2,6 @@ import logging
 
 import heroku3
 from mudskipper.client import Client_base
-from mudskipper.connection import Connections_base
 
 
 logger_apps = logging.getLogger( 'tetrapod.heroku.apps' )
