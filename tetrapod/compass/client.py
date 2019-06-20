@@ -1,12 +1,13 @@
+import copy
 import logging
 import xml
+
 from mudskipper import Client_soap
 from mudskipper.connection import Connections_soap
 from mudskipper.response import Response_xml as Response
 from requests import Session
-from zeep import Client as Zeep_client
+from zeep import Client as Zeep_client, exceptions as zeep_exceptions
 from zeep.transports import Transport
-from zeep import exceptions as zeep_exceptions
 
 from .build_xml import build_send_orders_input
 from tetrapod.compass import exceptions
@@ -18,6 +19,7 @@ from tetrapod.pipelines import (
 
 
 logger_send_orders = logging.getLogger( 'tetrapod.compass.send_orders' )
+logger_change_password = logging.getLogger( 'tetrapod.compass.change_password' )
 
 
 class Connections_compass( Connections_soap ):
@@ -43,6 +45,23 @@ class Connections_compass( Connections_soap ):
                 Password=config[ 'password' ], )
         ] )
         return client
+
+    def get( self, alias='default' ):
+        if isinstance( alias, str ):
+            return super().get( alias )
+        else:
+            if self._f is None or not callable( self._f ):
+                raise NotImplementedError(
+                    'you should add the lamdba for extract the '
+                    'tokens using the funcion of "set_alias_lambda"' )
+            token = self._f( alias )
+            copy_of_default = copy.deepcopy( self.get( 'default' ) )
+            copy_of_default[ 'token' ] = token
+            self.add( alias, copy_of_default )
+            return copy_of_default
+
+    def set_alias_lambda( self, f ):
+        self._f = f
 
 
 class Client( Client_soap ):
@@ -116,6 +135,29 @@ class Client( Client_soap ):
             order = order[1]
         self._validate_response( order )
         return order
+
+    def change_password( self, new_password ):
+        config = self.get_connection()
+        auth = self.client.get_element(
+            '{http://datalinkservices.org/}Authorization' )
+        self.client.set_default_soapheaders( [ auth(
+            AcctID=config[ 'account' ], UserID=config[ 'user' ],
+            Password=config[ 'password' ], NewPassword=new_password ) ] )
+        try:
+            response = self.client.service.changePassword()
+        except zeep_exceptions.Fault as e:
+            del self.___client
+            exceptions.Compass_soap.find_correct_exception( e )
+        else:
+            if response:
+                config[ 'password' ] = new_password
+                del self.___client
+            else:
+                logger_change_password.error(
+                    "cannot change the password of compass of {} {}".format(
+                        config[ 'account' ], config[ 'user' ]
+                    ) )
+            return response
 
     @property
     def client( self ):
